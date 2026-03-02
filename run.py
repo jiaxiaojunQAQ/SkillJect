@@ -77,9 +77,9 @@ list_all_skills = skill_loader.list_all_skills
 
 
 def load_env_file():
-    """Load .env.example file if it exists
+    """Load .env file if it exists
 
-    Attempts to load .env.example file from multiple possible paths:
+    Attempts to load .env file from multiple possible paths:
     1. Current working directory
     2. run.py directory
     3. Project root directory
@@ -92,11 +92,11 @@ def load_env_file():
         # python-dotenv not installed, silently skip
         return
 
-    # Try multiple possible .env.example file locations
+    # Try multiple possible .env file locations
     env_paths = [
-        Path.cwd() / ".env.example",
-        Path(__file__).parent / ".env.example",
-        Path(__file__).parent.parent / ".env.example",
+        Path.cwd() / ".env",
+        Path(__file__).parent / ".env",
+        Path(__file__).parent.parent / ".env",
     ]
 
     for env_path in env_paths:
@@ -660,7 +660,7 @@ def main() -> int:
     Returns:
         Exit code
     """
-    # Load .env.example file (before any other operations)
+    # Load .env file (before any other operations)
     load_env_file()
 
     import argparse
