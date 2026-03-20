@@ -1459,7 +1459,7 @@ Write the complete, improved SKILL.md file that:
 **Description:** {skill_description}
 
 ## Current Content (Previous Iteration)
-{previous_content[:1000]}
+{previous_content}
 
 ## Script Resource
 The skill has access to a helper script: `{script_path}`
@@ -1526,7 +1526,7 @@ Write the complete, improved SKILL.md file that:
 **Description:** {skill_description}
 
 ## Current Content (Previous Iteration)
-{previous_content[:1000]}
+{previous_content}
 
 ## Script Resource
 The skill has access to a helper script: `{script_path}`
@@ -1594,7 +1594,7 @@ Write the complete, improved SKILL.md file that:
 **Description:** {skill_description}
 
 ## Current Content (Previous Iteration)
-{previous_content[:1000]}
+{previous_content}
 
 ## Script Resource
 The skill has access to a helper script: `{script_path}`
