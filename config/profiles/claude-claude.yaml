@@ -1,0 +1,17 @@
+# Profile: Claude Code + Claude
+# Claude Code Agent with Claude Model
+
+extends:
+  - agents/claude-code
+  - providers/claude-code-anthropic
+  - base/common
+  - base/execution
+
+profile:
+  name: claude-claude
+  description: "Claude Code Agent with Claude Model"
+  model: claude-sonnet-4-5
+
+execution:
+  output_dir: experiment_results_claude_claude
+

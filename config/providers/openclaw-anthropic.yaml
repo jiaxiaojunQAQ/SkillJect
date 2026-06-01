@@ -1,0 +1,6 @@
+# OpenClaw Runtime Provider: Anthropic
+provider: anthropic
+max_concurrency: 1
+use_api_key: true
+auth_token_env: ANTHROPIC_API_KEY
+base_url_env: OPENCLAW_ANTHROPIC_BASE_URL

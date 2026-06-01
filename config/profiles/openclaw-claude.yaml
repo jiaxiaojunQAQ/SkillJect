@@ -1,0 +1,16 @@
+# Profile: OpenClaw + Claude
+# OpenClaw Agent with Claude Model
+
+extends:
+  - agents/openclaw
+  - providers/openclaw-anthropic
+  - base/common
+  - base/execution
+
+profile:
+  name: openclaw-claude
+  description: "OpenClaw Agent with Claude Model"
+  model: claude-sonnet-4-6
+
+execution:
+  output_dir: experiment_results_openclaw_claude

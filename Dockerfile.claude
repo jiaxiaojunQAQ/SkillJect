@@ -1,0 +1,71 @@
+# Claude Code Unified Test Image
+# Based on node:24, pre-installed with Claude Code CLI
+# Runs as non-root user (claude_code)
+# settings.json will be dynamically injected at runtime
+
+FROM node:24
+
+# Switch APT source to Aliyun mirror (Debian 12 Bookworm uses DEB822 format)
+RUN cat > /etc/apt/sources.list.d/debian.sources << 'EOF'
+Types: deb
+URIs: https://mirrors.aliyun.com/debian/
+Suites: bookworm bookworm-updates
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: https://mirrors.aliyun.com/debian-security/
+Suites: bookworm-security
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+
+RUN apt-get update && apt-get install -y sudo
+
+# Create claude_code user (UID 2000:2000)
+RUN groupadd -g 2000 claude_code && \
+    useradd -u 2000 -g claude_code -m -s /bin/bash claude_code && \
+    echo "claude_code ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Set working directory
+WORKDIR /home/claude_code
+
+# Switch to claude_code user
+USER claude_code
+
+# Install network monitoring tools (using sudo)
+RUN sudo apt-get update && \
+    sudo apt-get install -y \
+    iptables \
+    conntrack \
+    tcpdump \
+    iproute2 \
+    net-tools \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    && pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+# Add npm global installation path to PATH
+ENV PATH="/home/claude_code/.npm-global/bin:$PATH"
+
+# Install Claude Code CLI to user directory
+RUN npm config set registry=https://registry.npmmirror.com && \
+    npm config set prefix '/home/claude_code/.npm-global' && \
+    npm install -g @anthropic-ai/claude-code && \
+    npm cache clean --force
+
+# Create Claude Code configuration directory structure
+RUN mkdir -p /home/claude_code/.claude/skills
+
+# Create .claude.json to skip onboarding
+RUN cat > /home/claude_code/.claude.json << 'EOF'
+{
+  "hasCompletedOnboarding": true,
+  "bypassPermissionsModeAccepted": true
+}
+EOF
+
+# Verify installation (will fail immediately if installation failed)
+RUN claude --version

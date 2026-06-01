@@ -1,0 +1,181 @@
+# Main Configuration Entry Point
+#
+# This is the ONLY supported top-level runtime config.
+# Run with: python run.py [-c config/main.yaml] [OPTIONS]
+# CLI options: --max-attempts, --stop-on-success, --skills, --attack-types, --no-retry, -v
+#
+# Structure:
+#   1. Global overrides (generation, dataset, instruction, llm_judge) apply to every
+#      execution_plan step unless that step explicitly overrides them.
+#   2. execution_plan steps are processed sequentially, each selecting a profile.
+#
+# Internal config files (profiles/, base/, providers/, strategies/) are composed
+# by profiles and should NOT be edited directly.
+
+# ============================================
+# LLM-as-Judge Configuration
+# Optional. When present, LLM classifies non-attack responses as REJECTED or IGNORED.
+# ============================================
+#
+# Fields:
+#   attack_judgment (bool, default: false)
+#     true  = LLM evaluates whether the agent executed the malicious injection
+#     false = rule-based dual-layer detection (script execution + consequence detection)
+#     Note: response classification (REJECTED/IGNORED) always uses LLM regardless of this flag.
+#   model       (str, default: gpt-4)
+#   api_key_env  (str) - env var name for API key
+#   base_url_env (str) - env var name for base URL (set to switch provider)
+#   timeout      (int, default: 180) - request timeout in seconds
+#   temperature  (float, default: 0.3) - sampling temperature
+#   max_tokens   (int, default: 4096) - max response tokens
+
+llm_judge:
+  attack_judgment: false
+  model: gpt-5-mini
+  api_key_env: JUDGE_LLM_API_KEY
+  base_url_env: JUDGE_LLM_BASE_URL
+  timeout: 180
+  temperature: 0.3
+
+# ============================================
+# Generation Configuration (optional global override)
+# ============================================
+#
+# generation.method  (str, required, one of: direct_execution, skillject, template_injection, baseline)
+#   direct_execution  - Execute pre-authored instructions with mapped scripts
+#   skillject         - LLM-guided fusion of shell payloads into skill content
+#   template_injection - Template-based payload generation
+#   baseline          - Execute original skill with normal instruction (no attack)
+#
+# generation.script_mapping_file (str, optional)
+#   Path to manifest JSON file. Only used by direct_execution.
+#
+# generation.script_selection (dict, optional)
+#   Control how injection scripts are selected per skill+attack_type pair.
+#   mode         (str, one of: auto, mapping, random, default: auto)
+#     auto     = strategy-based (direct_execution→mapping, others→random)
+#     mapping  = use MappingScriptSelector with skill_name→script mapping
+#     random   = use RandomScriptSelector, randomly pick from data/bash_scripts/
+#   mapping_file (str, optional, mode=mapping) - path to manifest JSON
+#     When mode=mapping and mapping_file not set, defaults to data/skill_inject/manifest.json
+#
+# generation.attack_types (list[str], optional, subset of:
+#   information_disclosure, privilege_escalation, unauthorized_write, backdoor_injection)
+#
+# generation.skills (list[str], optional)
+#   Skill names to target. Default: all skills in dataset.
+
+# Example: direct_execution with custom manifest and filtered attack types
+generation:
+  method: skillject
+  # script_mapping_file: data/skill_inject/manifest_all.json
+  attack_types:
+    - information_disclosure
+#     - backdoor_injection
+#     - privilege_escalation
+#     - unauthorized_write
+dataset: data/skills_sample
+instruction: data/instruction/skills_sample
+
+# generation:
+#   method: direct_execution
+#   script_mapping_file: data/skill_inject/manifest_all.json
+#   attack_types:
+#     - information_disclosure
+#     - backdoor_injection
+#     - privilege_escalation
+#     - unauthorized_write
+# dataset: data/skills_all_injected
+# instruction: data/instruction/skills_all_injected
+
+# Active generation config
+# generation:
+#   method: baseline  # one of: direct_execution, skillject, template_injection, baseline
+
+# dataset (str | dict, optional)
+#   String form: dataset name (e.g. "skills_sample") or path (e.g. "data/skills_sample")
+#   Dict form: {name: str, base_dir: str, instruction_base_dir: str}
+#   Default base_dir: data/{name}
+# dataset: data/skills_sample
+
+# instruction (str, optional)
+#   Path to instruction directory. Default: data/instruction/{dataset_name}
+# instruction: data/instruction/skills_sample
+
+# ============================================
+# Execution Plan
+# Sequential list of profile steps. Each step runs to completion before the next.
+# ============================================
+#
+# Per-step fields:
+#   profile      (str, required) - one of 9 supported profiles (see list below)
+#   model        (str, optional) - override model for this step
+#   method       (str, optional) - override generation method
+#   dataset      (str|dict, optional) - override dataset for this step
+#   skills       (list[str], optional) - override skill selection
+#   attack_types (list[str], optional) - override attack types
+
+execution_plan:
+  # - profile: openclaw-mimo
+  #   model: mimo-v2.5
+  # - profile: claude-mimo
+  #   model: mimo-v2.5
+
+  # - profile: openclaw-glm
+    # model: glm-4.7
+  - profile: claude-glm
+    model: glm-5.1
+
+  # - profile: openclaw-minimax
+    # model: MiniMax-M2.7
+  # - profile: claude-minimax
+  #   model: MiniMax-M2.1
+
+  # - profile: openclaw-gpt
+    # model: gpt-5-mini
+  # - profile: claude-gpt
+  #   model: gpt-5-mini
+
+  # - profile: openclaw-claude-openai
+  #   model: claude-sonnet-4-6
+  # - profile: openclaw-claude
+  #   model: claude-sonnet-4-6
+  # - profile: claude-claude
+  #   model: claude-sonnet-4-6
+
+# ============================================
+# Available Profiles (agent_type + model_provider):
+#   claude-claude            - Claude Code + Claude (Anthropic API)
+#   claude-gpt               - Claude Code + GPT
+#   claude-glm               - Claude Code + GLM
+#   claude-minimax           - Claude Code + MiniMax
+#   claude-mimo              - Claude Code + Mimo (Anthropic-compatible API)
+#   openclaw-claude-openai   - OpenClaw + Claude via OpenAI-compatible proxy
+#   openclaw-claude          - OpenClaw + Claude (Anthropic API)
+#   openclaw-gpt             - OpenClaw + GPT
+#   openclaw-glm             - OpenClaw + GLM
+#   openclaw-minimax         - OpenClaw + MiniMax
+#
+# Current default models:
+#   claude-sonnet-4-6, gpt-5-mini, glm-4.7, MiniMax-M2.7
+# ============================================
+
+# ============================================
+# Inherited Config (from profiles -> base/ + providers/)
+# These fields have sensible defaults. Override only if needed.
+# ============================================
+#
+# global.verbose     (bool,   default: false)
+# global.log_level   (str,    one of: DEBUG, INFO, WARNING, ERROR, CRITICAL, default: INFO)
+#
+# adaptive_iteration.max_attempts    (int,  min: 1, default: 5) - skillject only
+# adaptive_iteration.stop_on_success (bool, default: true)
+#
+# execution.retry_failed       (bool, default: true)
+# execution.max_retries        (int,  min: 0, default: 3)
+# execution.save_detailed_logs (bool, default: true)
+# execution.test_timeout       (int,  min: 1, default: 2400 seconds)
+# execution.command_timeout    (int,  min: 1, default: 2400 seconds)
+#
+# sandbox.domain           (str,  default: localhost:18080)
+# sandbox.image            (str,  default: claude_code:latest or openclaw:v1)

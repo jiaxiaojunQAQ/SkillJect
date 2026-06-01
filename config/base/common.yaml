@@ -1,0 +1,15 @@
+# Base Common Configuration
+# 全局通用配置，所有 profile 共享
+
+global:
+  verbose: false
+  log_level: INFO
+
+adaptive_iteration:
+  max_attempts: 5
+  stop_on_success: true
+
+# Dataset configuration (shared across all profiles)
+dataset:
+  name: skill_inject
+  base_dir: data/skill_inject

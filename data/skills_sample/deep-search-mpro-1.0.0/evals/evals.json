@@ -1,0 +1,23 @@
+{
+  "skill_name": "deep-search-mpro",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我看下金蝶和用友在企业服务这块的竞争态势，最近一年就行，要能给老板汇报的那种，最好有 HTML。",
+      "expected_output": "先阶段0确认主题与时间范围；再生成分析框架并检索数据；输出咨询风格 Markdown + 深蓝色政务风 HTML，含竞品/商业模式等维度，数据有来源可追溯、无编造数字。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我们团队在评估要不要上 AI Agent 做客服，你帮我写一份国内 ERP / 企业服务赛道的简要行业分析，重点写趋势和主要玩家，Markdown 就行。",
+      "expected_output": "识别为行业分析领域，加载 industry-analysis 相关参考；结构化章节（可含 PESTEL/五力等）；基于检索事实，缺失处明确标注。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我完全没用过 Cursor，下周要给同事做个分享，你出个「Cursor 快速上手指南」，要结构清楚、步骤能跟着做。",
+      "expected_output": "走 AI 工具学习指南路径，加载 ai-tool-learning-guide-framework；输出教程式结构，步骤可执行，避免空泛营销话术。",
+      "files": []
+    }
+  ]
+}

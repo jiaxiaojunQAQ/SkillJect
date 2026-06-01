@@ -1,0 +1,7 @@
+# Base Sandbox Configuration
+# 沙箱默认配置
+
+# Sandbox images reference
+_sandbox_images: &sandbox_images
+  claude_code: claude_code:latest
+  openclaw: openclaw:v1

@@ -1,0 +1,249 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-17T07:43:21.961Z",
+    "slug": "k-dense-ai-umap-learn",
+    "source_url": "https://github.com/K-Dense-AI/claude-scientific-skills/tree/main/scientific-skills/umap-learn",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "86c2fb50019c43fad9d5ef3db2c40495a152b8e12b3587867ebde2485266b8dd",
+    "tree_hash": "fdd2752def8845bc18750cf5fbbbf83c28dfce233751d84f98b8a09601cb079e",
+    "original_provider": "k-dense-ai"
+  },
+  "skill": {
+    "name": "umap-learn",
+    "description": "UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D visualization, clustering preprocessing (HDBSCAN), supervised/parametric UMAP, for high-dimensional data.",
+    "summary": "UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D visualization, clustering ...",
+    "icon": "📊",
+    "version": "1.0.0",
+    "author": "K-Dense-AI",
+    "license": "BSD-3-Clause license",
+    "category": "data",
+    "tags": [
+      "dimensionality-reduction",
+      "visualization",
+      "clustering",
+      "machine-learning",
+      "data-science"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "external_commands"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "All static findings are false positives. The 'external_commands' detections are markdown code blocks (```python, ```bash) in documentation files, not actual shell execution. No malicious code, network requests, or security risks exist. This is a legitimate data science library documentation for UMAP dimensionality reduction.",
+    "risk_factor_evidence": [
+      {
+        "factor": "external_commands",
+        "evidence": [
+          {
+            "file": "SKILL.md",
+            "line_start": 19,
+            "line_end": 21
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 27,
+            "line_end": 41
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 130,
+            "line_end": 142
+          },
+          {
+            "file": "references/api_reference.md",
+            "line_start": 5,
+            "line_end": 5
+          },
+          {
+            "file": "references/api_reference.md",
+            "line_start": 34,
+            "line_end": 45
+          },
+          {
+            "file": "references/api_reference.md",
+            "line_start": 378,
+            "line_end": 397
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 3,
+    "total_lines": 1740,
+    "audit_model": "claude",
+    "audited_at": "2026-01-17T07:43:21.961Z"
+  },
+  "content": {
+    "user_title": "Apply UMAP dimensionality reduction for data visualization",
+    "value_statement": "High-dimensional data is difficult to visualize and analyze. UMAP reduces dimensions while preserving structure, enabling clear 2D/3D visualizations and better clustering results.",
+    "seo_keywords": [
+      "UMAP",
+      "dimensionality reduction",
+      "data visualization",
+      "manifold learning",
+      "clustering",
+      "Python",
+      "scikit-learn",
+      "Claude",
+      "machine learning",
+      "data science"
+    ],
+    "actual_capabilities": [
+      "Reduces high-dimensional data to 2D/3D for visualization",
+      "Preserves both local and global data structure",
+      "Supports supervised and semi-supervised learning",
+      "Integrates with scikit-learn pipelines",
+      "Enables clustering preprocessing with HDBSCAN",
+      "Provides parametric UMAP for neural network embeddings"
+    ],
+    "limitations": [
+      "Requires standardized input data for best results",
+      "Stochastic algorithm needs random_state for reproducibility",
+      "Transform assumes consistent data distributions between train and test",
+      "Can create artificial cluster divisions in certain conditions"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Data scientists",
+        "title": "Visualize high-dimensional datasets",
+        "description": "Create 2D scatter plots of complex data like gene expression, text embeddings, or customer behavior for pattern discovery."
+      },
+      {
+        "target_user": "ML engineers",
+        "title": "Preprocess data for clustering",
+        "description": "Reduce dimensions before applying HDBSCAN to overcome curse of dimensionality and improve cluster quality."
+      },
+      {
+        "target_user": "Researchers",
+        "title": "Feature engineering for ML pipelines",
+        "description": "Create compact 10-50 dimensional embeddings that preserve structure for downstream classification or regression tasks."
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Basic visualization",
+        "scenario": "First time using UMAP on numeric data",
+        "prompt": "Apply UMAP to reduce my dataset to 2D for visualization. Use standard parameters and create a scatter plot colored by the target variable."
+      },
+      {
+        "title": "Clustering optimization",
+        "scenario": "Preprocessing for HDBSCAN clustering",
+        "prompt": "Configure UMAP for clustering preprocessing with n_neighbors=30, min_dist=0.0, n_components=10, then apply HDBSCAN to find clusters."
+      },
+      {
+        "title": "Supervised embedding",
+        "scenario": "Using labels to guide dimensionality reduction",
+        "prompt": "Create a supervised UMAP embedding using my class labels to separate categories while preserving internal structure within each class."
+      },
+      {
+        "title": "Custom metric selection",
+        "scenario": "Working with text or binary data",
+        "prompt": "Apply UMAP with cosine distance for my document embeddings, or use hamming distance for binary feature data."
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Apply UMAP to visualize my iris dataset in 2D",
+        "output": [
+          "Created UMAP embedding with shape (150, 2)",
+          "Applied StandardScaler preprocessing",
+          "Generated scatter plot showing three distinct clusters",
+          "Preserved 92% of local neighborhood structure",
+          "Ready for interactive exploration of species relationships"
+        ]
+      },
+      {
+        "input": "Use UMAP to preprocess my customer data for clustering",
+        "output": [
+          "Applied clustering-optimized UMAP with n_neighbors=30, min_dist=0.0",
+          "Reduced to 10 dimensions for HDBSCAN",
+          "Identified 5 customer segments with HDBSCAN",
+          "Found 23 noise points (unassigned customers)",
+          "Density preserved better than direct 2D reduction"
+        ]
+      },
+      {
+        "input": "Apply supervised UMAP with my labeled dataset",
+        "output": [
+          "Used 5000 labeled samples with 50 features",
+          "Supervised embedding achieved 0.89 cluster separation",
+          "Classes are clearly visible in 2D visualization",
+          "Preserved internal structure within each class"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Always standardize features before applying UMAP to ensure equal weighting across dimensions",
+      "Set random_state parameter for reproducible results across runs",
+      "Use n_neighbors=30, min_dist=0.0, n_components=10 for clustering preprocessing workflows"
+    ],
+    "anti_patterns": [
+      "Applying UMAP to raw unscaled data will produce biased embeddings with unequal feature weighting",
+      "Using default parameters for all tasks without tuning for specific goals reduces effectiveness",
+      "Assuming UMAP preserves density perfectly - it can create artificial cluster divisions"
+    ],
+    "faq": [
+      {
+        "question": "When should I use UMAP vs t-SNE?",
+        "answer": "Use UMAP for faster computation, better preservation of global structure, and when you need to transform new data. UMAP scales better to larger datasets."
+      },
+      {
+        "question": "Why are my clusters disconnected?",
+        "answer": "Increase n_neighbors parameter to emphasize more global structure and connect fragmented components. Values of 50-200 work well."
+      },
+      {
+        "question": "How do I make results reproducible?",
+        "answer": "Set the random_state parameter to any integer value. This fixes the stochastic optimization seed for consistent embeddings."
+      },
+      {
+        "question": "Can UMAP handle categorical variables?",
+        "answer": "UMAP works with numeric data. Encode categorical variables using one-hot encoding or use hamming distance for binary encoded data."
+      },
+      {
+        "question": "What is the difference between fit() and fit_transform()?",
+        "answer": "fit_transform() combines training and transformation in one step. Use fit() followed by transform() when you need to apply the same embedding to new data."
+      },
+      {
+        "question": "How do I choose the right number of components?",
+        "answer": "Use 2-3 for visualization, 5-10 for clustering preprocessing, and 10-50 for feature engineering in machine learning pipelines."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "references",
+      "type": "dir",
+      "path": "references",
+      "children": [
+        {
+          "name": "api_reference.md",
+          "type": "file",
+          "path": "references/api_reference.md",
+          "lines": 533
+        }
+      ]
+    },
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 479
+    }
+  ]
+}

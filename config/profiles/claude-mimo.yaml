@@ -1,0 +1,16 @@
+# Profile: Claude Code + Mimo (Anthropic-compatible API)
+# Claude Code Agent with Mimo Model
+
+extends:
+  - agents/claude-code
+  - providers/claude-code-mimo
+  - base/common
+  - base/execution
+
+profile:
+  name: claude-mimo
+  description: "Claude Code Agent with Mimo Model (Anthropic-compatible interface)"
+  model: mimo-v2.5
+
+execution:
+  output_dir: experiment_results_claude_mimo

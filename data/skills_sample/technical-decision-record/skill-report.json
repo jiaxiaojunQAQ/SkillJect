@@ -1,0 +1,233 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-21T16:13:41.734Z",
+    "slug": "chaiwithjai-technical-decision-record",
+    "source_url": "https://github.com/ChaiWithJai/claude-code-mastery/tree/main/exercises/05-domain-expertise/solution",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "c630cbbf637ee6f598ec4034e928c36b75102464da81446b04349ed2c1e9b5bc",
+    "tree_hash": "f09d96f1fa3eab41823e9e77687bdac5bbada50c055c81fe3cd4f76183a984df",
+    "original_provider": "chaiwithjai"
+  },
+  "skill": {
+    "name": "technical-decision-record",
+    "description": "Use when making technical decisions, choosing technologies, or documenting architectural choices. Creates ADRs (Architecture Decision Records).",
+    "summary": "Creates Architecture Decision Records (ADRs) to document technical choices with context, options, and consequences.",
+    "icon": "📋",
+    "version": "1.0.0",
+    "author": "ChaiWithJai",
+    "license": "MIT",
+    "tags": [
+      "documentation",
+      "architecture",
+      "decision-making",
+      "adr",
+      "technical-writing"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": []
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "This is a pure documentation skill containing ADR templates and guidance for documenting technical decisions. No code execution, network calls, or cryptographic operations exist. All static findings are false positives: the scanner incorrectly flagged JSON metadata URLs as network risks, markdown code fences as shell execution, and documentation text about architectural decisions as cryptographic patterns. Safe for publication.",
+    "risk_factor_evidence": [],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 2,
+    "total_lines": 390,
+    "audit_model": "claude",
+    "audited_at": "2026-01-21T16:13:41.734Z",
+    "risk_factors": []
+  },
+  "content": {
+    "user_title": "Document Technical Decisions with ADRs",
+    "value_statement": "Technical teams often lose context when decisions are made informally. This skill creates structured Architecture Decision Records that capture the problem, constraints, options considered, and consequences for future reference.",
+    "seo_keywords": [
+      "Claude",
+      "Codex",
+      "Claude Code",
+      "Architecture Decision Record",
+      "ADR",
+      "technical documentation",
+      "software architecture",
+      "decision log",
+      "architectural choices",
+      "technical decisions"
+    ],
+    "actual_capabilities": [
+      "Guides users through a structured ADR creation process with 5 steps",
+      "Provides a markdown template with standard ADR sections",
+      "Helps identify constraints including technical, business, and compliance factors",
+      "Documents options with pros, cons, and estimated costs",
+      "Records consequences including positive, negative, risks, and reversibility",
+      "Identifies common mistakes in technical decision-making"
+    ],
+    "limitations": [
+      "Does not evaluate technical options or provide recommendations",
+      "Does not integrate with project management tools",
+      "Does not track ADR status or link related decisions automatically",
+      "Does not generate diagrams or visualizations"
+    ],
+    "use_cases": [
+      {
+        "title": "New Technology Selection",
+        "description": "Document the evaluation process when choosing between React, Vue, or Angular for a new frontend project, capturing all constraints and trade-offs.",
+        "target_user": "Technical leads and architects evaluating new technologies"
+      },
+      {
+        "title": "Architecture Migration Planning",
+        "description": "Record the decision to migrate from a monolith to microservices, including the rationale, risks, and rollback plan.",
+        "target_user": "Engineering managers planning architectural changes"
+      },
+      {
+        "title": "Process Change Documentation",
+        "description": "Formally document a new code review process or testing strategy with clear context and expected outcomes.",
+        "target_user": "Team leads implementing process improvements"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Basic ADR Request",
+        "prompt": "I need to create an ADR for [DECISION TOPIC]. Help me document this technical decision with the problem, constraints, options, and consequences.",
+        "scenario": "Quick start for simple decisions"
+      },
+      {
+        "title": "Technology Evaluation",
+        "prompt": "We're deciding between [OPTION A], [OPTION B], and [OPTION C] for [USE CASE]. Create an ADR that captures our constraints, evaluates each option with pros and cons, and documents the final decision with reasoning.",
+        "scenario": "Comparing multiple technology options"
+      },
+      {
+        "title": "Architecture Change Request",
+        "prompt": "I need to document our decision to [ARCHITECTURAL CHANGE]. Include the trigger for this change, the risks involved, and a reversibility assessment. Use the full ADR template.",
+        "scenario": "Documenting significant architectural changes"
+      },
+      {
+        "title": "Superseding Previous ADR",
+        "prompt": "ADR-[NUMBER] needs to be superseded because [REASON]. Create a new ADR that references the original, explains what changed, and provides updated context and recommendations.",
+        "scenario": "Updating a previous decision with new information"
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Create an ADR for choosing PostgreSQL over MongoDB for our user profile service",
+        "output": [
+          "# ADR-001: Use PostgreSQL for User Profile Service",
+          "",
+          "**Status**: Accepted",
+          "**Date**: 2024-01-21",
+          "**Deciders**: Engineering Team",
+          "",
+          "## Context",
+          "We need to select a database for storing user profile data in our new microservice. The service will handle user accounts, preferences, and authentication tokens.",
+          "",
+          "## Constraints",
+          "- Must integrate with existing Node.js backend",
+          "- Need ACID compliance for transaction safety",
+          "- Team has PostgreSQL experience, limited MongoDB experience",
+          "- Budget does not support managed database services",
+          "",
+          "## Options Considered",
+          "### Option 1: PostgreSQL",
+          "- Pros: ACID compliance, strong relationships, team familiarity",
+          "- Cons: Requires schema migration, less flexible for unstructured data",
+          "",
+          "### Option 2: MongoDB",
+          "- Pros: Schema flexibility, easy horizontal scaling",
+          "- Cons: No ACID transactions, learning curve for team",
+          "",
+          "## Decision",
+          "We will use PostgreSQL.",
+          "",
+          "## Consequences",
+          "- Positive: Reliable transactions, clear data model",
+          "- Negative: Schema changes require migrations",
+          "- Risks: Performance at extreme scale",
+          "- Reversibility: Moderate - data migration required"
+        ]
+      },
+      {
+        "input": "Document our decision to adopt gRPC for internal service communication",
+        "output": [
+          "# ADR-042: Adopt gRPC for Internal Service Communication",
+          "",
+          "**Status**: Accepted",
+          "**Date**: 2024-01-21",
+          "**Deciders**: Platform Team",
+          "",
+          "## Context",
+          "Our microservices currently use REST over HTTP for inter-service communication. Performance bottlenecks and payload size are becoming issues as we scale.",
+          "",
+          "## Constraints",
+          "- Must support TypeScript and Go services",
+          "- Need backward compatibility with existing REST APIs during transition",
+          "- Network efficiency is critical for high-volume services",
+          "",
+          "## Decision",
+          "We will adopt gRPC for new internal services with protobuf contracts.",
+          "",
+          "## Consequences",
+          "- Positive: Smaller payloads, faster serialization, type safety",
+          "- Negative: Requires learning curve, browser clients cannot use gRPC directly",
+          "- Risks: Debugging complexity increases",
+          "- Reversibility: Difficult - contracts become tightly coupled"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Always list at least 2 options, even if one is 'do nothing', to ensure decisions are justified",
+      "Match deliberation time to reversibility - spend more effort on irreversible decisions",
+      "Include all stakeholders in the Deciders field and get explicit sign-off before finalizing"
+    ],
+    "anti_patterns": [
+      "Making decisions without exploring alternatives - you cannot justify a choice without knowing what you chose against",
+      "Editing old ADRs when context changes - this loses the historical record; instead create a new ADR that supersedes the old one",
+      "Making decisions that affect teams without involving them - this creates surprise, resistance, and rework"
+    ],
+    "faq": [
+      {
+        "question": "What is an ADR?",
+        "answer": "An ADR (Architecture Decision Record) is a document that captures important technical decisions, the context behind them, and the reasoning for the chosen approach. It serves as a reference for future team members."
+      },
+      {
+        "question": "When should I create an ADR?",
+        "answer": "Create an ADR when making technology choices, architectural changes, selecting third-party services, changing established patterns, or any decision you want to reference later."
+      },
+      {
+        "question": "How detailed should an ADR be?",
+        "answer": "Match detail to reversibility. Low-stakes reversible decisions need less detail. High-stakes irreversible decisions should capture full context, options, risks, and consequences."
+      },
+      {
+        "question": "Can I edit an existing ADR?",
+        "answer": "No. ADRs are immutable historical records. If circumstances change, create a new ADR that supersedes the old one with a reference to the original."
+      },
+      {
+        "question": "What belongs in the Consequences section?",
+        "answer": "Document positive benefits, negative costs, identified risks with mitigations, and reversibility assessment (Easy, Moderate, Difficult, or Irreversible)."
+      },
+      {
+        "question": "How do I number my ADRs?",
+        "answer": "Use sequential numbering like ADR-001, ADR-002. Include the number in the filename and title for easy reference and linking between related decisions."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 189
+    }
+  ]
+}

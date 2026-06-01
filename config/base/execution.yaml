@@ -1,0 +1,12 @@
+# Base Execution Configuration
+# 执行默认配置
+
+execution:
+  retry_failed: true
+  max_retries: 3
+  save_detailed_logs: true
+  test_timeout: 2400
+  command_timeout: 2400
+
+sandbox:
+  domain: localhost:8080

@@ -1,0 +1,16 @@
+# Profile: OpenClaw + GLM
+# OpenClaw Agent with GLM Model
+
+extends:
+  - agents/openclaw
+  - providers/openclaw-zhipu
+  - base/common
+  - base/execution
+
+profile:
+  name: openclaw-glm
+  description: "OpenClaw Agent with GLM Model"
+  model: glm-4.7
+
+execution:
+  output_dir: experiment_results_openclaw_glm

@@ -1,0 +1,30 @@
+# Template Injection Test Case Generation Configuration
+#
+# Generate test cases by injecting predefined attack payloads into existing skill templates
+
+method: template_injection
+description: "Generate test cases by injecting predefined attack payloads into existing skill templates"
+
+# Template configuration
+template:
+  base_dir: "{dataset_base_dir}"
+  output_dir: template_injection
+  save_test_files: true
+  metadata_format: json
+
+# Attack payloads
+payloads:
+  attack_types:
+    - information_disclosure
+    - privilege_escalation
+    - unauthorized_write
+    - backdoor_injection
+  severities:
+    - high
+    - critical
+  injection_layers:
+    - instruction
+
+# Skill filter
+skills:
+  target_names: []

@@ -1,0 +1,6 @@
+# OpenClaw Runtime Provider: Zhipu
+provider: zhipu
+max_concurrency: 2
+use_api_key: true
+auth_token_env: ZHIPU_API_KEY
+base_url_env: OPENCLAW_ZHIPU_BASE_URL

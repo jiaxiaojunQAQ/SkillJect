@@ -1,0 +1,7 @@
+{
+  "name": "ocas-vesper",
+  "version": "2.0.0",
+  "description": "Daily briefing generator. Aggregates signals from across the system into concise morning and evening briefings. Surfaces outcomes, opportunities, and decisions in natural language without exposing internal processes. Use for morning/evening briefings, on-demand briefings, or pending decision review. Do not use for deep research (Sift), pattern analysis (Corvus), or message drafting (Dispatch).",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com"
+}

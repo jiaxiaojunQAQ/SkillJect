@@ -1,0 +1,17 @@
+version: 1
+timezone: Asia/Shanghai
+jobs:
+  - id: intraday_scan
+    cron: "30 14 * * 1-5"
+    task: short_term_signal_engine
+    description: "14:30 intraday scan for sentiment, sectors and strong stock candidates"
+
+  - id: close_confirm
+    cron: "10 15 * * 1-5"
+    task: short_term_signal_engine
+    description: "15:10 close confirmation for volume and board lock validation"
+
+  - id: daily_push
+    cron: "20 15 * * 1-5"
+    task: generate_daily_report
+    description: "15:20 publish short-term A-share daily report"

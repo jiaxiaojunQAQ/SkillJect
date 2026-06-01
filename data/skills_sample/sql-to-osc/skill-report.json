@@ -1,0 +1,362 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-17T02:53:43.109Z",
+    "slug": "dennisliuck-sql-to-osc",
+    "source_url": "https://github.com/DennisLiuCk/claude-plugin-marketplace/tree/main/plugins/sql-to-osc/skills/sql-to-osc",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "c235a6b078291ab10c2f0802caacecdab31892c3fbe1630b82daa0f93e9f336c",
+    "tree_hash": "e321d8f48e2082486b4e0ec4668f18472e28d17326b1931e5ad13bf80489dd46",
+    "original_provider": "dennisliuck"
+  },
+  "skill": {
+    "name": "sql-to-osc",
+    "description": "SQL to OSC (Online Schema Change) conversion expert for Flyway migration scripts.\nUse when: (1) Converting SQL migration files to OSC format, (2) User mentions \"OSC\", \"轉換 OSC\", \"osc.txt\", or \"Online Schema Change\", (3) Working with Flyway ALTER TABLE/CREATE INDEX statements that need OSC conversion.\n",
+    "summary": "SQL to OSC (Online Schema Change) conversion expert for Flyway migration scripts.\nUse when: (1) Conv...",
+    "icon": "🔄",
+    "version": "1.0.0",
+    "author": "DennisLiuCk",
+    "license": "MIT",
+    "category": "data",
+    "tags": [
+      "database",
+      "migration",
+      "flyway",
+      "sql",
+      "osc"
+    ],
+    "supported_tools": [
+      "claude",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "network",
+      "external_commands"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "This is a pure prompt-based documentation skill with no executable code. The static analyzer produced false positives by misidentifying metadata and documentation elements as security threats. The 39 flagged 'issues' are benign: SHA-256 hashes identified as 'weak crypto', git refs as 'C2 keywords', and markdown code examples as 'external commands'. This skill only transforms text following documented patterns - it makes no network calls, executes no scripts, and accesses no filesystem beyond what the AI assistant controls.",
+    "risk_factor_evidence": [
+      {
+        "factor": "network",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          }
+        ]
+      },
+      {
+        "factor": "external_commands",
+        "evidence": [
+          {
+            "file": "SKILL.md",
+            "line_start": 14,
+            "line_end": 14
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 18,
+            "line_end": 18
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 19,
+            "line_end": 19
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 20,
+            "line_end": 20
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 20,
+            "line_end": 20
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 22,
+            "line_end": 22
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 22,
+            "line_end": 22
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 27,
+            "line_end": 27
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 30,
+            "line_end": 30
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 30,
+            "line_end": 30
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 31,
+            "line_end": 31
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 31,
+            "line_end": 31
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 34,
+            "line_end": 34
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 35,
+            "line_end": 35
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 35,
+            "line_end": 35
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 40,
+            "line_end": 40
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 41,
+            "line_end": 41
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 42,
+            "line_end": 42
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 43,
+            "line_end": 43
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 47,
+            "line_end": 47
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 48,
+            "line_end": 55
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 55,
+            "line_end": 57
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 57,
+            "line_end": 58
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 58,
+            "line_end": 60
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 60,
+            "line_end": 64
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 64,
+            "line_end": 75
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 2,
+    "total_lines": 179,
+    "audit_model": "claude",
+    "audited_at": "2026-01-17T02:53:43.109Z"
+  },
+  "content": {
+    "user_title": "Convert SQL migrations to OSC format",
+    "value_statement": "Database migrations using Flyway require conversion for online schema changes. This skill transforms standard SQL migration scripts into OSC format for zero-downtime deployments.",
+    "seo_keywords": [
+      "SQL to OSC",
+      "Flyway migration",
+      "Online Schema Change",
+      "database migration",
+      "Claude Code",
+      "Claude",
+      "schema change",
+      "database conversion",
+      "migration script",
+      "osc.txt"
+    ],
+    "actual_capabilities": [
+      "Parse Flyway SQL migration files from standard location",
+      "Extract database name, table name, and operations from SQL statements",
+      "Convert ALTER TABLE statements to OSC format",
+      "Transform CREATE INDEX to ADD INDEX syntax",
+      "Format output as TAB-separated OSC lines",
+      "Generate conversion summary with operation statistics"
+    ],
+    "limitations": [
+      "Does not validate SQL syntax or schema correctness",
+      "Only processes standard Flyway migration file patterns",
+      "Does not execute migrations or connect to databases",
+      "Requires manual review before production deployment"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Database Engineers",
+        "title": "Prepare zero-downtime migrations",
+        "description": "Convert Flyway SQL scripts to OSC format for online schema changes without downtime"
+      },
+      {
+        "target_user": "DevOps Engineers",
+        "title": "Automate migration conversion",
+        "description": "Transform database migration scripts automatically as part of deployment pipelines"
+      },
+      {
+        "target_user": "Backend Developers",
+        "title": "Standardize OSC output",
+        "description": "Ensure consistent OSC format across database migration files and teams"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Basic conversion",
+        "scenario": "Convert a SQL migration file",
+        "prompt": "Convert this SQL migration to OSC format. Read the file and output to the standard osc directory."
+      },
+      {
+        "title": "With summary",
+        "scenario": "Get migration statistics",
+        "prompt": "Convert this SQL migration file to OSC and provide a summary of affected tables and operations performed."
+      },
+      {
+        "title": "Batch conversion",
+        "scenario": "Convert multiple migrations",
+        "prompt": "Convert all SQL migration files in the migration directory to OSC format for today."
+      },
+      {
+        "title": "Format verification",
+        "scenario": "Verify OSC output",
+        "prompt": "Convert this SQL to OSC format and verify the output meets UTF-8 encoding, TAB separators, and proper line endings."
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Convert the SQL migration V1.0__alter_users.sql to OSC format",
+        "output": [
+          "✓ 轉換完成",
+          "來源: src/main/resources/db/migration/V1.0__alter_users.sql",
+          "輸出: src/main/resources/db/osc/osc-20251212.txt",
+          "影響資料表: USERS",
+          "操作統計:",
+          "  - ADD COLUMN: 2",
+          "  - ADD INDEX: 1"
+        ]
+      },
+      {
+        "input": "Convert V2.0__create_orders.sql with multiple operations",
+        "output": [
+          "✓ 轉換完成",
+          "來源: src/main/resources/db/migration/V2.0__create_orders.sql",
+          "輸出: src/main/resources/db/osc/osc-20251212.txt",
+          "影響資料表: ORDERS, ORDER_ITEMS",
+          "操作統計:",
+          "  - ADD COLUMN: 5",
+          "  - ADD INDEX: 2",
+          "  - MODIFY COLUMN: 1"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Always review OSC output before deployment to catch any missed conversions",
+      "Use today's date in osc filename to maintain proper version ordering",
+      "Keep original SQL migration files as audit trail alongside OSC output"
+    ],
+    "anti_patterns": [
+      "Skipping manual review of OSC output before production deployment",
+      "Converting without reading the full SQL file context",
+      "Using OSC format for databases that do not support online schema changes"
+    ],
+    "faq": [
+      {
+        "question": "What databases support OSC format?",
+        "answer": "OSC is commonly used with MySQL online schema change tools. Check your database tool documentation for compatibility."
+      },
+      {
+        "question": "What is the output file naming convention?",
+        "answer": "Output files follow the pattern osc-YYYYMMDD.txt and are placed in src/main/resources/db/osc/ directory."
+      },
+      {
+        "question": "Does this skill execute SQL on my database?",
+        "answer": "No, this skill only transforms SQL text to OSC format. It does not connect to or modify any database."
+      },
+      {
+        "question": "What SQL statements are supported?",
+        "answer": "Supports USE, ALTER TABLE, CREATE INDEX statements following Flyway naming conventions."
+      },
+      {
+        "question": "How do I handle multiple operations on one table?",
+        "answer": "Comma-join operations without spaces, e.g., ADD COLUMN col1,ADD INDEX idx1 (col1);"
+      },
+      {
+        "question": "What encoding should the output use?",
+        "answer": "UTF-8 without BOM with LF line endings and TAB separators between columns."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 76
+    }
+  ]
+}

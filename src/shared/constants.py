@@ -1,0 +1,6 @@
+"""Shared constants used across layers."""
+
+LLM_TIMEOUT = 120
+REQUEST_TIMEOUT = 120
+INSTALL_TIMEOUT = 300
+COMMAND_TIMEOUT = 300

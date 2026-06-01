@@ -1,0 +1,10 @@
+# Agent Configuration: OpenClaw
+# Agent 纯行为配置，env 映射由 profile 定义
+
+agent:
+  type: openclaw
+  bypass_mode: true
+  use_json_output: true
+
+sandbox:
+  image: openclaw:v1

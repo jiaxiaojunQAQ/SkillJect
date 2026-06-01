@@ -1,0 +1,7 @@
+# Direct Execution Strategy Configuration
+#
+# This strategy loads pre-generated instruction.md files and executes them directly
+# without modifying the original skill files.
+
+method: direct_execution
+description: "Direct execution mode - load instruction.md and execute"

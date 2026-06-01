@@ -1,0 +1,49 @@
+{
+  "_comment": "Lucid configuration — all features can be enabled/disabled per preference. Defaults are tuned for most users.",
+
+  "trends": {
+    "enabled": true,
+    "recurringIssues": {
+      "enabled": true,
+      "lookbackDays": 14,
+      "minOccurrences": 3
+    },
+    "staleProjects": {
+      "enabled": true,
+      "staleAfterDays": 30
+    },
+    "escalatedPatterns": {
+      "enabled": true,
+      "minOccurrences": 3
+    }
+  },
+
+  "autoApply": {
+    "enabled": false,
+    "categories": {
+      "versionNumbers": false,
+      "staleCronIds": false,
+      "servicePortDeletions": false,
+      "newProjectEntries": false,
+      "infrastructureFacts": false,
+      "lessonsLearned": false,
+      "modelStrategy": false,
+      "closedOpenLoops": false,
+      "staleProjectStatus": false
+    },
+    "_note": "Auto-apply is opt-in. Set enabled: true to activate."
+  },
+
+  "review": {
+    "maxLinesPerSection": 50,
+    "confidenceThreshold": "high",
+    "requireMultipleDays": true
+  },
+
+  "_comment_topic": "Set this to your notification target, e.g. telegram:-1234567890:topic:5. Leave null to use main chat.",
+  "notifications": {
+    "announceOnDelivery": true,
+    "channel": "telegram",
+    "topic": null
+  }
+}

@@ -1,0 +1,56 @@
+# OpenClaw CLI Test Image for SkillJect
+# Based on node:24, with OpenClaw CLI installed
+# This image matches the structure of a running OpenClaw Gateway container
+#
+# Key directories (matching actual OpenClaw Gateway structure):
+# - /home/node/.openclaw/workspace/  - Agent working directory
+# - /home/node/.openclaw/agents/main/agent/ - Agent configuration
+# - /home/node/.openclaw/openclaw.json - Main configuration
+
+FROM node:24-bookworm-slim
+
+# Install sudo (all from official Debian sources)
+RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+
+# Note: node:24 image already includes 'node' user (UID 1000:1000)
+# Just ensure node user has sudo privileges
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Set working directory
+WORKDIR /home/node
+
+# Switch to node user
+USER node
+
+# Install network monitoring tools and utilities
+RUN sudo apt-get update && \
+    sudo apt-get install -y \
+    curl \
+    git \
+    python3 \
+    python3-pip \
+    python3-venv \
+    iproute2 \
+    net-tools \
+    lsof \
+    procps \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+# Add npm global installation path to PATH
+ENV PATH="/home/node/.npm-global/bin:$PATH"
+
+# Install OpenClaw CLI globally
+RUN npm config set prefix '/home/node/.npm-global' && \
+    npm install -g openclaw@latest && \
+    npm cache clean --force
+
+# Create OpenClaw directory structure (matching actual Gateway structure)
+# NOTE: OpenClaw Gateway does NOT use a skills/ directory
+# Skills are managed through the Gateway's own system
+RUN mkdir -p /home/node/.openclaw/workspace
+
+# Create agents directory structure
+RUN mkdir -p /home/node/.openclaw/agents/main/agent
+
+# Verify installation
+RUN openclaw --version

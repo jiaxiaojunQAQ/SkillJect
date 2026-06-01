@@ -1,0 +1,16 @@
+# Profile: OpenClaw + GPT
+# OpenClaw Agent with GPT Model
+
+extends:
+  - agents/openclaw
+  - providers/openclaw-openai
+  - base/common
+  - base/execution
+
+profile:
+  name: openclaw-gpt
+  description: "OpenClaw Agent with GPT Model"
+  model: gpt-5-mini
+
+execution:
+  output_dir: experiment_results_openclaw_gpt

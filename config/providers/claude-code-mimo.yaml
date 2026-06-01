@@ -1,0 +1,6 @@
+# Claude Code Runtime Provider: Mimo (Anthropic-compatible API)
+provider: anthropic
+max_concurrency: 4
+use_api_key: true
+auth_token_env: MIMO_API_KEY
+base_url_env: MIMO_BASE_URL

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Self-Evolving Agent"
+  short_description: "Capability evolution with light/full learning modes"
+  default_prompt: "Use $self-evolving-agent to choose a light or full learning loop, preserve legacy self-improving-agent logs, diagnose capability gaps, and promote only validated strategies."

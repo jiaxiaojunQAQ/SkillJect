@@ -1,0 +1,17 @@
+# Profile: Claude Code + GPT
+# Claude Code Agent with GPT Model
+
+extends:
+  - agents/claude-code
+  - providers/claude-code-openai
+  - base/common
+  - base/execution
+
+profile:
+  name: claude-gpt
+  description: "Claude Code Agent with GPT Model"
+  model: gpt-5-mini
+
+execution:
+  output_dir: experiment_results_claude_gpt
+
