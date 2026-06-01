@@ -1,1 +1,0 @@
-The system includes a user interface, a load balancer, three application servers, and a primary database cluster.

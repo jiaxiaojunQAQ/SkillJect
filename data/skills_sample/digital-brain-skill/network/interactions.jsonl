@@ -1,2 +1,0 @@
-{"_schema": "interaction", "_version": "1.0", "_description": "Log of all meaningful interactions. Append only."}
-{"id": "int_example_001", "date": "2024-01-01T00:00:00Z", "contact_id": "contact_example_001", "type": "call", "context": "[PLACEHOLDER: What you discussed]", "key_points": ["[PLACEHOLDER: Key point 1]", "[PLACEHOLDER: Key point 2]"], "follow_ups": ["[PLACEHOLDER: Action item 1]", "[PLACEHOLDER: Action item 2]"], "sentiment": "positive"}

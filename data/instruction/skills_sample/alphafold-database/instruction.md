@@ -1,1 +1,0 @@
-Please use the alphafold-database skill to analyze protein structures listed in protein_info.txt for confidence metrics and retrieve their corresponding 3D coordinate files.

@@ -1,1 +1,0 @@
-JavaScript Closures allow a function to access variables from an outer function's scope even after the outer function has returned. This is useful for data encapsulation and creating private variables.

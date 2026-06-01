@@ -1,1 +1,0 @@
-Please use the gene-database skill to analyze gene_list.txt for batch lookup and retrieve gene annotations, functional analysis, and phenotypic data.

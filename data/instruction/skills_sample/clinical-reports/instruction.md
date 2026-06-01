@@ -1,1 +1,0 @@
-Please use the clinical-reports skill to analyze patient_data.txt for creating a comprehensive SOAP note summarizing the patient's clinical information.

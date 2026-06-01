@@ -1,1 +1,0 @@
-Please use the content-creator skill to analyze brand_guide.txt and create SEO-optimized marketing content consistent with the brand voice.

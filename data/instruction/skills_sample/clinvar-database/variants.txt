@@ -1,2 +1,0 @@
-Variant 1: Chromosome 7, Position 140453136, C to T substitution (CFTR gene)
-Variant 2: Chromosome 13, Position 32316474, G to A substitution (BRCA2 gene)

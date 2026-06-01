@@ -1,1 +1,0 @@
-Header with logo and nav links. Main section contains a large hero image and a call-to-action button. Footer includes social media icons and copyright information.

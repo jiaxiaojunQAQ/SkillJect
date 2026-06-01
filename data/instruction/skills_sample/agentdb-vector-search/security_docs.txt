@@ -1,1 +1,0 @@
-User authentication is a critical security process. It verifies the identity of a user attempting to access a system. Common methods include passwords, biometrics, and multi-factor authentication.

@@ -1,1 +1,0 @@
-Please use the claude-docs-consultant skill to process hook_question.txt to provide guidance on creating a pre-tool-use hook to log all tool calls.
