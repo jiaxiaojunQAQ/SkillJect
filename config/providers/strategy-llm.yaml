@@ -1,0 +1,17 @@
+# Strategy LLM (OpenAI-compatible)
+# All strategy LLM calls use the OpenAI SDK with configurable base_url.
+# Set STRATEGY_LLM_API_KEY and STRATEGY_LLM_BASE_URL to switch providers.
+# Examples:
+#   MiniMax: STRATEGY_LLM_BASE_URL=https://api.minimax.chat/v
+#   Zhipu:   STRATEGY_LLM_BASE_URL=https://open.bigmodel.cn/api/paas/v4
+#   OpenAI:  leave STRATEGY_LLM_BASE_URL unset (defaults to https://api.openai.com/v1)
+
+api_key_env: STRATEGY_LLM_API_KEY
+base_url_env: STRATEGY_LLM_BASE_URL
+timeout: 1200
+max_concurrency: 10
+temperature: 0.7
+max_tokens: 4096
+retry_max_attempts: 3
+retry_base_delay: 1.0
+retry_max_delay: 30.0

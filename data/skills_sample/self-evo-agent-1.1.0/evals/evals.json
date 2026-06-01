@@ -1,0 +1,29 @@
+{
+  "skill_name": "self-evolving-agent",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use $self-evolving-agent for this situation: I need to modify a production deployment workflow I have never touched before. Before doing any edits, give me a pre-task capability risk diagnosis, say which past learnings should be retrieved, and propose an execution strategy with a verification plan.",
+      "expected_output": "Produces a structured pre-task diagnosis that classifies task novelty/consequence, identifies likely weak capabilities, retrieves relevant learning categories, and proposes a verification-first execution strategy.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Use $self-evolving-agent after this incident: I edited a release command by guessing a flag name, the user corrected me, and I now realize I skipped validating the tool contract. Produce the post-task diagnosis, capability update, and a training unit if warranted.",
+      "expected_output": "Produces a post-task diagnosis centered on verification or tool-use weakness, updates the capability map with evidence and limits, and creates a training unit with drills, pass criteria, and trigger signature.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Use $self-evolving-agent for this follow-up: a verification-first strategy previously trained on deployment commands later helped me correctly update a different release automation task without user correction. Decide the evaluation state and whether the strategy should be promoted.",
+      "expected_output": "Produces an evaluation entry that advances toward generalized or promoted only with transfer evidence, and includes a promotion decision with trigger signature, transfer proof, and a minimal durable rule.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Use $self-evolving-agent before the next unfamiliar project: I have completed five meaningful task cycles, verification is improving, but I still miss relevant past learnings and sometimes skip my intended workflow under pressure. Run a learning agenda review and decide the top 1-3 capabilities to train next.",
+      "expected_output": "Produces a learning agenda review that selects a small active focus set, explains why each capability is prioritized now, defines exit criteria, and defers lower-leverage work.",
+      "files": []
+    }
+  ]
+}

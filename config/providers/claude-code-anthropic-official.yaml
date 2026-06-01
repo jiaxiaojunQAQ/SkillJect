@@ -1,0 +1,6 @@
+# Claude Code Runtime Provider: Anthropic Official API
+provider: anthropic
+max_concurrency: 2
+use_api_key: true
+auth_token_env: ANTHROPIC_API_KEY
+base_url_env: ANTHROPIC_BASE_URL

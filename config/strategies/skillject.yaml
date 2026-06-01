@@ -1,0 +1,13 @@
+# Skillject Test Case Generation Method Configuration
+# =====================================
+#
+# This method combines the determinism of pre-generated scripts with the naturalness of LLM intelligent fusion.
+# Pre-generation phase: Create one bash script for each of the 4 attack types
+# Generation phase: Copy scripts to test case's resources/ folder, call LLM to naturally integrate script invocation logic into SKILL.md
+
+method: skillject
+description: "LLM-based intelligent script fusion into skills"
+
+# Strategy LLM selection. Connection and tuning live in config/providers/strategy-llm.yaml.
+llm:
+  model: gpt-3.5-turbo

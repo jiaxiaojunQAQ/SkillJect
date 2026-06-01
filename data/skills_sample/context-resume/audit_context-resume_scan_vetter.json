@@ -1,0 +1,38 @@
+{
+    "red_flags": [
+        {
+            "title": "Automatic file deletion without confirmation",
+            "description": "The skill automatically deletes session files when all tasks are marked complete. This could lead to data loss if: (1) the task completion logic incorrectly marks tasks as complete, (2) users want to keep the session history, or (3) the file deletion occurs before user verification. The deletion happens immediately upon task completion as stated in Step 5.",
+            "severity": "MEDIUM",
+            "file_path": "SKILL.md",
+            "line_number": 96-111,
+            "snippet": "当所有未完成任务都被完成后：\n\n1. **立即删除** session 文件\n2. 输出完成信息"
+        },
+        {
+            "title": "File modification with potential for data corruption",
+            "description": "The skill directly modifies session files to update task progress. If the update process is interrupted (e.g., system crash, process termination), it could corrupt the session file and cause loss of task information. The skill lacks backup mechanisms or atomic write operations.",
+            "severity": "LOW",
+            "file_path": "SKILL.md",
+            "line_number": 72-91,
+            "snippet": "每完成一个任务后，**立即更新** session 文件：\n\n1. 将已完成的任务从'未完成'移到'已完成'\n2. 更新元信息中的'最后更新'时间\n3. 添加新发现的任务（如果有）"
+        },
+        {
+            "title": "No validation of file path or content",
+            "description": "The skill reads and processes files from docs/context-sessions/ without validation. While the directory is constrained, there's no mention of validating file content structure or handling malformed/corrupted session files that could cause parsing errors.",
+            "severity": "LOW",
+            "file_path": "SKILL.md",
+            "line_number": 24-48,
+            "snippet": "读取 `docs/context-sessions/` 目录下的所有 `.md` 文件（排除 .gitkeep）"
+        }
+    ],
+    "permissions_needed": {
+        "files": [
+            "docs/context-sessions/*.md (read, write, delete)"
+        ],
+        "network": [],
+        "commands": []
+    },
+    "risk_level": "LOW",
+    "verdict": "INSTALL_WITH_CAUTION",
+    "notes": "This is a productivity skill that manages session state through markdown files in a specific directory (docs/context-sessions/). It operates entirely within the local filesystem without network access or external command execution. The primary concerns are: (1) automatic file deletion could cause data loss if users want to preserve session history, (2) lack of atomic write operations could corrupt session files if interrupted, and (3) no explicit validation of file content structure. The risk is mitigated by the skill operating in a constrained directory. Recommend users backup docs/context-sessions/ regularly and understand that completed sessions will be automatically deleted."
+}

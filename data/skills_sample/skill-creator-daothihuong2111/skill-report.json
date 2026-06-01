@@ -1,0 +1,274 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-16T23:48:44.916Z",
+    "slug": "daothihuong2111-skill-creator",
+    "source_url": "https://github.com/DaoThiHuong2111/codeh-cli/tree/main/.claude/skills/skill-creator",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "d49d1a8c2cef9841614d3d64aff53265f05caa8438ccb32464b0b1a1fbf71bc5",
+    "tree_hash": "ced7474eace26a6bdd7a00d46222da6105f3597ef96e9359eb4ce0c2a5f8deb8",
+    "original_provider": "daothihuong2111"
+  },
+  "skill": {
+    "name": "skill-creator",
+    "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+    "summary": "Guide for creating effective skills. This skill should be used when users want to create a new skill...",
+    "icon": "🛠️",
+    "version": "1.0.0",
+    "author": "DaoThiHuong2111",
+    "license": "Complete terms in LICENSE.txt",
+    "category": "coding",
+    "tags": [
+      "skill-development",
+      "templates",
+      "validation",
+      "ai-tools"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "scripts",
+      "filesystem"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "low",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "The skill-creator is a legitimate development tool for creating AI skills. The static scanner produced 112 false positives due to scanning documentation as code and flagging hash strings as C2. Actual Python scripts use standard libraries for file operations with no malicious patterns detected.",
+    "risk_factor_evidence": [
+      {
+        "factor": "scripts",
+        "evidence": [
+          {
+            "file": "scripts/init_skill.py",
+            "line_start": 1,
+            "line_end": 304
+          },
+          {
+            "file": "scripts/package_skill.py",
+            "line_start": 1,
+            "line_end": 111
+          },
+          {
+            "file": "scripts/quick_validate.py",
+            "line_start": 1,
+            "line_end": 65
+          }
+        ]
+      },
+      {
+        "factor": "filesystem",
+        "evidence": [
+          {
+            "file": "scripts/init_skill.py",
+            "line_start": 206,
+            "line_end": 220
+          },
+          {
+            "file": "scripts/init_skill.py",
+            "line_start": 238,
+            "line_end": 258
+          },
+          {
+            "file": "scripts/package_skill.py",
+            "line_start": 68,
+            "line_end": 75
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [
+      {
+        "title": "Directory Traversal Potential in Path Handling",
+        "description": "The init_skill.py script accepts user-provided paths without strict validation. While it uses Path.resolve() which helps, a malicious user could potentially create skills in unexpected locations if they have write permissions.",
+        "locations": [
+          {
+            "file": "scripts/init_skill.py",
+            "line_start": 206,
+            "line_end": 206
+          }
+        ]
+      }
+    ],
+    "dangerous_patterns": [],
+    "files_scanned": 6,
+    "total_lines": 1156,
+    "audit_model": "claude",
+    "audited_at": "2026-01-16T23:48:44.916Z"
+  },
+  "content": {
+    "user_title": "Create Custom AI Skills with Templates",
+    "value_statement": "Building AI skills from scratch requires understanding complex templates, validation rules, and best practices. This skill provides a complete framework with init scripts, packaging tools, and guidance for creating effective skills that extend Claude's capabilities.",
+    "seo_keywords": [
+      "AI skill creation",
+      "Claude skills",
+      "skill templates",
+      "Claude Code",
+      "AI development",
+      "skill validation",
+      "custom skills",
+      "Anthropic Claude",
+      "skill builder",
+      "skill development"
+    ],
+    "actual_capabilities": [
+      "Generates skill templates with proper YAML frontmatter and structure",
+      "Validates skill metadata including naming conventions and description format",
+      "Packages skills into distributable zip files for sharing",
+      "Provides step-by-step guidance for skill creation workflow",
+      "Includes example scripts, references, and asset organization patterns"
+    ],
+    "limitations": [
+      "Requires Python 3.x for script execution",
+      "Only creates local skill directories with no cloud integration",
+      "Templates need manual customization for specific use cases",
+      "Basic validation does not check content quality or effectiveness"
+    ],
+    "use_cases": [
+      {
+        "target_user": "AI developers",
+        "title": "Build Custom AI Tools",
+        "description": "Create specialized skills for team workflows with proper structure and validation."
+      },
+      {
+        "target_user": "Product teams",
+        "title": "Standardize AI Workflows",
+        "description": "Document and package repetitive AI tasks for consistent execution across projects."
+      },
+      {
+        "target_user": "Enterprise users",
+        "title": "Scale AI Expertise",
+        "description": "Transform institutional knowledge into reusable AI capabilities for your organization."
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Create a Data Processing Skill",
+        "scenario": "Building skills for data analysis tasks",
+        "prompt": "Help me create a skill for processing CSV files. It should include validation, cleaning, and transformation capabilities with example Python scripts."
+      },
+      {
+        "title": "Build an API Integration Skill",
+        "scenario": "Creating skills for external service integration",
+        "prompt": "I need a skill that helps integrate with the GitHub API. Include authentication handling, common operations, and error management."
+      },
+      {
+        "title": "Design a Documentation Skill",
+        "scenario": "Making skills for technical documentation",
+        "prompt": "Create a skill for generating API documentation from code comments. Include templates for different documentation styles and validation tools."
+      },
+      {
+        "title": "Develop a Multi-Step Workflow Skill",
+        "scenario": "Complex skills with multiple interconnected steps",
+        "prompt": "Build a skill for deploying web applications that covers environment setup, testing, building, and deployment with rollback capabilities."
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Create a PDF processing skill with merge and split capabilities",
+        "output": [
+          "Generated skill template at: ./pdf-processor/",
+          "Created SKILL.md with workflow instructions",
+          "Added merge_pdfs.py and split_pdf.py scripts",
+          "Included PDF processing best practices in references/",
+          "Packaged skill as: pdf-processor.zip"
+        ]
+      },
+      {
+        "input": "Build a GitHub API integration skill",
+        "output": [
+          "Initialized skill structure at: ./github-integration/",
+          "Created SKILL.md with API operation guides",
+          "Added authentication helper and API wrapper scripts",
+          "Included API reference documentation",
+          "Ready for packaging and distribution"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Start with concrete examples of how the skill will be used before writing content.",
+      "Keep SKILL.md focused on essential instructions, move detailed info to references/.",
+      "Test skills on real tasks and iterate based on performance issues."
+    ],
+    "anti_patterns": [
+      "Don't include duplicate information across SKILL.md and reference files.",
+      "Avoid overly broad skills that try to do too many unrelated things.",
+      "Don't skip validation, always test skill structure before packaging."
+    ],
+    "faq": [
+      {
+        "question": "What programming languages are supported for scripts?",
+        "answer": "Any executable script works. Python is recommended for cross-platform compatibility."
+      },
+      {
+        "question": "Is there a size limit for skill files?",
+        "answer": "No hard limit, but keep SKILL.md under 5k words for optimal context loading."
+      },
+      {
+        "question": "Can skills integrate with external APIs?",
+        "answer": "Yes, include API documentation in references/ and example scripts showing authentication."
+      },
+      {
+        "question": "How do I ensure my skill is safe for others to use?",
+        "answer": "Follow security practices: validate inputs, avoid hardcoded credentials, and test thoroughly."
+      },
+      {
+        "question": "What if my skill is not working as expected?",
+        "answer": "Use the validation script to check structure and test with real examples."
+      },
+      {
+        "question": "Can I update an existing skill?",
+        "answer": "Yes, edit files directly and re-package. Consider versioning major changes."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "scripts",
+      "type": "dir",
+      "path": "scripts",
+      "children": [
+        {
+          "name": "init_skill.py",
+          "type": "file",
+          "path": "scripts/init_skill.py",
+          "lines": 304
+        },
+        {
+          "name": "package_skill.py",
+          "type": "file",
+          "path": "scripts/package_skill.py",
+          "lines": 111
+        },
+        {
+          "name": "quick_validate.py",
+          "type": "file",
+          "path": "scripts/quick_validate.py",
+          "lines": 65
+        }
+      ]
+    },
+    {
+      "name": "LICENSE.txt",
+      "type": "file",
+      "path": "LICENSE.txt",
+      "lines": 202
+    },
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 210
+    }
+  ]
+}

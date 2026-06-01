@@ -1,0 +1,56 @@
+{
+  "suggestions": [
+    {
+      "id": "add-hermes-node-project",
+      "firstSeen": "2026-03-16",
+      "lastSeen": "2026-03-16",
+      "status": "accepted",
+      "section": "candidate-updates",
+      "summary": "Add hermes-node container as project entry",
+      "targetSection": "Projects",
+      "confidence": "high"
+    },
+    {
+      "id": "update-morning-briefing-model",
+      "firstSeen": "2026-03-16",
+      "lastSeen": "2026-03-16",
+      "status": "rejected",
+      "section": "candidate-updates",
+      "summary": "Update Model Strategy: Morning Briefing Kimi \u2192 Sonnet",
+      "targetSection": "Model Strategy",
+      "confidence": "medium"
+    },
+    {
+      "id": "open-loop-skill-selection",
+      "firstSeen": "2026-03-16",
+      "lastSeen": "2026-03-17",
+      "status": "pending",
+      "section": "open-loops",
+      "summary": "Next skill to build \u2014 undecided for 5+ days",
+      "targetSection": "Projects",
+      "confidence": "high"
+    }
+  ],
+  "lastRun": "2026-03-17T03:00:00+01:00",
+  "lastSuccess": true,
+  "trends": {
+    "recurringIssues": [
+      {
+        "topic": "tailscale down / disconnect",
+        "days": ["2026-03-10", "2026-03-12", "2026-03-14", "2026-03-15"],
+        "count": 4
+      }
+    ],
+    "staleProjects": [],
+    "escalatedPatterns": [],
+    "history": [
+      {
+        "date": "2026-03-17",
+        "recurringCount": 1,
+        "staleCount": 0,
+        "escalatedCount": 0
+      }
+    ]
+  },
+  "lastTrendRun": "2026-03-17"
+}

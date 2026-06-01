@@ -1,0 +1,16 @@
+# Profile: Claude Code + MiniMax
+# Claude Code Agent with MiniMax Model
+
+extends:
+  - agents/claude-code
+  - providers/claude-code-minimax
+  - base/common
+  - base/execution
+
+profile:
+  name: claude-minimax
+  description: "Claude Code Agent with MiniMax Model"
+  model: MiniMax-M2.1
+
+execution:
+  output_dir: experiment_results_claude_minimax

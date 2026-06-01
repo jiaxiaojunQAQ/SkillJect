@@ -1,0 +1,14 @@
+# Profile: Claude Code + Anthropic Official API
+extends:
+  - agents/claude-code
+  - providers/claude-code-anthropic-official
+  - base/common
+  - base/execution
+
+profile:
+  name: claude-anthropic
+  description: "Claude Code Agent with Anthropic Official API"
+  model: claude-sonnet-4-6
+
+execution:
+  output_dir: experiment_results_claude_anthropic

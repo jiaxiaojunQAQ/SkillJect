@@ -1,0 +1,6 @@
+# Claude Code Runtime Provider: Zhipu
+provider: zhipu
+max_concurrency: 1
+use_api_key: true
+auth_token_env: ZHIPU_API_KEY
+base_url_env: ZHIPU_BASE_URL

@@ -1,0 +1,219 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-16T18:06:22.638Z",
+    "slug": "bellabe-descriptive-action",
+    "source_url": "https://github.com/BellaBe/lean-os/tree/main/.claude/skills/action-descriptive",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "1ad59d3ff0b58ff6a277d42234b2d8b4060f4a2e375c39efe9118c92267f0f18",
+    "tree_hash": "dd75f2c21d1773253f6ae87b797e2ecf940e07fd31f4d4241539c0070db54613",
+    "original_provider": "bellabe"
+  },
+  "skill": {
+    "name": "descriptive-action",
+    "description": "Use when the user asks to describe, summarize, analyze, compare, explain, or report on something (text, data, events, systems) without asking for recommendations or next steps.",
+    "summary": "Use when the user asks to describe, summarize, analyze, compare, explain, or report on something (te...",
+    "icon": "📋",
+    "version": "1.0",
+    "author": "BellaBe",
+    "license": "MIT",
+    "category": "documentation",
+    "tags": [
+      "describe",
+      "analyze",
+      "summarize",
+      "report",
+      "factual"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "network",
+      "filesystem"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "All 34 static findings are FALSE POSITIVES. This is a pure prompt-based documentation skill containing only behavioral guidelines. The static scanner incorrectly flagged metadata hash strings (content_hash, tree_hash), source repository URLs, and English words like 'hash', 'system', and 'compare' as security threats. No executable code, network calls, filesystem operations, or external commands exist. The skill-report.json already correctly classified this as risk_level: safe.",
+    "risk_factor_evidence": [
+      {
+        "factor": "network",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          }
+        ]
+      },
+      {
+        "factor": "filesystem",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 2,
+    "total_lines": 224,
+    "audit_model": "claude",
+    "audited_at": "2026-01-16T18:06:22.638Z"
+  },
+  "content": {
+    "user_title": "Describe and Analyze Information Systematically",
+    "value_statement": "Users often need accurate, neutral descriptions without recommendations or next steps. This skill delivers structured analysis focusing on facts and observations. It helps produce clear, factual descriptions of text, data, events, or systems.",
+    "seo_keywords": [
+      "describe",
+      "analyze",
+      "summarize",
+      "compare",
+      "explain",
+      "Claude",
+      "Codex",
+      "Claude Code",
+      "factual analysis",
+      "structured reporting"
+    ],
+    "actual_capabilities": [
+      "Produce neutral descriptions of text, data, events, or systems",
+      "Analyze and compare information with clear structure",
+      "Extract and report facts with evidence references",
+      "Summarize complex topics in organized sections",
+      "Identify trends, constraints, and open questions"
+    ],
+    "limitations": [
+      "Does not provide recommendations or prescribe actions",
+      "Does not create plans or strategies",
+      "Cannot answer what should I do type questions",
+      "Limited to descriptive analysis within stated scope"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Researchers",
+        "title": "Analyze Study Findings",
+        "description": "Summarize research data and extract key facts from complex documents"
+      },
+      {
+        "target_user": "Developers",
+        "title": "Explain Code Systems",
+        "description": "Describe code architecture and compare implementation approaches objectively"
+      },
+      {
+        "target_user": "Technical Writers",
+        "title": "Document Features",
+        "description": "Report system status and document technical concepts with structured format"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Simple Description",
+        "scenario": "Explain a concept",
+        "prompt": "Describe [topic] focusing on key characteristics and how it works."
+      },
+      {
+        "title": "Comparative Analysis",
+        "scenario": "Compare options",
+        "prompt": "Analyze and compare [option A] versus [option B] on key criteria."
+      },
+      {
+        "title": "Detailed Report",
+        "scenario": "Summarize findings",
+        "prompt": "Provide a structured summary of the following data including background, findings, and trends."
+      },
+      {
+        "title": "Fact Extraction",
+        "scenario": "Extract key points",
+        "prompt": "Extract the main facts and evidence from this document and identify any knowledge gaps."
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Describe the main components of a REST API and how they interact",
+        "output": [
+          "REST API uses HTTP methods like GET, POST, PUT, DELETE for resource operations",
+          "Resources are identified by URLs and represented in formats like JSON",
+          "Stateless communication means each request contains all needed information",
+          "Response codes indicate operation success or failure such as 200, 201, 400, 404, 500"
+        ]
+      },
+      {
+        "input": "Compare Python and JavaScript for backend development",
+        "output": [
+          "Python offers simpler syntax and larger ecosystem for data science and AI integration",
+          "JavaScript provides unified language stack for frontend and backend with Node.js",
+          "Python typically has better readability and faster development for data processing",
+          "JavaScript excels in real-time applications and WebSocket-based systems"
+        ]
+      },
+      {
+        "input": "Summarize the key findings from this research data",
+        "output": [
+          "Background: Study examined performance metrics across 500 participants over 6 months",
+          "Key findings show 23 percent improvement in target areas with consistent methods",
+          "Trends indicate strongest gains in the first quarter with diminishing returns thereafter",
+          "Constraints include limited demographic diversity and self-reported measurement"
+        ]
+      }
+    ],
+    "best_practices": [
+      "State scope and constraints upfront to focus the analysis",
+      "Request evidence and sources to support factual claims",
+      "Separate verified facts from reasonable inferences clearly"
+    ],
+    "anti_patterns": [
+      "Asking for recommendations when you need only facts",
+      "Using vague prompts without clear subject or scope",
+      "Mixing descriptive requests with prescriptive questions"
+    ],
+    "faq": [
+      {
+        "question": "Which AI tools support this skill?",
+        "answer": "This skill works with Claude, Codex, and Claude Code platforms."
+      },
+      {
+        "question": "What are the input size limits?",
+        "answer": "The skill handles text, data, and artifacts within standard AI context limits."
+      },
+      {
+        "question": "How does it integrate with other skills?",
+        "answer": "Use it after data collection skills to analyze results without prescribing actions."
+      },
+      {
+        "question": "Is my data safe with this skill?",
+        "answer": "Yes. This skill contains only prompt guidelines and makes no external calls."
+      },
+      {
+        "question": "Why is output structured?",
+        "answer": "Structured format ensures clarity, consistency, and easy parsing of descriptive content."
+      },
+      {
+        "question": "How is this different from prescriptive skills?",
+        "answer": "Descriptive skills analyze and report facts. Prescriptive skills recommend actions."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 48
+    }
+  ]
+}

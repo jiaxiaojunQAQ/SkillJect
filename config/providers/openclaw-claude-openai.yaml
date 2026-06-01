@@ -1,0 +1,6 @@
+# OpenClaw Runtime Provider: Claude over OpenAI-compatible proxy
+provider: openai
+max_concurrency: 1
+use_api_key: true
+auth_token_env: OPENCLAW_CLAUDE_OPENAI_API_KEY
+base_url_env: OPENCLAW_CLAUDE_OPENAI_BASE_URL

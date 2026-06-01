@@ -1,0 +1,242 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-17T06:56:19.368Z",
+    "slug": "k-dense-ai-opentrons-integration",
+    "source_url": "https://github.com/K-Dense-AI/claude-scientific-skills/tree/main/scientific-skills/opentrons-integration",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "ca8416042eb83ca2c8b9a4b6fbf18957a13dfc792b4cedde25905380ba94b79c",
+    "tree_hash": "b7602465c4583e20bd3e7b6e652fdaec597b6338edb763252d3d06c16a1a55bb",
+    "original_provider": "k-dense-ai"
+  },
+  "skill": {
+    "name": "opentrons-integration",
+    "description": "Official Opentrons Protocol API for OT-2 and Flex robots. Use when writing protocols specifically for Opentrons hardware with full access to Protocol API v2 features. Best for production Opentrons protocols, official API compatibility. For multi-vendor automation or broader equipment control use pylabrobot.",
+    "summary": "Official Opentrons Protocol API for OT-2 and Flex robots. Use when writing protocols specifically fo...",
+    "icon": "🧪",
+    "version": "1.0.0",
+    "author": "K-Dense-AI",
+    "license": "MIT",
+    "category": "research",
+    "tags": [
+      "lab-automation",
+      "liquid-handling",
+      "opentrons",
+      "protocols",
+      "robotics"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "external_commands"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "All 360 static findings are false positives. The analyzer misinterpreted markdown backticks as shell commands, API version strings as weak crypto, and lab equipment terms as reconnaissance. This is a legitimate lab automation skill containing Opentrons protocol templates for liquid handling robots.",
+    "risk_factor_evidence": [
+      {
+        "factor": "external_commands",
+        "evidence": [
+          {
+            "file": "references/api_reference.md",
+            "line_start": 9,
+            "line_end": 346
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 6,
+    "total_lines": 1486,
+    "audit_model": "claude",
+    "audited_at": "2026-01-17T06:56:19.368Z"
+  },
+  "content": {
+    "user_title": "Automate lab workflows with Opentrons robots",
+    "value_statement": "Writing lab automation protocols requires specialized knowledge of robotics APIs and liquid handling procedures. This skill provides ready-to-use templates and comprehensive guidance for creating protocols that control Opentrons liquid handling robots.",
+    "seo_keywords": [
+      "opentrons",
+      "lab automation",
+      "liquid handling",
+      "protocol API",
+      "Claude Code",
+      "robotics",
+      "lab protocols",
+      "pipetting automation",
+      "OT-2",
+      "Flex robot"
+    ],
+    "actual_capabilities": [
+      "Generate complete Opentrons Protocol API v2 scripts",
+      "Create liquid handling protocols for OT-2 and Flex robots",
+      "Design PCR setup workflows with thermocycler control",
+      "Implement serial dilution and plate replication protocols",
+      "Control hardware modules (temperature, magnetic, heater-shaker)"
+    ],
+    "limitations": [
+      "Only supports Opentrons hardware (not multi-vendor setups)",
+      "Requires Python Protocol API v2 knowledge",
+      "Cannot simulate physical liquid behavior",
+      "Limited to documented labware definitions"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Research scientists",
+        "title": "Automate PCR setup",
+        "description": "Create protocols for setting up PCR reactions with master mix distribution and thermocycler programming"
+      },
+      {
+        "target_user": "Lab technicians",
+        "title": "Perform serial dilutions",
+        "description": "Generate accurate serial dilution protocols across 96-well plates for assay development"
+      },
+      {
+        "target_user": "Automation engineers",
+        "title": "Control multiple modules",
+        "description": "Integrate temperature, magnetic, and heater-shaker modules in complex workflows"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Basic protocol structure",
+        "scenario": "Create a simple liquid transfer protocol",
+        "prompt": "Write an Opentrons protocol that transfers 100µL from well A1 to B1 using a P300 pipette"
+      },
+      {
+        "title": "PCR setup workflow",
+        "scenario": "Automate PCR reaction setup",
+        "prompt": "Create a protocol for setting up 24 PCR reactions with master mix and DNA samples using the thermocycler"
+      },
+      {
+        "title": "Serial dilution series",
+        "scenario": "Generate concentration gradients",
+        "prompt": "Write a protocol for 1:2 serial dilutions across a 96-well plate row, starting with 200µL stock"
+      },
+      {
+        "title": "Multi-module integration",
+        "scenario": "Complex workflow with modules",
+        "prompt": "Create a protocol using temperature module for sample incubation at 37°C followed by magnetic bead separation"
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Create a protocol for plating bacterial cultures from a 12-well reservoir to a 96-well plate",
+        "output": [
+          "Generated complete Opentrons protocol with:",
+          "- P300 single-channel pipette on left mount",
+          "- 12-well reservoir in deck slot D2",
+          "- 96-well plate in slot D3",
+          "- 200µL tip rack in slot D1",
+          "- 50µL transfer from each reservoir well to plate columns",
+          "- Automatic tip changes between samples"
+        ]
+      },
+      {
+        "input": "Write a protocol for ELISA sample preparation across 8 rows",
+        "output": [
+          "Created ELISA prep protocol:",
+          "- Loaded 8 tip racks and 2 reagent reservoirs",
+          "- P300 multi-channel pipette for row-wise operations",
+          "- Added 100µL coating antibody to all 96 wells",
+          "- Performed 3 wash steps between incubations",
+          "- Included 5-minute incubation delays"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Always simulate protocols before running on actual hardware",
+      "Use meaningful labels for labware to simplify troubleshooting",
+      "Include protocol comments for complex steps and timing requirements"
+    ],
+    "anti_patterns": [
+      "Hardcoding absolute positions instead of using well references",
+      "Mixing different API levels within the same protocol",
+      "Forgetting to account for tip consumption in long protocols"
+    ],
+    "faq": [
+      {
+        "question": "What is the difference between OT-2 and Flex?",
+        "answer": "Flex is the newer model with expanded deck capacity and different pipette naming conventions. Use robotType in requirements to specify."
+      },
+      {
+        "question": "How do I handle viscous liquids?",
+        "answer": "Adjust flow rates with pipette.flow_rate.aspirate and dispense, use slower speeds for accurate transfers of viscous samples."
+      },
+      {
+        "question": "Can I use custom labware?",
+        "answer": "Yes, use load_labware_from_definition with JSON labware definitions created in Opentrons Labware Creator tool."
+      },
+      {
+        "question": "How do I pause for manual steps?",
+        "answer": "Use protocol.pause with a message to halt execution until user resumes, or protocol.delay for timed waits."
+      },
+      {
+        "question": "What is the latest API version?",
+        "answer": "API Level 2.19 is current as of 2024. Always specify the latest stable version in your protocol metadata."
+      },
+      {
+        "question": "How do I optimize tip usage?",
+        "answer": "Use new_tip='once' for multiple transfers from same source, and return_tip to reuse tips within a protocol."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "references",
+      "type": "dir",
+      "path": "references",
+      "children": [
+        {
+          "name": "api_reference.md",
+          "type": "file",
+          "path": "references/api_reference.md",
+          "lines": 367
+        }
+      ]
+    },
+    {
+      "name": "scripts",
+      "type": "dir",
+      "path": "scripts",
+      "children": [
+        {
+          "name": "basic_protocol_template.py",
+          "type": "file",
+          "path": "scripts/basic_protocol_template.py",
+          "lines": 68
+        },
+        {
+          "name": "pcr_setup_template.py",
+          "type": "file",
+          "path": "scripts/pcr_setup_template.py",
+          "lines": 155
+        },
+        {
+          "name": "serial_dilution_template.py",
+          "type": "file",
+          "path": "scripts/serial_dilution_template.py",
+          "lines": 97
+        }
+      ]
+    },
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 573
+    }
+  ]
+}

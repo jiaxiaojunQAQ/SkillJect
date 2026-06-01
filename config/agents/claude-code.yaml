@@ -1,0 +1,10 @@
+# Agent Configuration: Claude Code
+# Agent 纯行为配置，env 映射由 profile 定义
+
+agent:
+  type: claude-code
+  bypass_mode: true
+  disable_traffic: "1"
+
+sandbox:
+  image: claude_code:latest

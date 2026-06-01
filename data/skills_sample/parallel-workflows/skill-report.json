@@ -1,0 +1,176 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-21T16:06:59.614Z",
+    "slug": "chachamaru127-parallel-workflows",
+    "source_url": "https://github.com/Chachamaru127/claude-code-harness/tree/main/skills/parallel-workflows",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "77c93ec8dacbf934d7add13e233bc3cfcf0413f8b33d720dff2cb26b16c3f19e",
+    "tree_hash": "e5a361293060743f165060422f8c00a8d9bd08f04c7f2bf42101054912fb7d8e",
+    "original_provider": "chachamaru127"
+  },
+  "skill": {
+    "name": "parallel-workflows",
+    "description": "Optimizes parallel execution of multiple tasks. Use when user mentions 並列で実行, 同時にやって, まとめてやって, run in parallel, do these together. Do NOT load for: 単一タスク, 順次実行が必要な作業, 依存関係のあるタスク.",
+    "summary": "Optimizes parallel execution of multiple independent tasks using Task tool for concurrent processing.",
+    "icon": "⚡",
+    "version": "1.0.0",
+    "author": "Chachamaru127",
+    "license": "MIT",
+    "tags": [
+      "parallel",
+      "workflow",
+      "concurrency",
+      "optimization",
+      "task-management"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": []
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "All static findings are false positives. The skill is documentation-only, providing guidance on using the Task tool for parallel execution. No shell commands, network requests, or cryptographic operations are performed.",
+    "risk_factor_evidence": [],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 2,
+    "total_lines": 714,
+    "audit_model": "claude",
+    "audited_at": "2026-01-21T16:06:59.614Z",
+    "risk_factors": []
+  },
+  "content": {
+    "user_title": "Run Multiple Tasks in Parallel",
+    "value_statement": "Managing multiple independent tasks sequentially wastes time. This skill optimizes parallel execution by identifying independent tasks and running them concurrently using the Task tool, reducing overall execution time by up to 67%.",
+    "seo_keywords": [
+      "Claude parallel workflows",
+      "Claude Code parallel execution",
+      "Claude concurrent tasks",
+      "Task tool parallelization",
+      "Claude Codex parallel",
+      "workflow optimization",
+      "concurrent processing",
+      "multiple agent execution"
+    ],
+    "actual_capabilities": [
+      "Analyzes task dependencies to identify parallelizable work",
+      "Launches multiple Task tool agents concurrently",
+      "Generates unified execution reports with timing metrics",
+      "Handles partial task failures with retry options"
+    ],
+    "limitations": [
+      "Only works with independent tasks that have no file or data dependencies",
+      "Does not modify source code directly",
+      "Requires Tasks to be defined in Plans.md format"
+    ],
+    "use_cases": [
+      {
+        "title": "Multi-file Project Analysis",
+        "description": "Analyze different directories of a codebase simultaneously. Instead of processing src/components, src/lib, and src/app sequentially, the skill launches three agents in parallel to complete the analysis in one-third the time.",
+        "target_user": "Developers exploring unfamiliar codebases"
+      },
+      {
+        "title": "Quality Checks Pipeline",
+        "description": "Run linting, type-checking, and tests simultaneously. The skill executes all quality checks in parallel, then reports results in a unified format, ideal for CI/CD pre-commit workflows.",
+        "target_user": "DevOps engineers and QA specialists"
+      },
+      {
+        "title": "Component Development Sprint",
+        "description": "Create multiple independent UI components concurrently. The skill detects independent components from Plans.md and builds them in parallel, significantly accelerating frontend development.",
+        "target_user": "Frontend developers and web designers"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Analyze Project Structure",
+        "prompt": "Analyze this project structure. Use parallel execution to examine different directories concurrently: components/, lib/, and app/. Report findings for each directory.",
+        "scenario": "When you need to understand a large codebase quickly"
+      },
+      {
+        "title": "Run All Quality Checks",
+        "prompt": "Run all quality checks in parallel: lint, type-check, and tests. Wait for all to complete then provide a unified summary of results.",
+        "scenario": "When you need quick feedback on code quality"
+      },
+      {
+        "title": "Build Multiple Features",
+        "prompt": "Create these components in parallel: header, footer, and sidebar. Each component should be built independently without sharing files.",
+        "scenario": "When building multiple independent features"
+      },
+      {
+        "title": "Review Multiple Modules",
+        "prompt": "Review these three modules for code quality issues. Run all three reviews in parallel and compile a combined report.",
+        "scenario": "When conducting comprehensive code reviews"
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Analyze this project structure",
+        "output": "Analyzing project structure with 3 parallel agents...\n\n[Agent 1] Analyzing components/... \n[Agent 2] Analyzing lib/\n[Agent 3] Analyzing app/\n\nResults:\n- components/: 12 files, React components\n- lib/: 8 files, utility functions\n- app/: 15 files, main application code\n\nTotal time: 12 seconds (vs 30 seconds sequential)"
+      },
+      {
+        "input": "Run quality checks",
+        "output": "Running quality checks in parallel...\n\n[Lint]  No issues found\n[Type Check]  No errors\n[Tests]  15/15 passing\n\nAll checks passed in 20 seconds"
+      },
+      {
+        "input": "Build header, footer, and sidebar",
+        "output": "Building 3 components in parallel...\n\n[Header]  Complete (25s)\n[Footer]  Complete (22s)\n[Sidebar]  Complete (28s)\n\nAll components created successfully in ~28 seconds"
+      }
+    ],
+    "best_practices": [
+      "Define independent tasks clearly with no shared file dependencies",
+      "Use Plans.md format to specify tasks for parallel execution",
+      "Review the dependency analysis before running parallel tasks"
+    ],
+    "anti_patterns": [
+      "Attempting to parallelize tasks with shared file dependencies",
+      "Running database migrations in parallel (causes locks)",
+      "Skipping the dependency analysis step"
+    ],
+    "faq": [
+      {
+        "question": "What tasks can be parallelized?",
+        "answer": "Tasks that do not share files, data outputs, or execution order. Each task must be completely independent."
+      },
+      {
+        "question": "How much faster is parallel execution?",
+        "answer": "Performance gains depend on task count. Three independent tasks typically complete 60-67% faster than sequential execution."
+      },
+      {
+        "question": "What happens if one parallel task fails?",
+        "answer": "Successful task results are preserved. Failed tasks show error details with options to retry just those tasks."
+      },
+      {
+        "question": "Can I control how many tasks run in parallel?",
+        "answer": "The skill optimizes based on available resources. For very large task sets, consider breaking into smaller batches."
+      },
+      {
+        "question": "Does this skill execute shell commands?",
+        "answer": "No. This skill provides documentation patterns using the Task tool. Actual command execution depends on the tasks you define."
+      },
+      {
+        "question": "What trigger phrases activate this skill?",
+        "answer": "Japanese: 並列で実行, 同時にやって, まとめてやって. English: run in parallel, do these together, check all."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 287
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "skill_name": "a-share-short-decision",
+  "version": "1.2.0",
+  "market": "CN-A",
+  "data_source": {
+    "provider": "akshare",
+    "fallback_enabled": false
+  },
+  "strategy": {
+    "holding_days_default": "1-3",
+    "weights": {
+      "market_sentiment": 0.25,
+      "sector_strength": 0.25,
+      "stock_volume_strength": 0.2,
+      "capital_inflow": 0.2,
+      "technical_structure": 0.1
+    },
+    "thresholds": {
+      "buy": 75,
+      "watch": 60,
+      "market_block": 40
+    },
+    "screener": {
+      "prefilter_change_pct": 2.8,
+      "min_change_pct": 3.2,
+      "min_volume_ratio": 1.15,
+      "trend_lookback": 2,
+      "min_history_days": 5,
+      "volume_baseline_days": 4,
+      "high_volume_bearish_drop_pct": -3.8,
+      "high_volume_bearish_vol_ratio": 2.8,
+      "historical_mode": {
+        "min_change_pct": 1.8,
+        "trend_lookback": 2,
+        "min_volume_ratio": 1.05,
+        "high_volume_bearish_drop_pct": -4.2,
+        "high_volume_bearish_vol_ratio": 3.0,
+        "relaxed_pick_from_pool_when_empty": true
+      }
+    }
+  },
+  "risk_control": {
+    "max_single_position": 0.15,
+    "stop_loss_pct": -6,
+    "take_profit_pct": 12,
+    "ma5_break_stop": true
+  },
+  "optimization_info": {
+    "base_date": "2026-02-14",
+    "analysis_period": "2026-02-01 to 2026-02-12",
+    "config_type": "aggressive_optimized",
+    "expected_improvements": {
+      "candidate_increase": "15-25%",
+      "success_rate_improvement": "3-5 percentage points",
+      "avg_return_improvement": "0.5-1.0 percentage points"
+    }
+  }
+}

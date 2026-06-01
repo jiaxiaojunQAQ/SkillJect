@@ -1,0 +1,285 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-17T08:54:08.973Z",
+    "slug": "yamadashy-browser-extension-developer",
+    "source_url": "https://github.com/yamadashy/repomix/tree/main/.claude/skills/browser-extension-developer",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "12790d59de0693c8758f8baa8367556e1f24702ee405271063a2f3d2772cc397",
+    "tree_hash": "3e64a5ccd222e051fb0a2c52208bfd6bdc1df449f9962ac3a5044482db1b1924",
+    "original_provider": "yamadashy"
+  },
+  "skill": {
+    "name": "browser-extension-developer",
+    "description": "Use this skill when developing or maintaining browser extension code in the `browser/` directory, including Chrome/Firefox/Edge compatibility, content scripts, background scripts, or i18n updates.",
+    "summary": "Use this skill when developing or maintaining browser extension code in the `browser/` directory, in...",
+    "icon": "🧩",
+    "version": "1.0.0",
+    "author": "yamadashy",
+    "license": "MIT",
+    "category": "coding",
+    "tags": [
+      "browser-extension",
+      "wxt",
+      "manifest-v3",
+      "i18n",
+      "cross-browser"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "external_commands",
+      "network",
+      "filesystem"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "This skill contains only documentation files with no executable code, network calls, or filesystem access. The static analysis flagged markdown code fences and JSON content as security issues, but evaluation confirms these are false positives. SKILL.md provides guidance for WXT-based browser extension development.",
+    "risk_factor_evidence": [
+      {
+        "factor": "external_commands",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 16,
+            "line_end": 16
+          },
+          {
+            "file": "skill-report.json",
+            "line_start": 17,
+            "line_end": 17
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 3,
+            "line_end": 3
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 12,
+            "line_end": 18
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 18,
+            "line_end": 22
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 22,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 24
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 24,
+            "line_end": 25
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 25,
+            "line_end": 31
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 31,
+            "line_end": 35
+          }
+        ]
+      },
+      {
+        "factor": "network",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          }
+        ]
+      },
+      {
+        "factor": "filesystem",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          },
+          {
+            "file": "skill-report.json",
+            "line_start": 126,
+            "line_end": 126
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 2,
+    "total_lines": 212,
+    "audit_model": "claude",
+    "audited_at": "2026-01-17T08:54:08.973Z"
+  },
+  "content": {
+    "user_title": "Build cross-browser extensions with WXT",
+    "value_statement": "Browser extension projects often struggle with cross-browser compatibility and proper internationalization setup. This skill provides clear guidance for WXT-based extension development supporting Chrome, Firefox, and Edge with proper i18n structure.",
+    "seo_keywords": [
+      "browser extension",
+      "WXT framework",
+      "Manifest V3",
+      "Chrome extension",
+      "Firefox extension",
+      "Edge extension",
+      "Claude",
+      "Codex",
+      "Claude Code",
+      "i18n"
+    ],
+    "actual_capabilities": [
+      "Provides WXT framework configuration guidance for cross-browser extensions",
+      "Documents proper directory structure for background and content scripts",
+      "Explains i18n setup for 12 languages with required message keys",
+      "Lists npm commands for development, building, linting, and testing",
+      "Covers Chrome/Firefox/Edge compatibility considerations"
+    ],
+    "limitations": [
+      "Only applies to projects using browser/ directory with WXT framework",
+      "Does not generate actual extension code or implement features",
+      "Cannot create browser store listings or handle submission processes",
+      "Assumes existing npm and Node.js environment setup"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Extension developer",
+        "title": "Set up cross-browser workflow",
+        "description": "Configure WXT-based extension project with proper entrypoints for Chrome, Firefox, and Edge compatibility."
+      },
+      {
+        "target_user": "Localization manager",
+        "title": "Manage multi-language support",
+        "description": "Add new language locales following the documented i18n structure and required message keys."
+      },
+      {
+        "target_user": "Development team",
+        "title": "Standardize build process",
+        "description": "Establish consistent development and build commands across the team for browser extension projects."
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Project structure overview",
+        "scenario": "Understanding WXT layout",
+        "prompt": "Explain the browser/ directory structure for WXT extensions and where to place background scripts, content scripts, and configuration files."
+      },
+      {
+        "title": "Add new language",
+        "scenario": "Internationalization setup",
+        "prompt": "Show me how to add a new language locale to the extension, including the required folder structure and message keys needed."
+      },
+      {
+        "title": "Build for multiple browsers",
+        "scenario": "Cross-browser builds",
+        "prompt": "What commands build the extension for Chrome, Firefox, and Edge, and what are the key differences I should know?"
+      },
+      {
+        "title": "Development workflow",
+        "scenario": "Daily development tasks",
+        "prompt": "List the essential npm commands for developing, testing, and linting WXT-based browser extensions."
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "How do I structure a WXT browser extension project?",
+        "output": [
+          "Create browser/entrypoints/ for background.ts and content.ts files",
+          "Place i18n files in browser/public/_locales/[language]/messages.json",
+          "Configure WXT in browser/wxt.config.ts",
+          "Built extensions output to browser/.output/chrome-mv3 and firefox-mv2"
+        ]
+      },
+      {
+        "input": "Add Spanish locale to my extension",
+        "output": [
+          "Create folder browser/public/_locales/es/",
+          "Add messages.json with keys: appDescription and openWithRepomix",
+          "Run npm run build-all to regenerate locales",
+          "Test in Chrome and Firefox for compatibility"
+        ]
+      },
+      {
+        "input": "What commands do I use for Firefox development?",
+        "output": [
+          "Use npm run dev:firefox for live development with hot reload",
+          "Firefox uses MV2 manifest while Chrome uses MV3",
+          "Run npm run build:firefox to build for Firefox store submission",
+          "Polyfills may be needed for Firefox-specific APIs"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Keep background and content script responsibilities clearly separated",
+      "Update all locale files when adding new message keys",
+      "Test in both Chrome and Firefox during development"
+    ],
+    "anti_patterns": [
+      "Modifying files in the .output directory directly",
+      "Using browser-specific APIs without compatibility checks",
+      "Adding incomplete locale files with missing required keys"
+    ],
+    "faq": [
+      {
+        "question": "Which browsers does this skill support?",
+        "answer": "It covers Chrome, Firefox, and Edge extension development using the WXT framework and Manifest V3."
+      },
+      {
+        "question": "What are the main limitations?",
+        "answer": "It focuses on documentation guidance for WXT-based projects and does not generate code or handle store submissions."
+      },
+      {
+        "question": "Can I use this with existing extension projects?",
+        "answer": "Yes, if your project follows the WXT framework structure with a browser/ directory layout."
+      },
+      {
+        "question": "Does this skill access my code or data?",
+        "answer": "No, it only provides documentation guidance and does not access files, network, or execute code."
+      },
+      {
+        "question": "How do I troubleshoot build failures?",
+        "answer": "Check npm scripts configuration, WXT setup, and ensure all dependencies are properly installed."
+      },
+      {
+        "question": "How is this different from general extension tutorials?",
+        "answer": "It focuses specifically on WXT framework conventions and the documented project structure."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 37
+    }
+  ]
+}

@@ -1,0 +1,806 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-16T14:22:20.332Z",
+    "slug": "2025emma-ccxt",
+    "source_url": "https://github.com/2025Emma/vibe-coding-cn/tree/main/i18n/en/skills/ccxt",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "c29bc18949da16ea6cafee068d68ac04b8b09efec89c558d32e01e59d8d01642",
+    "tree_hash": "68a5d8b25c6f3120f74a7236108482c52e5dd8626e491a16e21ec5b8265f4e79",
+    "original_provider": "2025emma"
+  },
+  "skill": {
+    "name": "ccxt",
+    "description": "CCXT cryptocurrency trading library. Use for cryptocurrency exchange APIs, trading, market data, order management, and crypto trading automation across 150+ exchanges. Supports JavaScript/Python/PHP.",
+    "summary": "CCXT cryptocurrency trading library. Use for cryptocurrency exchange APIs, trading, market data, ord...",
+    "icon": "₿",
+    "version": "1.0.1",
+    "author": "2025Emma",
+    "license": "MIT",
+    "category": "data",
+    "tags": [
+      "cryptocurrency",
+      "trading",
+      "exchanges",
+      "api",
+      "automation"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "network",
+      "external_commands",
+      "filesystem"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "This skill contains only static markdown documentation extracted from official CCXT sources. No executable code, scripts, network calls, or file system access capabilities are present. All 328 static findings are false positives triggered by documentation content patterns (URLs, code examples, API references) rather than actual security risks.",
+    "risk_factor_evidence": [
+      {
+        "factor": "network",
+        "evidence": [
+          {
+            "file": "references/cli.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/cli.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/cli.md",
+            "line_start": 67,
+            "line_end": 67
+          },
+          {
+            "file": "references/exchanges.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/exchanges.md",
+            "line_start": 18,
+            "line_end": 18
+          },
+          {
+            "file": "references/exchanges.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/exchanges.md",
+            "line_start": 14,
+            "line_end": 14
+          },
+          {
+            "file": "references/exchanges.md",
+            "line_start": 20,
+            "line_end": 20
+          },
+          {
+            "file": "references/exchanges.md",
+            "line_start": 27,
+            "line_end": 27
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 29,
+            "line_end": 29
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 47,
+            "line_end": 47
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 43,
+            "line_end": 43
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 45,
+            "line_end": 45
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 49,
+            "line_end": 49
+          },
+          {
+            "file": "references/faq.md",
+            "line_start": 109,
+            "line_end": 109
+          },
+          {
+            "file": "references/getting_started.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/getting_started.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/getting_started.md",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "references/getting_started.md",
+            "line_start": 70,
+            "line_end": 70
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 256,
+            "line_end": 256
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 330,
+            "line_end": 330
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 334,
+            "line_end": 334
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 376,
+            "line_end": 376
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 402,
+            "line_end": 402
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 402,
+            "line_end": 402
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 532,
+            "line_end": 532
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1274,
+            "line_end": 1274
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1278,
+            "line_end": 1278
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1282,
+            "line_end": 1282
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1316,
+            "line_end": 1316
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1334,
+            "line_end": 1334
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 179,
+            "line_end": 179
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 258,
+            "line_end": 258
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 370,
+            "line_end": 370
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 546,
+            "line_end": 546
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 546,
+            "line_end": 546
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 630,
+            "line_end": 630
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 786,
+            "line_end": 786
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1286,
+            "line_end": 1286
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1322,
+            "line_end": 1322
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1370,
+            "line_end": 1370
+          },
+          {
+            "file": "references/other.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/other.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/other.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "references/other.md",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "references/pro.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/pro.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/pro.md",
+            "line_start": 16,
+            "line_end": 16
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 7,
+            "line_end": 7
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 27,
+            "line_end": 27
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 9,
+            "line_end": 9
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 29,
+            "line_end": 29
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "references/specification.md",
+            "line_start": 42,
+            "line_end": 42
+          },
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 41,
+            "line_end": 41
+          }
+        ]
+      },
+      {
+        "factor": "external_commands",
+        "evidence": [
+          {
+            "file": "references/index.md",
+            "line_start": 6,
+            "line_end": 6
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 10,
+            "line_end": 10
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 14,
+            "line_end": 14
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 18,
+            "line_end": 18
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 22,
+            "line_end": 22
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 26,
+            "line_end": 26
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 30,
+            "line_end": 30
+          },
+          {
+            "file": "references/index.md",
+            "line_start": 34,
+            "line_end": 34
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 184,
+            "line_end": 225
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 225,
+            "line_end": 228
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 228,
+            "line_end": 252
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 252,
+            "line_end": 1140
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1375,
+            "line_end": 1412
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1412,
+            "line_end": 1415
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1415,
+            "line_end": 1417
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1417,
+            "line_end": 1420
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1420,
+            "line_end": 1424
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1424,
+            "line_end": 1427
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1427,
+            "line_end": 1433
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 1433,
+            "line_end": 1438
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 23
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 23,
+            "line_end": 25
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 25,
+            "line_end": 27
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 27,
+            "line_end": 29
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 31,
+            "line_end": 33
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 33,
+            "line_end": 37
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 37,
+            "line_end": 39
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 39,
+            "line_end": 43
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 43,
+            "line_end": 45
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 45,
+            "line_end": 49
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 49,
+            "line_end": 51
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 51,
+            "line_end": 55
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 55,
+            "line_end": 66
+          }
+        ]
+      },
+      {
+        "factor": "filesystem",
+        "evidence": [
+          {
+            "file": "references/manual.md",
+            "line_start": 546,
+            "line_end": 546
+          },
+          {
+            "file": "references/manual.md",
+            "line_start": 546,
+            "line_end": 546
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 11,
+    "total_lines": 2195,
+    "audit_model": "claude",
+    "audited_at": "2026-01-16T14:22:20.332Z"
+  },
+  "content": {
+    "user_title": "Get help with CCXT cryptocurrency trading library",
+    "value_statement": "CCXT is a complex library supporting 150+ cryptocurrency exchanges. This skill provides comprehensive documentation and examples for implementing trading APIs, market data retrieval, and automated trading strategies across multiple exchanges.",
+    "seo_keywords": [
+      "CCXT",
+      "cryptocurrency trading",
+      "crypto exchange API",
+      "Claude",
+      "Codex",
+      "Claude Code",
+      "trading automation",
+      "Bitcoin",
+      "exchange integration",
+      "algorithmic trading"
+    ],
+    "actual_capabilities": [
+      "Explain CCXT library architecture and exchange integration patterns",
+      "Provide code examples for fetching market data from 150+ exchanges",
+      "Help with order placement, management, and cancellation operations",
+      "Guide implementation of WebSocket streaming with CCXT Pro",
+      "Assist with authentication, API keys, and exchange credentials",
+      "Troubleshoot common issues and error handling scenarios"
+    ],
+    "limitations": [
+      "Does not execute trades or access user exchange accounts directly",
+      "Does not provide real-time market data or price feeds",
+      "Cannot install or configure the CCXT library on user systems",
+      "Reference documentation is static and may not reflect latest exchange changes"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Algo traders",
+        "title": "Build trading bots",
+        "description": "Create automated trading strategies that work across multiple cryptocurrency exchanges with unified API calls"
+      },
+      {
+        "target_user": "Exchange integrators",
+        "title": "Connect to exchanges",
+        "description": "Integrate cryptocurrency exchange APIs into trading platforms, dashboards, or financial applications"
+      },
+      {
+        "target_user": "Crypto developers",
+        "title": "Access market data",
+        "description": "Fetch prices, order books, trades, and OHLCV data from 150+ exchanges for analysis or display"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Basic usage",
+        "scenario": "Getting started with CCXT",
+        "prompt": "How do I install and set up CCXT in Python to connect to Binance and fetch the current BTC/USDT price?"
+      },
+      {
+        "title": "Trading operations",
+        "scenario": "Placing orders",
+        "prompt": "Show me how to create a limit buy order and a market sell order using CCXT. Include error handling."
+      },
+      {
+        "title": "WebSocket streaming",
+        "scenario": "Real-time data",
+        "prompt": "How do I use CCXT Pro to watch real-time order book updates via WebSocket? Provide a complete async example."
+      },
+      {
+        "title": "Multi-exchange",
+        "scenario": "Cross-exchange strategies",
+        "prompt": "How do I fetch ticker data from multiple exchanges simultaneously and compare prices across them for arbitrage opportunities?"
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "How do I create a market buy order with CCXT?",
+        "output": [
+          "First check if the exchange supports this feature: exchange.has['createMarketBuyOrderWithCost']",
+          "For exchanges requiring price, set createMarketBuyRequiresPrice option or pass price parameter",
+          "Example: exchange.createMarketBuyOrderWithCost(symbol, cost) if supported",
+          "Or use: exchange.create_order(symbol, 'market', 'buy', amount, price)",
+          "Note: Some exchanges require amount in quote currency (USDT) not base currency (BTC)"
+        ]
+      },
+      {
+        "input": "What exchanges does CCXT support?",
+        "output": [
+          "CCXT supports over 150 cryptocurrency exchanges worldwide",
+          "Includes major exchanges like Binance, Coinbase, Kraken, FTX, and many others",
+          "Use exchange.id to get the full list of supported exchange identifiers",
+          "Each exchange has a unified API interface for trading and market data"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Always enable rate limiting to avoid exchange API bans: exchange.enableRateLimit = true",
+      "Reuse exchange instances throughout your application instead of creating new ones",
+      "Load markets once with loadMarkets() before trading to improve performance",
+      "Never share API keys or secrets in code examples or support requests"
+    ],
+    "anti_patterns": [
+      "Creating new exchange instances for each API call (resets rate limiter)",
+      "Ignoring rate limits and getting banned from exchange APIs",
+      "Forgetting to handle API errors and exceptions in production code",
+      "Hardcoding API keys in source code instead of using environment variables"
+    ],
+    "faq": [
+      {
+        "question": "Which programming languages does CCXT support?",
+        "answer": "CCXT supports JavaScript, Python, PHP, and TypeScript. The library works in Node.js and browsers for JavaScript, asyncio for Python, and ReactPHP for PHP."
+      },
+      {
+        "question": "How many exchanges does CCXT support?",
+        "answer": "CCXT supports over 150 cryptocurrency exchanges. Use exchange.id to get the full list of supported exchange identifiers programmatically."
+      },
+      {
+        "question": "How do I switch to sandbox mode for testing?",
+        "answer": "Call exchange.setSandboxMode(true) immediately after creating the exchange instance. Sandbox APIs use the same interface but with virtual test funds."
+      },
+      {
+        "question": "Is my API key data safe with CCXT?",
+        "answer": "CCXT runs locally on your machine. Never share your keys in public forums. Use environment variables or secure key management for credentials."
+      },
+      {
+        "question": "Why am I getting rate limit errors?",
+        "answer": "Enable the built-in rate limiter with exchange.enableRateLimit = true. Reuse exchange instances and avoid creating new ones frequently."
+      },
+      {
+        "question": "What is the difference between CCXT and CCXT Pro?",
+        "answer": "CCXT provides REST API access for trading and market data. CCXT Pro adds WebSocket streaming for real-time updates on prices, orders, and trades."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "references",
+      "type": "dir",
+      "path": "references",
+      "children": [
+        {
+          "name": "cli.md",
+          "type": "file",
+          "path": "references/cli.md",
+          "lines": 70
+        },
+        {
+          "name": "exchanges.md",
+          "type": "file",
+          "path": "references/exchanges.md",
+          "lines": 30
+        },
+        {
+          "name": "faq.md",
+          "type": "file",
+          "path": "references/faq.md",
+          "lines": 112
+        },
+        {
+          "name": "getting_started.md",
+          "type": "file",
+          "path": "references/getting_started.md",
+          "lines": 76
+        },
+        {
+          "name": "index.md",
+          "type": "file",
+          "path": "references/index.md",
+          "lines": 36
+        },
+        {
+          "name": "manual.md",
+          "type": "file",
+          "path": "references/manual.md",
+          "lines": 1441
+        },
+        {
+          "name": "other.md",
+          "type": "file",
+          "path": "references/other.md",
+          "lines": 28
+        },
+        {
+          "name": "pro.md",
+          "type": "file",
+          "path": "references/pro.md",
+          "lines": 19
+        },
+        {
+          "name": "specification.md",
+          "type": "file",
+          "path": "references/specification.md",
+          "lines": 45
+        }
+      ]
+    },
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 106
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Profile: OpenClaw + MiniMax
+# OpenClaw Agent with MiniMax Model
+
+extends:
+  - agents/openclaw
+  - providers/openclaw-minimax
+  - base/common
+  - base/execution
+
+profile:
+  name: openclaw-minimax
+  description: "OpenClaw Agent with MiniMax Model"
+  model: MiniMax-M2.7
+
+execution:
+  output_dir: experiment_results_openclaw_minimax

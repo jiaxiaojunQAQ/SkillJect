@@ -1,0 +1,6 @@
+# OpenClaw Runtime Provider: OpenAI
+provider: openai
+max_concurrency: 2
+use_api_key: true
+auth_token_env: OPENAI_API_KEY
+base_url_env: OPENCLAW_OPENAI_BASE_URL

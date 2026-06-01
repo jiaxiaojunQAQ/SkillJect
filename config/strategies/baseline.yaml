@@ -1,0 +1,2 @@
+method: baseline
+description: "Baseline execution - run original skill with normal instruction, no attack injection"

@@ -1,0 +1,16 @@
+# Profile: OpenClaw + Claude over OpenAI-compatible proxy
+# OpenClaw Agent with Claude model via OpenAI-compatible authentication
+
+extends:
+  - agents/openclaw
+  - providers/openclaw-claude-openai
+  - base/common
+  - base/execution
+
+profile:
+  name: openclaw-claude-openai
+  description: "OpenClaw Agent with Claude model via OpenAI-compatible proxy"
+  model: claude-sonnet-4-6
+
+execution:
+  output_dir: experiment_results_openclaw_claude_openai

@@ -1,0 +1,336 @@
+{
+  "schema_version": "2.0",
+  "meta": {
+    "generated_at": "2026-01-16T12:42:39.205Z",
+    "slug": "7nohe-debug-connection",
+    "source_url": "https://github.com/7nohe/figram/tree/main/.claude/skills/debug-connection",
+    "source_ref": "main",
+    "model": "claude",
+    "analysis_version": "3.0.0",
+    "source_type": "community",
+    "content_hash": "867489664e9312e215c06c4ef95f2319aa74fbcb7bfafa9768bc5cc98b5be246",
+    "tree_hash": "d41d9420431c62ea30a8d0bbba05927e945baab1e97d60e8ade71b13fd9e1d6d",
+    "original_provider": "7nohe"
+  },
+  "skill": {
+    "name": "debug-connection",
+    "description": "Debug WebSocket connection issues between CLI and FigJam plugin. Use when diagrams aren't syncing or connection fails.",
+    "summary": "Debug WebSocket connection issues between CLI and FigJam plugin. Use when diagrams aren't syncing or...",
+    "icon": "🔌",
+    "version": "1.0.0",
+    "author": "7nohe",
+    "license": "MIT",
+    "category": "development",
+    "tags": [
+      "debugging",
+      "websocket",
+      "figjam",
+      "figram",
+      "troubleshooting"
+    ],
+    "supported_tools": [
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "risk_factors": [
+      "network",
+      "filesystem",
+      "external_commands"
+    ]
+  },
+  "security_audit": {
+    "risk_level": "safe",
+    "is_blocked": false,
+    "safe_to_publish": true,
+    "summary": "This skill contains only documentation - a markdown file providing debugging guidance for WebSocket connection issues between CLI and FigJam plugin. No executable code, no file system access, no network operations, and no code execution capabilities. Pure informational content explaining diagnostic procedures.",
+    "risk_factor_evidence": [
+      {
+        "factor": "network",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          }
+        ]
+      },
+      {
+        "factor": "filesystem",
+        "evidence": [
+          {
+            "file": "skill-report.json",
+            "line_start": 6,
+            "line_end": 6
+          }
+        ]
+      },
+      {
+        "factor": "external_commands",
+        "evidence": [
+          {
+            "file": "SKILL.md",
+            "line_start": 10,
+            "line_end": 19
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 19,
+            "line_end": 28
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 28,
+            "line_end": 34
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 34,
+            "line_end": 36
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 36,
+            "line_end": 67
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 67,
+            "line_end": 75
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 75,
+            "line_end": 75
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 75,
+            "line_end": 75
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 75,
+            "line_end": 76
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 76,
+            "line_end": 76
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 76,
+            "line_end": 76
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 76,
+            "line_end": 83
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 83,
+            "line_end": 92
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 92,
+            "line_end": 107
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 107,
+            "line_end": 120
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 120,
+            "line_end": 124
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 124,
+            "line_end": 145
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 145,
+            "line_end": 149
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 149,
+            "line_end": 155
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 155,
+            "line_end": 159
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 159,
+            "line_end": 171
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 171,
+            "line_end": 175
+          },
+          {
+            "file": "SKILL.md",
+            "line_start": 175,
+            "line_end": 192
+          }
+        ]
+      }
+    ],
+    "critical_findings": [],
+    "high_findings": [],
+    "medium_findings": [],
+    "low_findings": [],
+    "dangerous_patterns": [],
+    "files_scanned": 2,
+    "total_lines": 372,
+    "audit_model": "claude",
+    "audited_at": "2026-01-16T12:42:39.205Z"
+  },
+  "content": {
+    "user_title": "Debug WebSocket connection issues",
+    "value_statement": "WebSocket connections between CLI and FigJam plugin often fail silently. This skill provides step-by-step diagnostic procedures to identify and resolve connection problems quickly.",
+    "seo_keywords": [
+      "debug websocket connection",
+      "figram troubleshooting",
+      "figjam plugin debug",
+      "claude code debugging",
+      "cli serve issues",
+      "diagram sync problems",
+      "websocket debugging",
+      "claude",
+      "codex",
+      "claude-code"
+    ],
+    "actual_capabilities": [
+      "Diagnose WebSocket connection refused errors between CLI and FigJam plugin",
+      "Identify why diagrams are not syncing to canvas",
+      "Debug YAML parse errors that block updates",
+      "Verify secret mismatch issues causing connection drops",
+      "Inspect WebSocket protocol messages and frames",
+      "Check plugin console logs for rendering errors"
+    ],
+    "limitations": [
+      "Does not fix issues automatically - only provides diagnostic guidance",
+      "Limited to Figram CLI and FigJam plugin WebSocket connections",
+      "Requires manual verification of port availability and process status",
+      "Cannot diagnose network-level firewall or proxy issues"
+    ],
+    "use_cases": [
+      {
+        "target_user": "Infrastructure engineers",
+        "title": "Debug live sync issues",
+        "description": "When YAML changes are not appearing in FigJam canvas, diagnose WebSocket communication breakdowns"
+      },
+      {
+        "target_user": "Plugin developers",
+        "title": "Investigate connection drops",
+        "description": "Trace why WebSocket connections close unexpectedly during development sessions"
+      },
+      {
+        "target_user": "Technical support",
+        "title": "Verify configuration problems",
+        "description": "Check port availability, secret mismatches, and authentication issues in deployed setups"
+      }
+    ],
+    "prompt_templates": [
+      {
+        "title": "Check connection status",
+        "scenario": "Plugin stuck on connecting",
+        "prompt": "Debug why my FigJam plugin shows 'Connecting...' indefinitely. How do I check if the CLI serve is running and verify port 3456 is available?"
+      },
+      {
+        "title": "Diagnose sync failures",
+        "scenario": "Connected but not updating",
+        "prompt": "The WebSocket connects but my diagrams are not syncing. What diagnostic steps should I follow to identify why patches are not being applied?"
+      },
+      {
+        "title": "Verify authentication",
+        "scenario": "Connection immediately closes",
+        "prompt": "My connection establishes but then closes immediately. How do I check if there's a secret mismatch between CLI and plugin?"
+      },
+      {
+        "title": "Inspect protocol frames",
+        "scenario": "Need message details",
+        "prompt": "Show me the WebSocket protocol message formats including HelloMessage, FullMessage, PatchMessage, and how patch operations are structured."
+      }
+    ],
+    "output_examples": [
+      {
+        "input": "Debug why my FigJam plugin shows 'Connecting...' indefinitely",
+        "output": [
+          "Connection refused typically means the CLI serve is not running. Follow these steps:",
+          "1. Check if figram serve is running: ps aux | grep 'figram serve'",
+          "2. Verify port 3456 availability: lsof -i :3456",
+          "3. Start CLI with: bun run packages/cli/src/index.ts serve diagram.yaml",
+          "4. Test WebSocket manually: wscat -c ws://localhost:3456",
+          "5. Check plugin UI console for WebSocket close events"
+        ]
+      },
+      {
+        "input": "The WebSocket connects but my diagrams are not syncing",
+        "output": [
+          "Connected but not updating usually indicates YAML parse errors or patch issues. Diagnostic steps:",
+          "1. Check CLI output for patch generation status",
+          "2. Inspect Plugin UI console for received message events",
+          "3. Look for rendering errors in Plugin Main console",
+          "4. Validate YAML syntax with: bun run packages/cli/src/index.ts build diagram.yaml",
+          "5. Verify revision numbers match between baseRev and nextRev"
+        ]
+      }
+    ],
+    "best_practices": [
+      "Start CLI serve with DEBUG=* for verbose WebSocket frame output",
+      "Use browser developer tools to inspect Network tab for WS frames",
+      "Keep CLI and plugin secret values synchronized when using authentication"
+    ],
+    "anti_patterns": [
+      "Ignoring YAML validation errors which block incremental updates",
+      "Skipping console log inspection when connections drop",
+      "Assuming connection failures are always network-level issues"
+    ],
+    "faq": [
+      {
+        "question": "Does this skill work with Claude Code on all operating systems?",
+        "answer": "Yes, the debugging procedures use standard commands like ps, lsof, and bun which are available on macOS and Linux. Windows users may need WSL."
+      },
+      {
+        "question": "What are the connection timeout limits?",
+        "answer": "There are no hard timeout limits defined. The WebSocket connection persists until the CLI process ends or network interruption occurs."
+      },
+      {
+        "question": "Can I integrate this with automated testing pipelines?",
+        "answer": "The skill provides diagnostic guidance only. For automated testing, you would need to implement WebSocket health checks in your CI pipeline."
+      },
+      {
+        "question": "Is my YAML content sent to external servers during debugging?",
+        "answer": "No. All debugging is local. The WebSocket connection is localhost only (ws://localhost:3456) and does not transmit data externally."
+      },
+      {
+        "question": "What if wscat is not installed for manual testing?",
+        "answer": "You can use any WebSocket client tool. Alternative options include websocat, browser DevTools, or simple Node.js WebSocket test scripts."
+      },
+      {
+        "question": "How does this compare to generic network debugging tools?",
+        "answer": "This skill is specialized for Figram's WebSocket protocol including message types, revision tracking, and patch operations that generic tools cannot interpret."
+      }
+    ]
+  },
+  "file_structure": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "path": "SKILL.md",
+      "lines": 193
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "skill_name": "self-evolving-agent",
+  "judge_policy": {
+    "required_criterion_min_score": 1,
+    "pass_ratio_threshold": 0.7
+  },
+  "scenarios": [
+    {
+      "id": "pre-task-risk-diagnosis",
+      "title": "Pre-task capability risk diagnosis",
+      "prompt": "Use $self-evolving-agent for this situation: I need to modify a production deployment workflow I have never touched before. Before doing any edits, give me a pre-task capability risk diagnosis, say which past learnings should be retrieved, and propose an execution strategy with a verification plan.",
+      "criteria": [
+        {
+          "name": "task classification",
+          "description": "Classifies novelty, consequence, or equivalent task-risk frame before execution.",
+          "required": true
+        },
+        {
+          "name": "retrieval plan",
+          "description": "Identifies which past learnings, errors, capabilities, or training units should be retrieved.",
+          "required": true
+        },
+        {
+          "name": "capability risk diagnosis",
+          "description": "Names likely weak capabilities or failure modes relevant to the task.",
+          "required": true
+        },
+        {
+          "name": "verification-first strategy",
+          "description": "Proposes an execution strategy and explicit verification plan before edits.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "post-task-diagnosis-and-training",
+      "title": "Post-task diagnosis and training unit generation",
+      "prompt": "Use $self-evolving-agent after this incident: I edited a release command by guessing a flag name, the user corrected me, and I now realize I skipped validating the tool contract. Produce the post-task diagnosis, capability update, and a training unit if warranted.",
+      "criteria": [
+        {
+          "name": "capability-level diagnosis",
+          "description": "Frames the issue as a capability weakness, not only as a surface incident.",
+          "required": true
+        },
+        {
+          "name": "evidence and root cause",
+          "description": "Cites concrete evidence and names a plausible root cause such as verification or tool-use weakness.",
+          "required": true
+        },
+        {
+          "name": "capability update",
+          "description": "Updates the capability map with limits, next focus, or upgrade logic.",
+          "required": true
+        },
+        {
+          "name": "training unit quality",
+          "description": "Creates or recommends a training unit with drills, pass criteria, and trigger signature when warranted.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "evaluation-and-promotion",
+      "title": "Evaluation state and promotion decision",
+      "prompt": "Use $self-evolving-agent for this follow-up: a verification-first strategy previously trained on deployment commands later helped me correctly update a different release automation task without user correction. Decide the evaluation state and whether the strategy should be promoted.",
+      "criteria": [
+        {
+          "name": "evaluation ladder discipline",
+          "description": "Places the learning at the correct state on the recorded-to-promoted ladder.",
+          "required": true
+        },
+        {
+          "name": "transfer evidence",
+          "description": "Uses the new scenario as transfer evidence rather than treating the original recording as enough.",
+          "required": true
+        },
+        {
+          "name": "promotion gate",
+          "description": "Makes a scoped promotion decision with trigger signature and minimal durable rule.",
+          "required": true
+        },
+        {
+          "name": "overgeneralization control",
+          "description": "Acknowledges limits or risks instead of promoting a broad vague rule.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "agenda-review",
+      "title": "Learning agenda review",
+      "prompt": "Use $self-evolving-agent before the next unfamiliar project: I have completed five meaningful task cycles, verification is improving, but I still miss relevant past learnings and sometimes skip my intended workflow under pressure. Run a learning agenda review and decide the top 1-3 capabilities to train next.",
+      "criteria": [
+        {
+          "name": "agenda trigger recognition",
+          "description": "Recognizes that the scenario should trigger a learning agenda review.",
+          "required": true
+        },
+        {
+          "name": "small active focus set",
+          "description": "Chooses only 1-3 active focus capabilities instead of an unbounded list.",
+          "required": true
+        },
+        {
+          "name": "prioritization rationale",
+          "description": "Explains why these capabilities matter now relative to alternatives.",
+          "required": true
+        },
+        {
+          "name": "exit criteria",
+          "description": "Defines what evidence would retire or advance each active focus.",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

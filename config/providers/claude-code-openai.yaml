@@ -1,0 +1,6 @@
+# Claude Code Runtime Provider: OpenAI
+provider: openai
+max_concurrency: 1
+use_api_key: true
+auth_token_env: OPENAI_API_KEY
+base_url_env: OPENAI_BASE_URL

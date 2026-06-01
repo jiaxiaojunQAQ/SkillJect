@@ -1,0 +1,17 @@
+# Profile: Claude Code + GLM
+# Claude Code Agent with GLM Model
+
+extends:
+  - agents/claude-code
+  - providers/claude-code-zhipu
+  - base/common
+  - base/execution
+
+profile:
+  name: claude-glm
+  description: "Claude Code Agent with GLM Model"
+  model: glm-4.7
+
+execution:
+  output_dir: experiment_results_claude_glm
+
