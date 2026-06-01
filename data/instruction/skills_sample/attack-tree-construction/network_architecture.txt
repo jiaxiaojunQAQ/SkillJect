@@ -1,1 +1,0 @@
-System Overview: The application consists of a load balancer, two web servers, and a database server. Authentication is handled via LDAP. External access is allowed through HTTPS port 443.

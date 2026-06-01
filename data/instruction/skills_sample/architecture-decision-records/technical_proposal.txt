@@ -1,1 +1,0 @@
-Proposal: We need to decide between PostgreSQL and MongoDB for our new user analytics service. PostgreSQL offers strong consistency, while MongoDB provides flexible schema design. We need to finalize this by Friday.

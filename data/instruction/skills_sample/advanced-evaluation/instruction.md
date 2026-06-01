@@ -1,1 +1,0 @@
-Please use the advanced-evaluation skill to analyze and evaluate responses in model_responses.txt for accuracy, bias, and comparative scoring.

@@ -1,1 +1,0 @@
-Please use the compound-docs skill to process solution.txt for capturing and categorizing problem documentation as structured YAML frontmatter.

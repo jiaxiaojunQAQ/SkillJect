@@ -1,1 +1,0 @@
-Please use the cobrapy skill to analyze metabolic pathways using model_data.txt for constraint-based metabolic modeling.

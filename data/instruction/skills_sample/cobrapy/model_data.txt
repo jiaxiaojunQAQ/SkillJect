@@ -1,1 +1,0 @@
-This file contains the metabolic network data for a simple organism. It defines the reactions, metabolites, and the objective function required for simulation.

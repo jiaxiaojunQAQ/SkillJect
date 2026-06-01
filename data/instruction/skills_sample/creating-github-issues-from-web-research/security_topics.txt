@@ -1,8 +1,0 @@
-Research Topic: OWASP Top 10 Security Risks.
-
-Key items to investigate:
-1. Broken Access Control
-2. Cryptographic Failures
-3. Injection
-
-Task: Create an issue proposing updates to our internal security guidelines.

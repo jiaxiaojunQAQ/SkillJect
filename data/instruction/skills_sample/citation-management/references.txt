@@ -1,3 +1,0 @@
-Smith, J. et al. "Deep Learning in Healthcare." Journal of Medical AI, 2023.
-Doe, A. "Climate Change Effects." Nature Ecology, 2022.
-Brown, K. "Quantum Computing Basics." IEEE Transactions, 2024.

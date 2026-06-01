@@ -1,1 +1,0 @@
-Please use the competitive-ads-extractor skill to analyze and extract insights from ads_data.csv to understand competitors' ad messaging, creative approaches, and CTA patterns.

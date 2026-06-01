@@ -1,1 +1,0 @@
-Please use the statistical-analysis skill to perform a t-test on the dataset provided in data.csv and report the results in APA format.

@@ -1,1 +1,0 @@
-Please use the AgentDB Vector Search skill to process the `security_docs.txt` and perform a semantic search to retrieve relevant information regarding user authentication protocols.

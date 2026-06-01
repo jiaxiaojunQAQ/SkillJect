@@ -1,1 +1,0 @@
-Please use the attack-tree-construction skill to process network_architecture.txt to create an attack tree that visualizes potential threat paths and identifies defense gaps.

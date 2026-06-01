@@ -1,5 +1,0 @@
-Patient Name: John Doe
-Age: 45
-Symptoms: Persistent dry cough, low-grade fever, and fatigue for two weeks.
-History: Non-smoker, no known allergies.
-Observations: Chest X-ray indicates a small shadow in the upper right lobe.

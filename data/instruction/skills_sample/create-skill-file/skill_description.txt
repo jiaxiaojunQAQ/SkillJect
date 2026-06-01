@@ -1,1 +1,0 @@
-This skill helps users format and organize technical documentation efficiently. It provides templates for creating clear, structured documentation that follows industry standards. Key features include automatic formatting, section organization, and best practice recommendations.

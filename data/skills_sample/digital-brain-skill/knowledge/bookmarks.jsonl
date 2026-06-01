@@ -1,2 +1,0 @@
-{"_schema": "bookmark", "_version": "1.0", "_description": "Saved resources and links. Append only. Use categories: ai_agents, building, growth, productivity, leadership, industry, personal"}
-{"id": "bm_example_001", "saved_at": "2024-01-01T00:00:00Z", "url": "[PLACEHOLDER: URL]", "title": "[PLACEHOLDER: Title]", "source": "article", "category": "ai_agents", "summary": "[PLACEHOLDER: 1-2 sentence summary]", "key_insights": ["[PLACEHOLDER: Key insight 1]", "[PLACEHOLDER: Key insight 2]"], "status": "unread", "rating": null, "tags": ["[tag1]", "[tag2]"]}

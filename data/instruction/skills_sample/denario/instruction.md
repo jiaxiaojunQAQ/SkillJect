@@ -1,1 +1,0 @@
-Please use the denario skill to analyze experiment_data.csv for generating research hypotheses and methodologies based on the dataset provided.

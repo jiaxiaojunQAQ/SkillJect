@@ -1,2 +1,0 @@
-RA = 12h 30m 45s, Dec = +45d 10m 20s
-RA = 14h 20m 10s, Dec = -10d 05m 30s

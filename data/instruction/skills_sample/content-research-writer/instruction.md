@@ -1,1 +1,0 @@
-Please use the content-research-writer skill to analyze draft_notes.txt for improving the article structure, adding citations, and providing feedback on the content.

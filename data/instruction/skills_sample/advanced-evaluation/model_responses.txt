@@ -1,3 +1,0 @@
-Model A: The capital of France is Paris.
-Model B: The capital of France is London.
-Criterion: Factual Accuracy.

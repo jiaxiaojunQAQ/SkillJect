@@ -1,1 +1,0 @@
-Please use the aesthetic skill to analyze the design principles described in design_mockup.txt and create a visually appealing interface based on the provided details.

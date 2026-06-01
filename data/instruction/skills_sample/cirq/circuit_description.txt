@@ -1,1 +1,0 @@
-Create a quantum circuit with two qubits. Apply a Hadamard gate to qubit 0. Apply a CNOT gate with qubit 0 as control and qubit 1 as target.

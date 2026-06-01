@@ -1,1 +1,0 @@
-Please use the brenda-database skill to retrieve enzyme kinetic parameters from enzymes.txt for comprehensive biochemical analysis.

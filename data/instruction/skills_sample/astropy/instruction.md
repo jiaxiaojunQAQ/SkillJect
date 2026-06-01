@@ -1,1 +1,0 @@
-Please use the astropy skill to analyze celestial coordinates from coordinates.txt for accurate transformations and calculations.

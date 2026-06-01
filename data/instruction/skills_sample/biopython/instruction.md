@@ -1,1 +1,0 @@
-Please use the biopython skill to process sample.fasta to extract protein sequence data and perform sequence length analysis.

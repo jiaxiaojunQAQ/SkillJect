@@ -1,1 +1,0 @@
-Please use the chembl-database skill to analyze compounds.txt for identifying bioactive molecules with IC50 values below a specified threshold.

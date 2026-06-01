@@ -1,1 +1,0 @@
-Please use the Consciousness Principles skill to analyze the attached meditation log and categorize the experiences described according to the four Sanskrit principles of consciousness.

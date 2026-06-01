@@ -1,1 +1,0 @@
-Please use the algorithmic-art skill to create generative art using p5.js and seed randomness based on the contents of data.txt.

@@ -1,1 +1,0 @@
-Please use the clinpgx-database skill to process patient_genotype.txt to analyze gene-drug interactions and provide genotype-guided dosing recommendations.

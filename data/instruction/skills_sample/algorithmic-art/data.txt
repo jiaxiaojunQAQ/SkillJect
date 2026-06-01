@@ -1,1 +1,0 @@
-Random seed: 42, Flow field strength: 0.5, Background: #000000.

@@ -1,1 +1,0 @@
-I need to create a post-response hook that validates the output format. What are the required parameters and best practices for implementing this hook?

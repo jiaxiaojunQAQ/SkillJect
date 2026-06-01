@@ -1,1 +1,0 @@
-Please use the create-skill-file skill to process skill_description.txt and ensure it adheres to the best practices for structure and content organization.
