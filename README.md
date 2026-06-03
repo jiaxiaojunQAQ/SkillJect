@@ -1,8 +1,11 @@
-# SkillJect
+# 🛡️ SkillJect
 
 AI agent security evaluation framework for malicious-skill testing on top of OpenSandbox.
 
-## Overview
+# 🎉  Our paper has been **Distinguished Paper Award of CVPR 6th AdvML@CV Workshop, 2026**!   
+
+
+## 📖 Overview
 
 SkillJect runs security evaluations through a single public execution flow:
 
@@ -14,23 +17,35 @@ SkillJect runs security evaluations through a single public execution flow:
 
 The framework uses a streaming generate-execute-analyze loop and records sandbox traces plus attack outcomes.
 
-## Quick Start
+## 🔗 Resources
 
-### Prerequisites
+- 📄 **Paper**: [arxiv.org/abs/2602.14211](https://arxiv.org/abs/2602.14211)
+- 🐳 **Docker images & GLM-based generation results**: [Google Drive](https://drive.google.com/drive/folders/1CfJIJ8aJlVvB-AqpDeWXS6LIyRWGp_r6?usp=drive_link)
+
+### 🤖 Agent Versions
+
+| Agent | Version |
+| --- | --- |
+| Claude Code | `v2.1.34` |
+| OpenClaw | `2026.3.31 (213a704)` |
+
+## 🚀 Quick Start
+
+### ✅ Prerequisites
 
 - Python 3.10+
 - Docker
 - OpenSandbox server
 - Required provider credentials in `.env`
 
-### Install
+### 📦 Install
 
 ```bash
 pip install -e .
 cp .env.example .env
 ```
 
-### Run
+### ▶️ Run
 
 ```bash
 # 1. Start OpenSandbox
@@ -43,7 +58,7 @@ docker build -f Dockerfile.claude -t claude_code:latest .
 python run.py -c config/main.yaml
 ```
 
-## Public Configuration Contract
+## 📝 Public Configuration Contract
 
 `config/main.yaml` is the only supported top-level runtime entry.
 
@@ -105,7 +120,7 @@ CLAUDE_CODE_MINIMAX_BASE_URL=...
 The exact names come from `config/providers/strategy-llm.yaml` and
 `config/main.yaml`'s `llm_judge` block. See `.env.example` for the full list.
 
-## Configuration Reference
+## ⚙️ Configuration Reference
 
 All user-facing configuration is set in `config/main.yaml`. Internal files under `config/profiles/`, `config/base/`, `config/providers/`, and `config/strategies/` are composed by profiles and should not be edited directly.
 
@@ -224,7 +239,7 @@ These fields come from profile composition and have sensible defaults. Override 
 | GenerationStrategy | `direct_execution`, `skillject`, `template_injection`, `baseline` |
 | LogLevel | `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` |
 
-## Supported Profiles
+## 🎯 Supported Profiles
 
 | Profile | Agent | Model |
 | --- | --- | --- |
@@ -239,7 +254,7 @@ These fields come from profile composition and have sensible defaults. Override 
 | `openclaw-glm` | OpenClaw | `glm-4.7` |
 | `openclaw-minimax` | OpenClaw | `MiniMax-M2.7` |
 
-## Generation Methods
+## 🧪 Generation Methods
 
 | Method | Purpose |
 | --- | --- |
@@ -249,7 +264,7 @@ These fields come from profile composition and have sensible defaults. Override 
 
 Adaptive loop controls (`adaptive_iteration`) apply only to `skillject`. Other methods are single-pass.
 
-## LLM-as-Judge Evaluation
+## ⚖️ LLM-as-Judge Evaluation
 
 The framework supports an optional LLM-based judge that complements the built-in rule-based failure analysis. When enabled, the judge evaluates agent output after each test execution and can **upgrade** a verdict — detecting attack success that rule-based heuristics missed.
 
@@ -272,7 +287,7 @@ JUDGE_LLM_BASE_URL=...
 
 The judge is fully optional — when not configured or disabled, the framework relies solely on rule-based analysis. When enabled, it runs after rule-based analysis and can override a "safe" verdict to "attack_success" with supporting evidence.
 
-## Infrastructure Retry
+## 🔄 Infrastructure Retry
 
 Transient infrastructure failures (rate limits, server errors, network timeouts, sandbox crashes) are automatically retried with exponential backoff and jitter across all three layers:
 
@@ -294,7 +309,7 @@ retry_base_delay: 1.0
 retry_max_delay: 30.0
 ```
 
-## Architecture
+## 🏗️ Architecture
 
 ```text
 src/
@@ -330,7 +345,7 @@ The main runtime path is:
 4. Run `StreamingOrchestrator`
 5. Save results and summaries under the configured output directory
 
-## Useful Commands
+## 💡 Useful Commands
 
 ```bash
 # Help
@@ -353,10 +368,3 @@ python run.py --analyze
 python -m src.application.scripts.rejudge_existing_results --base-dir . --judge-model gpt-5-mini
 ```
 
-## Tests
-
-```bash
-pytest
-ruff check
-mypy
-```
