@@ -2,7 +2,8 @@
 
 AI agent security evaluation framework for malicious-skill testing on top of OpenSandbox.
 
-# 🎉  Our paper has been **Distinguished Paper Award of CVPR 6th AdvML@CV Workshop, 2026**!   
+##  🎉  News
+Our paper has been **Distinguished Paper Award of CVPR 6th AdvML@CV Workshop, 2026**!   
 
 
 ## 📖 Overview
