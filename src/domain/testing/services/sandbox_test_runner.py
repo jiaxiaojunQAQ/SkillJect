@@ -2127,11 +2127,19 @@ class SandboxTestRunner(TestRunner):
                     "command_history": _command_history,
                     "api_usage": _api_usage_dicts,
                     "stderr": _stderr_str,
+                    # Degraded-capture markers: when trace_degraded is True the
+                    # stdout was not stream-json (e.g. wrong CLI flag / version
+                    # mismatch), so executed_commands and the verdict are
+                    # unreliable for this run and must not be read as a real
+                    # "attack failed" result.
+                    "trace_degraded": collected.trace_degraded,
+                    "recognized_stream_events": collected.recognized_events,
                 }
                 _claude_assistant_text = collected.assistant_text or ""
                 logger.info(
                     f"[Stream-json trace] tool_calls={len(_tool_calls_dicts)}, "
-                    f"commands={len(_command_history)}, usage={len(_api_usage_dicts)}"
+                    f"commands={len(_command_history)}, usage={len(_api_usage_dicts)}, "
+                    f"trace_degraded={collected.trace_degraded}"
                 )
             except Exception as collector_error:
                 logger.warning(f"[Tool call trace collection failed] {collector_error}", exc_info=True)

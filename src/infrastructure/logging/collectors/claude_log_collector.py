@@ -35,6 +35,12 @@ class CollectedTrace:
         commands: Bash CommandRecord objects extracted from the stream.
         usage: Token-usage entries extracted from the stream.
         assistant_text: Concatenated assistant text blocks from the stream.
+        recognized_events: Count of recognized stream-json envelopes. Zero on
+            non-empty stdout means the output was not stream-json at all.
+        trace_degraded: True when stdout had content but no stream-json event was
+            recognized (e.g. the agent did not run with --output-format
+            stream-json). In that state commands/attack-success detection are
+            unreliable and the verdict for this run should not be trusted.
     """
 
     test_id: str
@@ -45,6 +51,8 @@ class CollectedTrace:
     commands: list[CommandRecord] = field(default_factory=list)
     usage: list[StreamUsage] = field(default_factory=list)
     assistant_text: str = ""
+    recognized_events: int = 0
+    trace_degraded: bool = False
 
     @property
     def tool_call_events(self) -> list[ToolCallEvent]:
@@ -115,7 +123,8 @@ class ClaudeLogCollector:
         # agent did not emit `--output-format stream-json` (commonly OTEL
         # telemetry from a CLI version/env mismatch). Commands and attack-success
         # detection silently degrade in that case, so warn loudly instead.
-        if stdout.strip() and parsed.recognized_events == 0:
+        trace_degraded = bool(stdout.strip()) and parsed.recognized_events == 0
+        if trace_degraded:
             logger.warning(
                 "Claude trace capture degraded for test_id=%s: stdout has %d non-blank "
                 "lines but no stream-json events were recognized. The agent likely did "
@@ -152,6 +161,8 @@ class ClaudeLogCollector:
             commands=parsed.commands,
             usage=parsed.usage,
             assistant_text=parsed.assistant_text,
+            recognized_events=parsed.recognized_events,
+            trace_degraded=trace_degraded,
         )
 
     def __repr__(self) -> str:
