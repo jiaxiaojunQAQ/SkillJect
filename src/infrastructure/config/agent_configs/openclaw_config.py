@@ -14,8 +14,6 @@ Configuration Details:
 - env_prefix: "OPENCLAW" - Environment variable prefix
 - env_vars: Environment variable name mapping
 - install_command: Installation command
-- use_otel_logging: False - Uses JSON logging instead of OpenTelemetry
-
 Special Notes:
 - OpenClaw command format is `openclaw agent --message "<prompt>"` with optional `--json` flag
 - Supports `--agent <id>` to target a specific configured agent
@@ -83,7 +81,6 @@ class OpenClawAgentConfig(BaseAgentConfig):
 
         # Log collector: Use OpenClawJsonLogCollector for JSON format output with tool chain extraction
         self.log_collector = OpenClawJsonLogCollector
-        self.use_otel_logging = False
 
         # Installation timeout (default value)
         self.install_timeout = INSTALL_TIMEOUT

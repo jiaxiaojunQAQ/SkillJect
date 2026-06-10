@@ -1,7 +1,6 @@
-from src.infrastructure.logging.parsers.otel_span_parser import (
-    OtelParseError,
-    OtelSpanData,
-    OtelSpanParser,
+from src.infrastructure.logging.parsers.stream_json_parser import (
+    StreamJsonParser,
+    StreamJsonParseResult,
 )
 
-__all__ = ["OtelSpanData", "OtelSpanParser", "OtelParseError"]
+__all__ = ["StreamJsonParser", "StreamJsonParseResult"]

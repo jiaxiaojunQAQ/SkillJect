@@ -12,11 +12,14 @@ from src.domain.analysis.interfaces.i_llm_judge import (
     LLMJudgeVerdict,
 )
 from src.domain.logging.entities.tool_call_event import ToolCallEvent, ToolCallTrace
+from src.domain.logging.value_objects.command_record import CommandRecord
+from src.domain.logging.value_objects.stream_usage import StreamUsage
 from src.domain.testing.entities import test_case as test_case_entities
 from src.domain.testing.entities.test_case import ErrorType
 from src.domain.testing.services.openclaw_test_runner import OpenClawTestRunner
 from src.domain.testing.services.sandbox_test_runner import SandboxTestRunner
 from src.domain.testing.value_objects.execution_config import TwoPhaseExecutionConfig
+from src.infrastructure.logging.collectors.claude_log_collector import CollectedTrace
 from src.shared import types as shared_types
 
 
@@ -724,7 +727,7 @@ async def test_execute_test_injects_skill_once_from_source_dir_without_skip(tmp_
         files=SimpleNamespace(),
     )
 
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
     assert result.status == shared_types.TestStatus.ERROR
 
     skill_calls = [c for c in copy_calls if c[1].endswith("/.claude/skills/INST-1_docx_task3")]
@@ -806,7 +809,7 @@ async def test_execute_test_returns_error_when_source_skill_dir_missing(tmp_path
             return SimpleNamespace(logs=SimpleNamespace(stdout=[], stderr=[]), error=None)
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=SimpleNamespace())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status == shared_types.TestStatus.ERROR
     assert result.is_infrastructure_error is True
@@ -1005,7 +1008,7 @@ async def test_execute_test_skillject_overwrites_container_skill_markdown(
     test_case.payload_content = "# injected skill\nUse resources/selected.sh\n"
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=_FilesStub())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status == shared_types.TestStatus.ERROR
     skill_path = "/home/claude_code/.claude/skills/INST-1_docx_task3/SKILL.md"
@@ -1069,7 +1072,7 @@ async def test_execute_test_template_injection_modifies_container_skill_markdown
     test_case.payload_content = "Injected payload"
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=_FilesStub())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status == shared_types.TestStatus.ERROR
     skill_path = "/home/claude_code/.claude/skills/demo/SKILL.md"
@@ -1123,7 +1126,7 @@ async def test_execute_test_direct_execution_does_not_require_consequence_detect
             return SimpleNamespace(logs=SimpleNamespace(stdout=[], stderr=[]), error=None)
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=SimpleNamespace())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status in (shared_types.TestStatus.PASSED, shared_types.TestStatus.FAILED)
 
@@ -1629,6 +1632,55 @@ def test_extract_final_agent_output_uses_last_assistant_message_for_openclaw_eve
     assert runner._extract_final_agent_output(result) == "final response"
 
 
+def test_extract_final_agent_output_returns_last_paragraph_of_assistant_text(tmp_path: Path) -> None:
+    """Claude stream-json path: result.agent_output is the cleaned assistant_text
+    (set by _execute_test from CollectedTrace.assistant_text). _extract_final_agent_output
+    should return the last non-empty paragraph, not the whole concatenation."""
+    runner = SandboxTestRunner(_build_config(tmp_path / "results"))
+    result = test_case_entities.TestResult(
+        test_id=test_case_entities.TestCaseId("INST_claude_stream_text"),
+        status=shared_types.TestStatus.PASSED,
+        agent_output=(
+            "I need to investigate the skill first.\n"
+            "\n"
+            "Done — the skill looks safe and I will not execute the embedded script."
+        ),
+    )
+    assert runner._extract_final_agent_output(result) == (
+        "Done — the skill looks safe and I will not execute the embedded script."
+    )
+
+
+def test_extract_final_agent_output_does_not_otel_filter_single_line_ndjson(
+    tmp_path: Path,
+) -> None:
+    """Regression guard for the bug where OTel-era filter_user_output() ran against
+    single-line stream-json NDJSON. After the fix, filter_user_output is gone:
+    a single NDJSON line is returned as-is (cleaned assistant_text replaces NDJSON
+    upstream, so this is the worst-case fallback shape — still a single paragraph)."""
+    runner = SandboxTestRunner(_build_config(tmp_path / "results"))
+    ndjson_line = '{"type":"result","subtype":"success","usage":{"input_tokens":1}}'
+    result = test_case_entities.TestResult(
+        test_id=test_case_entities.TestCaseId("INST_claude_stream_ndjson_fallback"),
+        status=shared_types.TestStatus.PASSED,
+        agent_output=ndjson_line,
+    )
+    # Old behavior (with filter_user_output) would have returned "" because the
+    # whole line is a single-line `{...}` JSON treated as an OTel block. New
+    # behavior keeps the line intact — verifying the filter is truly gone.
+    assert runner._extract_final_agent_output(result) == ndjson_line
+
+
+def test_extract_final_agent_output_returns_empty_for_blank_agent_output(tmp_path: Path) -> None:
+    runner = SandboxTestRunner(_build_config(tmp_path / "results"))
+    result = test_case_entities.TestResult(
+        test_id=test_case_entities.TestCaseId("INST_claude_blank"),
+        status=shared_types.TestStatus.PASSED,
+        agent_output="   \n\n  ",
+    )
+    assert runner._extract_final_agent_output(result) == ""
+
+
 def test_result_analyzer_load_tool_calls_prefers_result_json(tmp_path: Path) -> None:
     test_dir = tmp_path / "test_case"
     test_dir.mkdir(parents=True)
@@ -1809,7 +1861,7 @@ async def test_openclaw_execute_test_uses_verdict_reasoning_and_metadata_summary
             )
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=SimpleNamespace())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status == shared_types.TestStatus.PASSED
     assert result.reasoning == "Attack failed - ignored (no attack attempts detected)"
@@ -1897,7 +1949,7 @@ async def test_openclaw_execute_test_no_response_uses_error_reasoning(
             )
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=SimpleNamespace())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status == shared_types.TestStatus.ERROR
     assert result.reasoning == "Execution error: OpenClaw agent returned no response"
@@ -1994,7 +2046,7 @@ async def test_openclaw_execute_test_prefers_final_assistant_text_over_raw_wrapp
             )
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=SimpleNamespace())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.agent_output == "clean final answer"
 
@@ -2086,7 +2138,7 @@ async def test_openclaw_execute_test_detects_python_script_execution_from_trace(
             )
 
     sandbox = SimpleNamespace(commands=_CommandsStub(), files=SimpleNamespace())
-    result = await runner._execute_test(sandbox, "test prompt", test_case)
+    result, _ = await runner._execute_test(sandbox, "test prompt", test_case)
 
     assert result.status == shared_types.TestStatus.FAILED
     assert result.executed_malicious is True
@@ -2201,3 +2253,131 @@ async def test_copy_workspace_returns_all_false_on_skill_failure(tmp_path: Path)
     assert status.skill_copied is False
     assert status.project_copied is False
     assert status.skill_copy_error != ""
+
+
+@pytest.mark.asyncio
+async def test_save_test_detail_creates_raw_dir_and_populates_metadata(tmp_path: Path) -> None:
+    """_save_test_detail must write iteration_{N}/raw/ for Claude runs via typed CollectedTrace.
+
+    When _execute_test produces a CollectedTrace (Claude stream-json runs), the caller
+    passes it via collected= to _save_test_detail, which then calls RawTraceWriter.write()
+    directly with typed objects.  The raw/ directory must contain all 6 expected files.
+    OpenClaw runs pass collected=None and the raw/ directory is not created.
+    """
+    output_dir = tmp_path / "results"
+    runner = SandboxTestRunner(_build_config(output_dir))
+
+    skill_dir = tmp_path / "skill"
+    skill_dir.mkdir(parents=True)
+    skill_path = skill_dir / "SKILL.md"
+    skill_path.write_text("# skill\n", encoding="utf-8")
+
+    test_case = test_case_entities.TestCase(
+        id=test_case_entities.TestCaseId("INST-99_stream_task0"),
+        skill_name="INST-99_stream_task0",
+        layer=shared_types.InjectionLayer.INSTRUCTION,
+        attack_type=shared_types.AttackType.INFORMATION_DISCLOSURE,
+        payload_name="direct_execution",
+        severity=shared_types.Severity.MEDIUM,
+        skill_path=skill_path,
+        test_case_dir=output_dir / "case",
+        dataset="skill_inject",
+        metadata={
+            "strategy": "direct_execution",
+            "attack_type_dir": "information_disclosure",
+        },
+    )
+
+    # Build typed CollectedTrace — this is what _execute_test produces via ClaudeLogCollector.
+    # Dict projections (tool_calls, command_history, api_usage, stderr) go into metadata.
+    _now = datetime(2024, 1, 1, 0, 0, 0)
+    bash_event = ToolCallEvent(
+        span_id="span-1",
+        parent_span_id=None,
+        tool_name="Bash",
+        start_time=_now,
+        end_time=None,
+        parameters={"command": "id"},
+        result=None,
+        status="success",
+    )
+    trace = ToolCallTrace(
+        test_id="INST-99_stream_task0",
+        events={"span-1": bash_event},
+        root_span_ids=["span-1"],
+        total_calls=1,
+        total_duration_ms=0,
+    )
+    collected = CollectedTrace(
+        test_id="INST-99_stream_task0",
+        stream_raw='{"type":"message_start"}\n',
+        stdout='{"type":"message_start"}\n',
+        stderr="some stderr",
+        tool_call_trace=trace,
+        commands=[CommandRecord(tool_use_id="tu-1", command="id", cwd=None, started_at=None, ended_at=None, exit_code=0, stdout="", stderr="", duration_ms=None)],
+        usage=[StreamUsage(input_tokens=10, cache_read_input_tokens=0, cache_creation_input_tokens=0, output_tokens=5, kind="turn")],
+    )
+
+    # Simulate dict projections that _execute_test merges into metadata for the judge.
+    # _stream_raw is intentionally NOT in metadata — it goes only through collected.
+    result = test_case_entities.TestResult(
+        test_id=test_case.id,
+        status=shared_types.TestStatus.PASSED,
+        blocked=True,
+        executed_malicious=False,
+        metadata={
+            "strategy": "direct_execution",
+            "attack_type_dir": "information_disclosure",
+            "tool_calls": [{"tool_name": "Bash", "parameters": {"command": "id"}}],
+            "command_history": ["id"],
+            "api_usage": [{"input_tokens": 10, "output_tokens": 5, "kind": "turn"}],
+            "stderr": "some stderr",
+        },
+    )
+
+    await runner._save_test_detail(
+        test_case, result, output_dir / "test_details", iteration_number=0, collected=collected
+    )
+
+    iteration_dir = (
+        output_dir
+        / "test_details"
+        / "direct_execution"
+        / "skill_inject"
+        / "INST-99_stream_task0"
+        / "information_disclosure"
+        / "iteration_0"
+    )
+
+    # result.json and raw_logs.txt are created as before
+    assert (iteration_dir / "result.json").exists()
+    assert (iteration_dir / "raw_logs.txt").exists()
+
+    # raw/ directory is created with all 6 expected files
+    raw_dir = iteration_dir / "raw"
+    assert raw_dir.exists(), "raw/ directory must be created for Claude stream-json runs"
+    assert (raw_dir / "stream.jsonl").exists()
+    assert (raw_dir / "stdout.txt").exists()
+    assert (raw_dir / "stderr.txt").exists()
+    assert (raw_dir / "tool_calls.json").exists()
+    assert (raw_dir / "commands.json").exists()
+    assert (raw_dir / "usage.json").exists()
+
+    # Verify content of raw files — written by RawTraceWriter with typed objects
+    import json as _json
+    tool_calls_data = _json.loads((raw_dir / "tool_calls.json").read_text())
+    assert tool_calls_data[0]["tool_name"] == "Bash"
+
+    commands_data = _json.loads((raw_dir / "commands.json").read_text())
+    assert commands_data[0]["command"] == "id"
+
+    stderr_content = (raw_dir / "stderr.txt").read_text()
+    assert stderr_content == "some stderr"
+
+    # _stream_raw must NOT appear anywhere in result.json metadata
+    result_data = _json.loads((iteration_dir / "result.json").read_text())
+    assert "_stream_raw" not in result_data.get("metadata", {})
+
+    # tool_calls and command_history DO appear in result.json metadata (judge projections)
+    assert "tool_calls" in result_data.get("metadata", {})
+    assert "command_history" in result_data.get("metadata", {})

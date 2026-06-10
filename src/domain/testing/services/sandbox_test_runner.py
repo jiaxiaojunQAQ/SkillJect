@@ -10,7 +10,6 @@ import asyncio
 import hashlib
 import logging
 import os
-import shlex
 import stat
 import time
 from collections.abc import Callable
@@ -25,8 +24,12 @@ from opensandbox.config import ConnectionConfig
 from opensandbox.models.filesystem import SearchEntry, WriteEntry
 
 from src.domain.logging.entities.tool_call_event import ToolCallTrace
-from src.infrastructure.logging.collectors.claude_otel_log_collector import ClaudeOtelLogCollector
-from src.infrastructure.logging.parsers.log_parser import filter_user_output, parse_stdout_summary
+from src.infrastructure.logging.collectors.claude_log_collector import (
+    ClaudeLogCollector,
+    CollectedTrace,
+)
+from src.infrastructure.logging.parsers.log_parser import parse_stdout_summary
+from src.infrastructure.logging.persistence.raw_trace_writer import RawTraceWriter
 from src.shared.exceptions import ErrorCategory, RetryConfig, RetryTrace, retry_with_trace
 from src.shared.types import AttackType
 
@@ -116,6 +119,7 @@ class SandboxTestRunner(TestRunner):
         log_dir: Path,
         iteration_number: int = 0,
         skill_dir: Path | None = None,
+        collected: CollectedTrace | None = None,
     ) -> None:
         """Save detailed logs for a single test (folder structure)
 
@@ -198,6 +202,28 @@ class SandboxTestRunner(TestRunner):
                 parsed_commands=executed_commands,
             )
 
+            # Persist raw trace dir (iteration_{N}/raw/) from typed CollectedTrace.
+            # When collected is not None (Claude or OpenClaw happy path), persist the
+            # raw trace dir and feed structured fields to the judge. Error paths from
+            # either agent pass collected=None and skip raw persistence cleanly.
+            if collected is not None:
+                try:
+                    RawTraceWriter(iteration_dir).write(
+                        stream_raw=collected.stream_raw,
+                        stdout=collected.stdout,
+                        stderr=collected.stderr,
+                        tool_calls=collected.tool_call_events,
+                        commands=collected.commands,
+                        usage=collected.usage,
+                    )
+                    logger.info(
+                        f"[RawTraceWriter] Wrote raw/ dir: "
+                        f"tool_calls={len(collected.tool_call_events)}, "
+                        f"commands={len(collected.commands)}, usage={len(collected.usage)}"
+                    )
+                except Exception as e:
+                    logger.warning(f"[RawTraceWriter] Failed to write raw trace dir: {e}", exc_info=True)
+
             # Save output files to iteration_{N}/ directory
             await self._save_result_json(
                 iteration_dir, test_case, result, tool_call_trace, parse_metadata, executed_commands
@@ -232,14 +258,29 @@ class SandboxTestRunner(TestRunner):
         result: TestResult,
         iteration_number: int = 0,
         skill_dir: Path | None = None,
+        collected: CollectedTrace | None = None,
     ) -> None:
-        """Public wrapper for persisting one finalized iteration result."""
+        """Public wrapper for persisting one finalized iteration result.
+
+        Args:
+            test_case: Test case being persisted.
+            result: Finalized test result.
+            iteration_number: Iteration index (default 0).
+            skill_dir: Injected skill directory path (kept for compatibility).
+            collected: Live CollectedTrace from the agent run.  Pass this to
+                enable raw-trace persistence (stream_raw, stdout, stderr,
+                tool_calls, commands, usage written to iteration_{N}/raw/).
+                When omitted or None, the raw/ directory is silently skipped
+                (current behaviour for OpenClaw runs and external callers that
+                do not hold a CollectedTrace).
+        """
         await self._save_test_detail(
             test_case=test_case,
             result=result,
             log_dir=self._log_dir,
             iteration_number=iteration_number,
             skill_dir=skill_dir,
+            collected=collected,
         )
 
     async def _save_result_json(
@@ -576,7 +617,14 @@ class SandboxTestRunner(TestRunner):
         return last_text
 
     def _extract_final_agent_output(self, result: TestResult) -> str:
-        """Extract final user-facing agent output with unified contract."""
+        """Extract final user-facing agent output with unified contract.
+
+        - OpenClaw path: ``metadata["all_events"]`` carries normalized events;
+          pick the last assistant text message.
+        - Claude stream-json path: ``result.agent_output`` is already the
+          cleaned ``CollectedTrace.assistant_text`` (see ``_execute_test``),
+          so we just trim and return its last non-empty paragraph.
+        """
         metadata = result.metadata if isinstance(result.metadata, dict) else {}
         all_events = metadata.get("all_events")
         if isinstance(all_events, list):
@@ -584,15 +632,12 @@ class SandboxTestRunner(TestRunner):
             if final_from_events:
                 return final_from_events
 
-        raw_output = result.agent_output or ""
-        if not raw_output:
-            return ""
-        filtered = filter_user_output(raw_output).strip()
-        if not filtered:
+        text = (result.agent_output or "").strip()
+        if not text:
             return ""
 
         # Prefer the last non-empty paragraph as "final response".
-        lines = [line.rstrip() for line in filtered.splitlines()]
+        lines = [line.rstrip() for line in text.splitlines()]
         while lines and not lines[-1].strip():
             lines.pop()
         if not lines:
@@ -605,7 +650,7 @@ class SandboxTestRunner(TestRunner):
                 break
         if block:
             return "\n".join(reversed(block)).strip()
-        return filtered
+        return text
 
     async def _save_raw_logs_txt(
         self,
@@ -920,9 +965,13 @@ class SandboxTestRunner(TestRunner):
             f"[Sandbox create] Creating sandbox instance, image: {image}, domain: {domain}"
         )
 
+        use_server_proxy = os.getenv("SANDBOX_USE_SERVER_PROXY", "false").lower() in (
+            "1", "true", "yes", "on"
+        )
         config = ConnectionConfig(
             domain=domain,
             api_key=api_key,
+            use_server_proxy=use_server_proxy,
         )
 
         create_timeout = max(1, int(self._config.execution.test_timeout))
@@ -1035,10 +1084,11 @@ class SandboxTestRunner(TestRunner):
         retry_enabled = exec_config.retry_failed
 
         if not retry_enabled:
-            result = await self._execute_single_test(test_case, iteration_number, skill_dir)
+            result, collected = await self._execute_single_test(test_case, iteration_number, skill_dir)
             if save_logs:
                 await self._save_test_detail(
-                    test_case, result, self._log_dir, iteration_number, skill_dir
+                    test_case, result, self._log_dir, iteration_number, skill_dir,
+                    collected=collected,
                 )
             return result
 
@@ -1049,11 +1099,13 @@ class SandboxTestRunner(TestRunner):
         )
 
         last_result: TestResult | None = None
+        last_collected: CollectedTrace | None = None
 
         async def _attempt() -> TestResult:
-            nonlocal last_result
-            result = await self._execute_single_test(test_case, iteration_number, skill_dir)
+            nonlocal last_result, last_collected
+            result, collected = await self._execute_single_test(test_case, iteration_number, skill_dir)
             last_result = result
+            last_collected = collected
 
             # If skill workspace was copied successfully, the iteration has
             # sufficient data for judge evaluation and result.json — no retry.
@@ -1089,7 +1141,8 @@ class SandboxTestRunner(TestRunner):
                 # Only save logs if save_logs=True
                 if save_logs:
                     await self._save_test_detail(
-                        test_case, result, self._log_dir, iteration_number, skill_dir
+                        test_case, result, self._log_dir, iteration_number, skill_dir,
+                        collected=last_collected,
                     )
                 return result
             elif trace.total_attempts > 1:
@@ -1097,7 +1150,8 @@ class SandboxTestRunner(TestRunner):
 
             # Always save logs on success or retried_success
             await self._save_test_detail(
-                test_case, result, self._log_dir, iteration_number, skill_dir
+                test_case, result, self._log_dir, iteration_number, skill_dir,
+                collected=last_collected,
             )
             return result
         except Exception:
@@ -1114,7 +1168,8 @@ class SandboxTestRunner(TestRunner):
                 # Only save logs if save_logs=True
                 if save_logs:
                     await self._save_test_detail(
-                        test_case, last_result, self._log_dir, iteration_number, skill_dir
+                        test_case, last_result, self._log_dir, iteration_number, skill_dir,
+                        collected=last_collected,
                     )
                 return last_result
             raise
@@ -1124,7 +1179,7 @@ class SandboxTestRunner(TestRunner):
         test_case: TestCase,
         iteration_number: int,
         skill_dir: Path | None,
-    ) -> TestResult:
+    ) -> tuple[TestResult, CollectedTrace | None]:
         """Execute single test (without retry logic)
 
         Note: Log saving is NOT done here - it's handled by _run_test_async
@@ -1136,7 +1191,8 @@ class SandboxTestRunner(TestRunner):
             skill_dir: Skill directory
 
         Returns:
-            Test result
+            Tuple of (TestResult, CollectedTrace | None).  CollectedTrace is
+            present only for Claude stream-json runs; None for OpenClaw runs.
         """
         start_time = time.time()
         sandbox = None
@@ -1157,7 +1213,7 @@ class SandboxTestRunner(TestRunner):
                     status=TestStatus.ERROR,
                     error_message=f"Test case validation failed: {validation_errors}",
                     is_infrastructure_error=False,
-                )
+                ), None
 
             logger.info("[Validation] Test case validation passed")
 
@@ -1173,14 +1229,14 @@ class SandboxTestRunner(TestRunner):
                     status=TestStatus.ERROR,
                     error_message="Cannot read test prompt (instruction.md)",
                     is_infrastructure_error=False,
-                )
+                ), None
 
             # Execute test command (simulate agent execution)
-            result = await self._execute_test(sandbox, test_prompt, test_case)
+            result, collected = await self._execute_test(sandbox, test_prompt, test_case)
 
             # Note: Log saving is handled by _run_test_async after all retries complete
             # to avoid saving failed attempt logs when retry succeeds
-            return result
+            return result, collected
 
         except Exception as e:
             # Determine error type
@@ -1209,7 +1265,7 @@ class SandboxTestRunner(TestRunner):
             )
 
             # Note: Log saving is handled by _run_test_async after all retries complete
-            return error_result
+            return error_result, None
 
         finally:
             # Copy workspace files from container before destroying
@@ -1848,24 +1904,25 @@ class SandboxTestRunner(TestRunner):
     def _build_agent_command(self, test_prompt: str) -> str:
         """Build the agent execution command.
 
-        Override in subclass for agent-specific commands.
+        Subclasses must override this method to provide agent-specific commands.
 
         Args:
             test_prompt: Test prompt/instruction
 
         Returns:
             Complete agent execution command
+
+        Raises:
+            NotImplementedError: Must be implemented by subclass
         """
-        escaped_prompt = shlex.quote(test_prompt)
-        # Claude Code with OTel telemetry
-        return f"cd /home/claude_code/project && CLAUDE_CODE_ENABLE_TELEMETRY=1 OTEL_LOGS_EXPORTER=console OTEL_LOG_USER_PROMPTS=1 claude {escaped_prompt}"
+        raise NotImplementedError("Subclasses must implement _build_agent_command")
 
     async def _execute_test(
         self,
         sandbox: Any,
         test_prompt: str,
         test_case: TestCase,
-    ) -> TestResult:
+    ) -> tuple[TestResult, CollectedTrace | None]:
         """Execute test and analyze results
 
         Container initialization process:
@@ -1926,7 +1983,7 @@ class SandboxTestRunner(TestRunner):
                 status=TestStatus.ERROR,
                 error_message=error_message,
                 is_infrastructure_error=True,
-            )
+            ), None
 
         try:
             await self._copy_directory_to_skill_path(
@@ -1954,7 +2011,7 @@ class SandboxTestRunner(TestRunner):
                 status=TestStatus.ERROR,
                 error_message=error_message,
                 is_infrastructure_error=True,
-            )
+            ), None
 
         # 2.5. Dynamically inject settings.json [NEW]
         await self._inject_claude_settings(sandbox)
@@ -2005,6 +2062,14 @@ class SandboxTestRunner(TestRunner):
 
         # Initialize tool call trace variable
         tool_call_trace = None
+        # Typed CollectedTrace produced by ClaudeLogCollector; threaded to _save_test_detail
+        # for RawTraceWriter without going through metadata (avoids datetime serialization).
+        _collected: CollectedTrace | None = None
+        # Populated by ClaudeLogCollector block; merged into metadata before return.
+        _claude_stream_meta: dict[str, Any] = {}
+        # Cleaned assistant text projected from stream-json; preferred as agent_output
+        # over the raw NDJSON stdout once the collector has run successfully.
+        _claude_assistant_text: str = ""
 
         try:
             result = await self._run_command_with_timeout(
@@ -2015,7 +2080,7 @@ class SandboxTestRunner(TestRunner):
             error_status = "Has error" if (hasattr(result, "error") and result.error) else "No error"
             logger.info(f"[Agent execution] Agent execution completed, status: {error_status}")
 
-            # Use ClaudeOtelLogCollector to collect tool call traces
+            # Use ClaudeLogCollector to collect tool call traces from stream-json output
             try:
                 logger.info(f"[Tool call trace] Starting collection, result type: {type(result).__name__}")
                 # Debug: print result attributes
@@ -2033,24 +2098,41 @@ class SandboxTestRunner(TestRunner):
                         )
                         logger.info(f"[Tool call trace] stdout first 200 chars: {first_200}")
 
-                # Import Claude-specific config to avoid circular dependency
-                from .claude_test_runner import _MinimalClaudeConfig
-
-                collector_config = _MinimalClaudeConfig()
-                collector = ClaudeOtelLogCollector(config=collector_config, strict_parsing=False)
-                # collector needs test_id, get from test_case
-                # Pass test_id to collector (by setting internal attribute)
-                collector._test_id = test_case.id.value
-                collected = await collector.collect(execution=result, agent=None)
+                collector = ClaudeLogCollector()
+                collected = collector.collect(result, test_id=test_case.id.value)
                 logger.info(
-                    f"[Tool call trace] collector.collect returned, keys: {list(collected.keys())}"
+                    f"[Tool call trace] collector.collect returned, tool_call_trace present: {collected.tool_call_trace is not None}"
                 )
-                tool_call_trace = collected.get("metadata", {}).get("tool_call_trace")
+                tool_call_trace = collected.tool_call_trace
                 if tool_call_trace:
-                    total_calls = _get_total_calls(tool_call_trace)
-                    logger.info(f"[Tool call trace] Successfully collected {total_calls} tool calls")
+                    logger.info(f"[Tool call trace] Successfully collected {tool_call_trace.total_calls} tool calls")
                 else:
                     logger.warning("[Tool call trace] Failed to parse tool call data")
+
+                # Stash the typed CollectedTrace for _save_test_detail → RawTraceWriter.
+                # Do NOT put CollectedTrace itself into metadata (datetime serialization issues).
+                _collected = collected
+
+                # Project structured fields from CollectedTrace into metadata
+                # so that the judge can read them as plain dicts.
+                _events_list = collected.tool_call_events
+                _tool_calls_dicts = [asdict(e) for e in _events_list]
+                _command_history = [c.command for c in (collected.commands or [])]
+                _api_usage_dicts = [u.to_dict() for u in (collected.usage or [])]
+                _stderr_str = collected.stderr or ""
+
+                # Store dict projections in side-channel dict; merged into metadata before return.
+                _claude_stream_meta = {
+                    "tool_calls": _tool_calls_dicts,
+                    "command_history": _command_history,
+                    "api_usage": _api_usage_dicts,
+                    "stderr": _stderr_str,
+                }
+                _claude_assistant_text = collected.assistant_text or ""
+                logger.info(
+                    f"[Stream-json trace] tool_calls={len(_tool_calls_dicts)}, "
+                    f"commands={len(_command_history)}, usage={len(_api_usage_dicts)}"
+                )
             except Exception as collector_error:
                 logger.warning(f"[Tool call trace collection failed] {collector_error}", exc_info=True)
         except Exception as e:
@@ -2081,7 +2163,7 @@ class SandboxTestRunner(TestRunner):
                 error_message=f"Agent execution failed: {e}",
                 is_infrastructure_error=is_infra,  # ✓ Dynamic judgment
                 execution_time_seconds=0,
-            )
+            ), None
 
 
 
@@ -2098,14 +2180,15 @@ class SandboxTestRunner(TestRunner):
                 stderr = "\n".join(msg.text for msg in result.logs.stderr)
         raw_log_lines = self._build_raw_log_lines_from_streams(stdout=stdout, stderr=stderr)
 
-        # Extract complete output (stdout + stderr) - must be done before parsing executed_commands
-        # This ensures result.agent_output is populated for subsequent parsing
-        agent_output = self._extract_stdout(result)
+        # Raw stdout/stderr from the Execution object — used for API-error scanning
+        # (429 rate limits etc. surface in stream-json `result` events / stderr,
+        # not in the cleaned assistant_text).
+        raw_stdout = self._extract_stdout(result)
         stderr_output = self._extract_stderr(result)
 
         # Early detection of agent-level API errors (e.g. 429 rate limits).
         # These are transient infrastructure errors, not security test results.
-        api_error_msg = self._check_agent_api_error(agent_output)
+        api_error_msg = self._check_agent_api_error(raw_stdout)
         if api_error_msg is None and stderr_output:
             api_error_msg = self._check_agent_api_error(stderr_output)
         if api_error_msg:
@@ -2113,15 +2196,20 @@ class SandboxTestRunner(TestRunner):
             return TestResult(
                 test_id=test_case.id,
                 status=TestStatus.ERROR,
-                agent_output=agent_output,
+                agent_output=_claude_assistant_text or raw_stdout,
                 error_type=ErrorType.AGENT_API_ERROR,
                 is_infrastructure_error=True,
                 error_message=api_error_msg,
                 execution_time_seconds=getattr(result, "duration", 0),
-                metadata={"agent_api_error": True, "raw_agent_output": agent_output[:500]},
+                metadata={"agent_api_error": True, "raw_agent_output": raw_stdout[:500]},
                 raw_log_source="execution_stdout_stderr",
                 raw_log_lines=raw_log_lines,
-            )
+            ), None
+
+        # Prefer the cleaned assistant_text from stream-json over raw NDJSON.
+        # When the collector failed or produced no text, fall back to raw stdout
+        # so we don't lose context entirely.
+        agent_output = _claude_assistant_text or raw_stdout
 
         if stderr_output:
             agent_output = (
@@ -2213,6 +2301,13 @@ class SandboxTestRunner(TestRunner):
             "executed_commands": executed_commands,  # Complete command list
         }
 
+        # Merge stream-json dict projections (tool_calls, command_history,
+        # api_usage, stderr) collected by ClaudeLogCollector into metadata
+        # so that the LLM judge can read them as plain dicts.
+        # RawTraceWriter receives the typed _collected object via _save_test_detail.
+        if _claude_stream_meta:
+            metadata.update(_claude_stream_meta)
+
         return TestResult(
             test_id=test_case.id,
             status=status,
@@ -2227,7 +2322,7 @@ class SandboxTestRunner(TestRunner):
             metadata=metadata,
             raw_log_source="execution_stdout_stderr",
             raw_log_lines=raw_log_lines,
-        )
+        ), _collected
 
     # Patterns indicating transient agent-side API errors (429 rate limits, etc.)
     _AGENT_API_ERROR_PATTERNS: ClassVar[tuple[str, ...]] = (

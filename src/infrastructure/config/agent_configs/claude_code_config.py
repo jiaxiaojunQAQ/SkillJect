@@ -6,13 +6,12 @@ Migrates the existing ClaudeCodeSecurityTester configuration to a unified config
 Configuration Details:
 - name: "claude-code" - Unique agent identifier
 - display_name: "Claude Code" - Human-readable name
-- npm_package: "@anthropic-ai/claude-code@latest" - NPM package name and version
+- npm_package: "@anthropic-ai/claude-code@<pinned>" - NPM package name and version
+  (pinned via CLAUDE_CODE_CLI_VERSION for reproducibility)
 - command: "claude" - Base command (without subcommand)
 - env_prefix: "ANTHROPIC" - Environment variable prefix
 - env_vars: Environment variable name mapping
-- install_command: "npm i -g @anthropic-ai/claude-code@latest" - Installation command
-- use_otel_logging: True - Use OpenTelemetry logging (Claude Code feature)
-
+- install_command: "npm i -g @anthropic-ai/claude-code@<pinned>" - Installation command
 Backward Compatibility:
 - Environment variables: ANTHROPIC_AUTH_TOKEN, ANTHROPIC_BASE_URL, ANTHROPIC_MODEL
 - Default agent name: If user doesn't specify --agent, claude-code is used by default
@@ -22,14 +21,14 @@ Mapping to existing code:
 - Environment variable reading: From `ClaudeCodeSecurityTester.__init__()`
 - CLI installation: From `ClaudeCodeSecurityTester.setup()` using `await sandbox.commands.run()`
 - Command execution: From `ClaudeCodeSecurityTester.test_injection()` using `claude_command`
-- Log collection: From `ClaudeLogCollector` (now via `ClaudeOtelLogCollector`)
+- Log collection: From `ClaudeLogCollector` (stream-json based)
 """
 
 import os
 
 from src.domain.agent.interfaces.agent_interface import BaseAgentConfig
-from src.infrastructure.logging.collectors.claude_otel_log_collector import ClaudeOtelLogCollector
-from src.shared.constants import INSTALL_TIMEOUT
+from src.infrastructure.logging.collectors.claude_log_collector import ClaudeLogCollector
+from src.shared.constants import CLAUDE_CODE_CLI_VERSION, INSTALL_TIMEOUT
 
 
 class ClaudeCodeAgentConfig(BaseAgentConfig):
@@ -37,7 +36,7 @@ class ClaudeCodeAgentConfig(BaseAgentConfig):
     Claude Code Agent Configuration
 
     Extends BaseAgentConfig and defines Claude Code specific configuration.
-    Claude Code uses OpenTelemetry for log collection, which is the main difference from other CLI agents.
+    Claude Code uses stream-json output captured via ClaudeLogCollector.
     """
 
     def __init__(self) -> None:
@@ -49,7 +48,9 @@ class ClaudeCodeAgentConfig(BaseAgentConfig):
         # Common configuration (from BaseAgentConfig)
         self.name = "claude-code"
         self.display_name = "Claude Code"
-        self.npm_package = "@anthropic-ai/claude-code@latest"
+        # Pinned for reproducibility — see CLAUDE_CODE_CLI_VERSION. Newer CLI
+        # releases resist injection differently and change the trace shape.
+        self.npm_package = f"@anthropic-ai/claude-code@{CLAUDE_CODE_CLI_VERSION}"
         self.command = "claude"
         self.env_prefix = "ANTHROPIC"
 
@@ -60,12 +61,11 @@ class ClaudeCodeAgentConfig(BaseAgentConfig):
             "MODEL": "ANTHROPIC_MODEL",
         }
 
-        # Installation command
-        self.install_command = "npm i -g @anthropic-ai/claude-code@latest"
+        # Installation command (pinned, see npm_package)
+        self.install_command = f"npm i -g @anthropic-ai/claude-code@{CLAUDE_CODE_CLI_VERSION}"
 
-        # Log collector: Claude Code specific
-        self.log_collector = ClaudeOtelLogCollector
-        self.use_otel_logging = True
+        # Log collector: Claude Code uses stream-json via ClaudeLogCollector
+        self.log_collector = ClaudeLogCollector
 
         # Installation timeout (default value, can be overridden)
         self.install_timeout = INSTALL_TIMEOUT
@@ -174,4 +174,4 @@ class ClaudeCodeAgentConfig(BaseAgentConfig):
 
         Used for debugging and logging.
         """
-        return f"ClaudeCodeAgentConfig(name='{self.name}', display_name='{self.display_name}', use_otel_logging={self.use_otel_logging})"
+        return f"ClaudeCodeAgentConfig(name='{self.name}', display_name='{self.display_name}')"

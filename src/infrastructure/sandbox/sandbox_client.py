@@ -7,6 +7,7 @@ separating infrastructure code from domain logic.
 
 import asyncio
 import logging
+import os
 from dataclasses import dataclass
 from typing import Any
 
@@ -58,9 +59,13 @@ class SandboxClient:
         Returns:
             Sandbox instance
         """
+        use_server_proxy = os.getenv("SANDBOX_USE_SERVER_PROXY", "false").lower() in (
+            "1", "true", "yes", "on"
+        )
         config = ConnectionConfig(
             domain=self._config.domain,
             api_key=self._config.api_key,
+            use_server_proxy=use_server_proxy,
         )
 
         create_timeout = max(1, int(self._config.test_timeout))

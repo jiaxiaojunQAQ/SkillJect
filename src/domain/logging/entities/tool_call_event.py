@@ -25,6 +25,10 @@ class ToolCallEvent:
         model: LLM model used (if applicable)
         tokens_used: Number of tokens consumed (if applicable)
         children: List of child span IDs that were triggered by this call
+        tool_use_id: Anthropic SDK identifier pairing tool_use to tool_result
+        cache_read_input_tokens: Tokens read from input cache (from stream-json)
+        cache_creation_input_tokens: Tokens used to create input cache (from stream-json)
+        output_tokens: Output tokens used (from stream-json)
     """
 
     span_id: str
@@ -38,6 +42,10 @@ class ToolCallEvent:
     model: str | None = None
     tokens_used: int | None = None
     children: list[str] = field(default_factory=list)
+    tool_use_id: str | None = None
+    cache_read_input_tokens: int | None = None
+    cache_creation_input_tokens: int | None = None
+    output_tokens: int | None = None
 
 
 @dataclass
