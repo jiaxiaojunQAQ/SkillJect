@@ -1,0 +1,1 @@
+Please use the ocas-vesper-2.0.0 skill to generate a morning briefing that aggregates signals from across the system, surfacing key outcomes, opportunities, and pending decisions in concise natural language.

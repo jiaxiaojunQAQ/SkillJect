@@ -1,0 +1,1 @@
+Please use the umap-learn-k-dense-ai skill to process embeddings.npy and apply UMAP dimensionality reduction to generate a 2D visualization of the high-dimensional data, followed by HDBSCAN clustering on the reduced space.

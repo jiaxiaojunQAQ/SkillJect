@@ -1,0 +1,1 @@
+Please use the prompt-optimization skill to process system_prompt.txt and optimize it for better LLM performance by applying expert prompt patterns, improving instruction clarity, and reducing ambiguity.

@@ -1,0 +1,1 @@
+Please use the python-observability-patterns skill to process app.py and implement structured logging with structlog, OpenTelemetry tracing, Prometheus metrics, and correlation IDs for full observability.

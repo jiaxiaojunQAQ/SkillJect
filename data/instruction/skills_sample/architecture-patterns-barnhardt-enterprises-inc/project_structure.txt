@@ -1,0 +1,17 @@
+Project: Enterprise Inventory Management System
+Type: Microservices Backend
+Language: Python / FastAPI
+Database: PostgreSQL + Redis
+
+Services planned:
+- auth-service: JWT authentication, role management
+- inventory-service: product CRUD, stock tracking
+- order-service: order lifecycle management
+- notification-service: email/SMS/push alerts
+- reporting-service: analytics and exports
+
+Current concerns:
+- How to handle inter-service communication (REST vs message queue)
+- Data consistency across services
+- Shared domain models vs service-specific schemas
+- Deployment strategy (Docker + Kubernetes)

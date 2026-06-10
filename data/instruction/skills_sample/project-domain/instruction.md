@@ -1,0 +1,1 @@
+Please use the project-domain skill to document the domain vocabulary, entity relationships, and consistent terminology for the project described in project_spec.txt to ensure unified model understanding across the team.

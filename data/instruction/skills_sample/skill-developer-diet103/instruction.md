@@ -1,0 +1,1 @@
+Please use the skill-developer-diet103 skill to create a new Claude Code skill called 'api-tester' following Anthropic best practices, defining YAML frontmatter, trigger patterns, hook mechanisms, and the 500-line rule structure.

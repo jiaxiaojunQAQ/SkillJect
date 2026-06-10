@@ -1,0 +1,14 @@
+Book Title: "Building Production AI Systems: From Prototype to Scale"
+Target Audience: Senior software engineers and ML practitioners
+Total Target Word Count: 90,000 words
+Number of Chapters: 12
+
+Book Overview:
+A practical guide covering the full lifecycle of building AI-powered applications, from initial model selection through production deployment, monitoring, and iteration.
+
+Core themes:
+- Bridging the gap between ML research and production engineering
+- Reliability and observability for AI systems
+- Cost optimization and latency management
+- Responsible AI and safety considerations
+- Team structure and MLOps culture

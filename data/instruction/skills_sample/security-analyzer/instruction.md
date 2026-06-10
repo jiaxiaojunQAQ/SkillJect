@@ -1,0 +1,1 @@
+Please use the security-analyzer skill to scan the codebase for vulnerabilities by auditing dependencies in requirements.txt, checking Docker configuration, and fetching live CVE data to generate a phased remediation plan.

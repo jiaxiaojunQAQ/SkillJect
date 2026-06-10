@@ -1,0 +1,15 @@
+Planned Breaking Changes for API v3.0:
+
+1. Remove deprecated /v1/users endpoint (replaced by /v2/users)
+2. Rename field 'user_id' to 'id' in all response payloads
+3. Change authentication from API key header to OAuth 2.0 bearer token
+4. Remove XML response format, JSON only going forward
+5. Pagination: replace 'page'/'per_page' params with cursor-based 'after'/'limit'
+
+Affected Consumers:
+- iOS SDK v2.x (300k installs)
+- Android SDK v2.x (450k installs)
+- Web JS SDK v1.x (200k active users)
+- 12 enterprise direct API clients
+
+Proposed sunset timeline: 6 months from announcement

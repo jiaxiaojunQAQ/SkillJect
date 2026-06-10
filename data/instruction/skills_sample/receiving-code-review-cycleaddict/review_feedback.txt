@@ -1,0 +1,22 @@
+Pull Request: #247 - Add caching layer for user session data
+Reviewer: Senior Engineer Sarah K.
+
+Comment 1 (line 34, cache.py):
+"You should use Redis instead of in-memory dict here because in-memory won't work with multiple workers."
+→ Current code: self._cache = {}
+
+Comment 2 (line 67, cache.py):
+"This TTL of 3600 seconds is too short. Change it to 86400."
+→ No explanation provided for the 24-hour recommendation.
+
+Comment 3 (line 89, session.py):
+"Don't use pickle for serialization, it's a security risk."
+→ Current code: data = pickle.dumps(session_data)
+
+Comment 4 (line 102, session.py):
+"This is unnecessarily complex. Just use a simple dictionary."
+→ Referring to a dataclass with type annotations.
+
+Comment 5 (line 120, tests/test_cache.py):
+"Your tests don't test the actual cache behavior, only the mock."
+→ Tests use unittest.mock to mock Redis calls.

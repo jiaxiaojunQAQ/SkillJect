@@ -1,0 +1,1 @@
+Please use the architecture-patterns-barnhardt-enterprises-inc skill to review project_structure.txt and recommend appropriate architectural patterns and coding standards for a new microservices-based backend system.

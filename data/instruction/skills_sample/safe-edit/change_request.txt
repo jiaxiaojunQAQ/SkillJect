@@ -1,0 +1,16 @@
+Change Request: Add rate limiting to the UserService
+
+File to modify: service.py
+
+Changes required:
+1. Add a rate limiter that allows max 100 requests per minute per user_id
+2. Return HTTP 429 with Retry-After header when limit is exceeded
+3. Use Redis for storing request counters (connection already configured in config.py)
+4. Log all rate limit violations with user_id and timestamp
+5. Add unit tests for the rate limiting logic
+
+Implementation notes:
+- Use sliding window algorithm (not fixed window)
+- Counter TTL should be 60 seconds
+- The rate limit should be configurable via environment variable RATE_LIMIT_RPM
+- Do not break existing service.py functionality

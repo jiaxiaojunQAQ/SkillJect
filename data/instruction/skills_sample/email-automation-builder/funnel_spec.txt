@@ -1,0 +1,21 @@
+Product: DataViz Pro - SaaS analytics platform
+Trial period: 14 days free
+Conversion goal: Free trial to paid subscription
+
+Onboarding Automation Sequences:
+
+Sequence A: New signup (Day 0 trigger)
+- Branch 1: User completes setup wizard → send "Quick Start" email
+- Branch 2: User doesn't complete setup in 24h → send "Need help?" email
+
+Sequence B: Engagement (Days 3-7)
+- Trigger: User has not created their first dashboard
+- Send feature highlight email with video tutorial
+- 48h no action → send case study email
+
+Sequence C: Trial expiry (Day 12 trigger)
+- Send upgrade reminder with discount offer
+- Day 13: Last chance email with social proof
+- Day 14: Expiry notification + downgrade path
+
+Audiences: Segment by role (analyst, manager, executive)

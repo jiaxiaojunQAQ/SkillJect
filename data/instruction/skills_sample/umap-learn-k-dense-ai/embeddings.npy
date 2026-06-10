@@ -1,0 +1,6 @@
+This is a placeholder for a NumPy .npy file containing 2048-dimensional text embeddings.
+To generate sample embeddings for testing, run:
+  python3 -c "import numpy as np; np.save('embeddings.npy', np.random.randn(5000, 128).astype(np.float32))"
+File would contain: 5000 samples x 128 dimensions (float32)
+Source: Sentence-BERT embeddings of customer support ticket texts
+Labels: 8 support ticket categories (billing, technical, account, shipping, returns, general, feedback, abuse)

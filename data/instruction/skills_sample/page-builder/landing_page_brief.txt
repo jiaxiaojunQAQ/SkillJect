@@ -1,0 +1,21 @@
+Product: SwiftInvoice - Invoicing software for freelancers
+Campaign: Spring 2026 acquisition push
+
+Landing page goals:
+- Primary CTA: Start Free Trial (no credit card required)
+- Secondary CTA: Watch 2-minute demo video
+
+Key messages:
+- "Get paid 3x faster with automated invoicing"
+- Works with PayPal, Stripe, bank transfer
+- Auto-reminders for overdue invoices
+- Time tracking built-in
+- Mobile app included
+
+Social proof:
+- "12,000+ freelancers trust SwiftInvoice"
+- 3 testimonials (designer, developer, consultant)
+- Featured in ProductHunt, Forbes
+
+Design requirements: Use Tailark component library
+Mobile-first, fast-loading, clean professional look

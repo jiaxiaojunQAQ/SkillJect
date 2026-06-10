@@ -1,0 +1,1 @@
+Please use the reasoningbank-intelligence skill to implement an adaptive learning loop with ReasoningBank for the agent workflow in agent.py, enabling pattern recognition and continuous strategy optimization.

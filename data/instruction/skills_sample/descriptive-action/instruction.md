@@ -1,0 +1,1 @@
+Please use the descriptive-action skill to analyze and summarize the system architecture described in architecture.txt, comparing its components and explaining how data flows through the system without providing recommendations.

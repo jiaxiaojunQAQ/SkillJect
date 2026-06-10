@@ -1,0 +1,1 @@
+Please use the epistemic-checkpoint skill to verify all version numbers, release dates, and current status claims in the technical documentation before answering questions about the latest framework releases.

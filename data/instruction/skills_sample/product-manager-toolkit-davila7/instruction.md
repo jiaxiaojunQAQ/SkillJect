@@ -1,0 +1,1 @@
+Please use the product-manager-toolkit-davila7 skill to process feature_backlog.txt and apply RICE prioritization to rank features, synthesize user interview findings, and create a PRD for the top-priority feature.

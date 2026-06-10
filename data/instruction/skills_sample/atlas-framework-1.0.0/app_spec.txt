@@ -1,0 +1,15 @@
+Application: AI-Powered Research Assistant
+Goal: Help researchers gather, synthesize, and organize academic literature
+
+Core Capabilities:
+- Search academic databases (arXiv, PubMed, Semantic Scholar)
+- Summarize papers and extract key findings
+- Build citation graphs and identify research gaps
+- Generate literature review drafts
+- Maintain a personal knowledge base
+
+Agentic Requirements:
+- Multi-step research workflows
+- Parallel paper processing
+- Memory persistence across sessions
+- Tool integrations: web search, PDF parsing, note-taking

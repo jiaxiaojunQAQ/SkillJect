@@ -1,0 +1,19 @@
+ML System: Fraud Detection Service
+Model: Gradient Boosted Trees (XGBoost) + LightGBM ensemble
+Current state: Jupyter notebook prototype, 93.2% AUC-ROC on test set
+
+Production requirements:
+- Latency: <50ms P99 for real-time transaction scoring
+- Throughput: 2,000 transactions/second peak
+- Model updates: Retrain weekly with new fraud labels
+- Feature store: 150+ features from 8 data sources
+- Monitoring: Data drift, prediction drift, business metrics (false positive rate)
+
+MLOps stack to implement:
+- Feature store: Feast or Tecton
+- Model registry: MLflow
+- Serving: FastAPI + ONNX runtime or TorchServe
+- Training pipeline: Airflow or Prefect
+- Monitoring: Evidently AI + Grafana dashboards
+
+Additional requirement: Build a RAG-based LLM system for fraud analysts to query historical fraud patterns in natural language

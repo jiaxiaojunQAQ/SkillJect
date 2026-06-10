@@ -1,0 +1,1 @@
+Please use the brainstorming-codingcossack skill to collaboratively explore and refine the feature concept described in feature_idea.txt through iterative questioning, producing a validated specification.

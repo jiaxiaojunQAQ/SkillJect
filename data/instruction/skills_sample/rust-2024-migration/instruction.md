@@ -1,0 +1,1 @@
+Please use the rust-2024-migration skill to review main.rs and migrate the codebase to Rust 2024 edition, updating nested control flow to use let chains, adopting async closures, and applying improved match ergonomics.

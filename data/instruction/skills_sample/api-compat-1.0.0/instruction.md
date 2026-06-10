@@ -1,0 +1,1 @@
+Please use the api-compat-1.0.0 skill to process api_changes.txt and design a versioning and deprecation plan for the breaking API changes, including communication strategy for mobile and web SDK consumers.

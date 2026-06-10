@@ -1,0 +1,19 @@
+Organization: Meridian Financial Services Ltd.
+Certification target: ISO 27001:2022
+Audit type: Internal audit (pre-certification)
+Scope: IT infrastructure, customer data processing, cloud services (AWS)
+
+Current security controls:
+1. Access Control: Active Directory, MFA on all admin accounts
+2. Encryption: Data at rest (AES-256), data in transit (TLS 1.2+)
+3. Vulnerability Management: Quarterly scans, no patch SLA defined
+4. Incident Response: Documented procedure, last tested 18 months ago
+5. Business Continuity: BCP exists, untested DR plan
+6. Supplier Management: No formal vendor risk assessment process
+7. Physical Security: Badge access, CCTV, clean desk policy
+8. Audit Logging: Application logs retained 90 days, no SIEM
+
+Known gaps:
+- No formal risk register
+- Asset inventory incomplete
+- Employee security training last conducted 14 months ago

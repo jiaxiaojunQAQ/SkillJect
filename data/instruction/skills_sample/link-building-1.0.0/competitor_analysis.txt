@@ -1,0 +1,21 @@
+Website: DevToolsHub.com - Developer productivity tools blog
+Current Domain Authority: 31
+Target DA in 12 months: 50
+
+Competitor backlink analysis:
+- Competitor A (DevFlow.io, DA 58): 2,340 referring domains
+  * 45% from tech blogs and tutorials
+  * 30% from forum mentions (Reddit, HackerNews, Dev.to)
+  * 25% from SaaS tool directories
+
+- Competitor B (CodeAssist.dev, DA 52): 1,890 referring domains
+  * Strong presence in GitHub README links
+  * Multiple .edu links from CS course pages
+  * Guest posts on major dev publications (CSS-Tricks, Smashing Magazine)
+
+Content gap opportunities:
+- "Developer tool comparison" roundup posts frequently cited
+- Tutorials on CI/CD integrations get many organic links
+- Several high-DA sites have broken links pointing to defunct competitor pages
+
+Target publications for outreach: CSS-Tricks, Dev.to, Hashnode, FreeCodeCamp

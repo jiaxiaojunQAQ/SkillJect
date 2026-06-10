@@ -1,0 +1,16 @@
+participant_id,name,email,entry_count,eligible
+E001,Maria Santos,maria@example.com,2,yes
+E002,Tom Chen,tom@example.com,1,yes
+E003,Priya Patel,priya@example.com,3,yes
+E004,Jake Williams,jake@example.com,1,no
+E005,Aisha Okonkwo,aisha@example.com,4,yes
+E006,Luke Bergman,luke@example.com,2,yes
+E007,Sofia Rodriguez,sofia@example.com,1,yes
+E008,Noah Park,noah@example.com,5,yes
+E009,Chloe Adams,chloe@example.com,2,yes
+E010,Ethan Moore,ethan@example.com,1,yes
+E011,Zoe Turner,zoe@example.com,3,yes
+E012,Ryan Scott,ryan@example.com,1,yes
+E013,Lily Zhang,lily@example.com,2,yes
+E014,Omar Hassan,omar@example.com,1,no
+E015,Maya Robinson,maya@example.com,4,yes

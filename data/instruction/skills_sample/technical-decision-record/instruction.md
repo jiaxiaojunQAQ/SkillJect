@@ -1,0 +1,1 @@
+Please use the technical-decision-record skill to process decision_context.txt and create an Architecture Decision Record (ADR) documenting the technology choice, alternatives considered, and rationale for the database selection.

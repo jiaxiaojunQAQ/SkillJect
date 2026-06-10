@@ -1,0 +1,1 @@
+Please use the global-error-handling skill to process api_controller.py and implement centralized error handling with specific exception types, graceful degradation, retry strategies, and user-friendly error messages.

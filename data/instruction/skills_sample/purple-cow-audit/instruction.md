@@ -1,0 +1,1 @@
+Please use the purple-cow-audit skill to process product_description.txt and score the product's remarkability on a 1-10 scale using Seth Godin's Purple Cow test to determine if it is worth actively promoting.

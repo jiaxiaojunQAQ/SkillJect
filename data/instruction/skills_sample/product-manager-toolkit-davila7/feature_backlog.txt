@@ -1,0 +1,27 @@
+Product: ProjectFlow - Project management SaaS
+Quarter: Q2 2026
+
+Feature Backlog (unranked):
+
+1. AI Task Suggestions - Auto-suggest next tasks based on project progress
+   Reach: 8, Impact: 9, Confidence: 7, Effort: 8
+
+2. Gantt Chart View - Traditional timeline visualization
+   Reach: 9, Impact: 6, Confidence: 9, Effort: 5
+
+3. Time Tracking Integration - Native time logging on tasks
+   Reach: 7, Impact: 7, Confidence: 8, Effort: 4
+
+4. Advanced Permissions - Granular role-based access per project
+   Reach: 5, Impact: 8, Confidence: 9, Effort: 6
+
+5. Mobile App (iOS/Android) - Native mobile experience
+   Reach: 9, Impact: 9, Confidence: 6, Effort: 10
+
+6. API Webhooks - Outbound webhooks for integrations
+   Reach: 4, Impact: 8, Confidence: 9, Effort: 3
+
+User interview findings (12 interviews conducted last month):
+- 8/12 requested better reporting and dashboards
+- 6/12 mentioned difficulty onboarding new team members
+- 10/12 use ProjectFlow on mobile but find experience poor

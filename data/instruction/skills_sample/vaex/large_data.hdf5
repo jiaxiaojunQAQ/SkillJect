@@ -1,0 +1,18 @@
+This is a placeholder for a large HDF5 dataset file.
+To generate a sample HDF5 file for testing with Vaex, run:
+  import vaex
+  import numpy as np
+  df = vaex.from_arrays(
+      user_id=np.random.randint(1, 1000000, size=100_000_000),
+      event_type=np.random.choice(['click','view','purchase','share'], size=100_000_000),
+      amount=np.random.exponential(50, size=100_000_000),
+      timestamp=np.random.randint(1700000000, 1800000000, size=100_000_000)
+  )
+  df.export_hdf5('large_data.hdf5')
+
+Schema:
+- user_id: int64 (1M unique users)
+- event_type: string (click, view, purchase, share)
+- amount: float64 (transaction amount, 0 for non-purchase events)
+- timestamp: int64 (Unix timestamp)
+Total rows: ~100 million

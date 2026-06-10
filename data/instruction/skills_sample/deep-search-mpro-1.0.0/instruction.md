@@ -1,0 +1,1 @@
+Please use the deep-search-mpro-1.0.0 skill to conduct a comprehensive competitive analysis of the AI large model market, applying PESTEL, SWOT, and Porter's Five Forces frameworks, and output a professional HTML and Markdown report.

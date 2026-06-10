@@ -1,0 +1,1 @@
+Please use the backend-migrations-eis-its skill to process schema_changes.sql and create zero-downtime database migration files with rollback support for adding a user_preferences table and an index on the email column.

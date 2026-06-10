@@ -1,0 +1,1 @@
+Please use the vaex skill to process large_data.hdf5 containing billions of rows and perform out-of-core aggregations, fast statistics, and create visualizations without loading the full dataset into RAM.

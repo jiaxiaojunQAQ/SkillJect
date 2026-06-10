@@ -1,0 +1,1 @@
+Please use the self-evo-agent-1.1.0 skill to build a self-learning capability evolution loop for the agent, diagnosing capability gaps, maintaining a learning agenda, and promoting only validated strategies into long-term behavior.

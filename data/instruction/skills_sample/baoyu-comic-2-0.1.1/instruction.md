@@ -1,0 +1,1 @@
+Please use the baoyu-comic-2-0.1.1 skill to process topic.txt and create a Logicomix-style educational comic about the history of machine learning with detailed panel layouts and sequential illustrations.

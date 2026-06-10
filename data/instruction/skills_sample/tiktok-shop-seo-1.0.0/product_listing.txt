@@ -1,0 +1,22 @@
+Product: Wireless Noise-Canceling Earbuds
+Brand: SoundWave Pro
+Price: $39.99
+Category: Electronics > Audio > Earbuds
+
+Current listing (underperforming):
+Title: "Wireless Earbuds Bluetooth"
+Description: "Good quality earbuds. Wireless. Noise canceling feature. Long battery life. Works with all phones."
+Tags: earbuds, wireless, bluetooth
+
+Product specs:
+- Active noise cancellation (ANC) up to 35dB
+- 8-hour battery (earbuds) + 32-hour charging case
+- IPX5 water resistance
+- Bluetooth 5.3
+- Built-in transparency mode
+- USB-C charging
+- Compatible: iOS and Android
+- Colors available: Midnight Black, Pearl White, Sage Green
+
+Target audience: Students, commuters, gym-goers
+Price range competitors: Anker Soundcore, JLab, 1More

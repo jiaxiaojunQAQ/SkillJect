@@ -1,0 +1,1 @@
+Please use the senior-ml-engineer skill to process model_spec.txt and design a production MLOps pipeline including model deployment, feature store integration, model monitoring, and a RAG-based LLM inference service.

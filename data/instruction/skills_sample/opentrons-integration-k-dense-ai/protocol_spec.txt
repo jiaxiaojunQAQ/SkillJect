@@ -1,0 +1,20 @@
+Protocol: DNA Sample Normalization - 96-Well Plate
+Robot: OT-2
+API Version: 2
+
+Equipment:
+- Left pipette: P20 Single-Channel (GEN2)
+- Right pipette: P300 Multi-Channel (GEN2)
+- Labware slot 1: Source plate (Corning 96-well flat bottom)
+- Labware slot 2: Destination plate (Corning 96-well flat bottom)
+- Labware slot 3: Reservoir (NEST 12-well, 15mL)
+- Labware slot 11: Tip rack (Opentrons 20uL)
+
+Protocol steps:
+1. Add 80uL TE buffer from reservoir column 1 to all 96 destination wells
+2. Transfer variable volumes (5-20uL) of DNA from source to destination plate
+   (volumes specified in CSV: sample_volumes.csv)
+3. Mix 10x with 15uL after each transfer
+4. Return tips to trash after each transfer (no tip reuse)
+
+Target concentration: 10 ng/uL

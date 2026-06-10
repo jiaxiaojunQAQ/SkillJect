@@ -1,0 +1,1 @@
+Please use the tool-design-chakshugautam skill to process agent_requirements.txt and design a minimal, well-named set of MCP tools with clear interfaces that reduce complexity and consolidate overlapping functionality.

@@ -1,0 +1,14 @@
+Dashboard: ML Model Monitoring Dashboard
+
+Purpose: Real-time monitoring of deployed ML model performance
+
+Components required:
+1. Header with model name, version badge, and status indicator (healthy/degraded/down)
+2. Accuracy trend chart (last 30 days, line chart with anomaly markers)
+3. Prediction latency histogram (p50, p90, p99 percentiles)
+4. Data drift score gauge (0-100 scale with color zones)
+5. Recent prediction samples table (input, output, confidence, timestamp)
+6. Alert configuration panel (threshold sliders and notification settings)
+
+Style: Dark mode, data-dense, professional ML tooling aesthetic
+Tech: React + TypeScript + Recharts (no generic Bootstrap/Material-UI)

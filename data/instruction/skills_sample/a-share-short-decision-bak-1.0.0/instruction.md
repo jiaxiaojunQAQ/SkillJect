@@ -1,0 +1,1 @@
+Please use the a-share-short-decision-bak-1.0.0 skill to run a short-term trading signal analysis for A-share markets on 2026-04-04, generate a daily report, and log the prediction for next-day comparison.

@@ -1,0 +1,1 @@
+Please use the swift-concurrency-expert skill to review NetworkManager.swift and remediate all Swift Concurrency compliance issues for Swift 6.2+, fixing actor isolation errors and improving async/await patterns.

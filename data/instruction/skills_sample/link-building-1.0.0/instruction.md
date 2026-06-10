@@ -1,0 +1,1 @@
+Please use the link-building-1.0.0 skill to process competitor_analysis.txt and develop a link building strategy including outreach targets, guest posting opportunities, and broken link building prospects to improve off-page SEO.

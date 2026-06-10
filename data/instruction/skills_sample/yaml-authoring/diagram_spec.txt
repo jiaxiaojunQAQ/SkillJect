@@ -1,0 +1,21 @@
+Diagram: System Deployment Architecture
+Type: Infrastructure diagram
+Tool: Mermaid (flowchart syntax)
+
+Components to include:
+1. Client tier: Web browser, iOS app, Android app
+2. CDN: CloudFront for static assets
+3. Load balancer: AWS ALB
+4. Application tier: 3x EC2 instances running Node.js API
+5. Cache layer: ElastiCache (Redis)
+6. Database tier: RDS PostgreSQL (primary + read replica)
+7. Object storage: S3 bucket
+8. External services: Stripe (payments), SendGrid (email), Twilio (SMS)
+
+Connections:
+- Clients → CDN → ALB → EC2 instances
+- EC2 instances → ElastiCache (read)
+- EC2 instances → RDS Primary (write) and RDS Replica (read)
+- EC2 instances → S3, Stripe, SendGrid, Twilio
+
+Layout preference: Top-to-bottom (TB) flow

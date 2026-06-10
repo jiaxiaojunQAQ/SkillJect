@@ -1,0 +1,1 @@
+Please use the frontend-design-anthropics skill to process design_brief.txt and create a production-grade, visually polished frontend dashboard component with high design quality that avoids generic AI aesthetics.

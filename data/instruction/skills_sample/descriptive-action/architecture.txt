@@ -1,0 +1,31 @@
+System: E-Commerce Order Processing Platform
+
+Components:
+
+1. API Gateway (AWS API Gateway)
+   - Handles all incoming HTTP requests
+   - Routes to appropriate microservices
+   - Handles authentication via JWT validation
+
+2. Order Service (Node.js)
+   - Receives order creation requests
+   - Validates inventory via Inventory Service
+   - Publishes OrderCreated events to Kafka
+
+3. Inventory Service (Python/FastAPI)
+   - Manages stock levels in PostgreSQL
+   - Consumes OrderCreated events to decrement stock
+   - Exposes REST API for stock queries
+
+4. Payment Service (Java/Spring Boot)
+   - Processes payments via Stripe
+   - Publishes PaymentConfirmed/Failed events
+   - Maintains payment audit log
+
+5. Notification Service (Go)
+   - Consumes payment and order events
+   - Sends email (SendGrid), SMS (Twilio), push notifications
+
+6. Event Bus (Apache Kafka)
+   - Central message broker
+   - Topics: orders, payments, inventory, notifications

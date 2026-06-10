@@ -1,0 +1,1 @@
+Please use the lucid-dreamer-0.5.0 skill to run a nightly memory review on the daily notes in notes/ directory, detecting stale facts, unresolved todos, and recurring patterns across the past 14 days, then generate a review report.

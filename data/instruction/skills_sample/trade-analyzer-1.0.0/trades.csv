@@ -1,0 +1,11 @@
+trade_id,symbol,direction,entry_date,entry_price,exit_date,exit_price,quantity,strategy,notes
+T001,000001.SZ,LONG,2026-01-05,12.45,2026-01-08,13.20,1000,momentum_breakout,Volume spike entry
+T002,600036.SH,LONG,2026-01-06,38.60,2026-01-09,37.80,500,trend_follow,Stop loss hit
+T003,002230.SZ,LONG,2026-01-10,85.30,2026-01-15,92.10,200,momentum_breakout,Strong sector rotation
+T004,300750.SZ,SHORT,2026-01-12,285.00,2026-01-14,278.40,100,mean_reversion,Overbought signal
+T005,000858.SZ,LONG,2026-01-16,158.20,2026-01-19,155.60,300,trend_follow,Violated strategy rules - held too long
+T006,601318.SH,LONG,2026-01-20,92.40,2026-01-23,98.80,400,momentum_breakout,
+T007,600519.SH,LONG,2026-01-22,1850.00,2026-01-24,1820.00,10,trend_follow,News-driven reversal
+T008,002415.SZ,LONG,2026-01-26,28.70,2026-01-29,31.20,800,momentum_breakout,
+T009,000568.SZ,SHORT,2026-01-28,42.30,2026-01-30,44.10,600,mean_reversion,Loss - trend was stronger
+T010,300059.SZ,LONG,2026-02-03,155.40,2026-02-07,168.90,150,momentum_breakout,

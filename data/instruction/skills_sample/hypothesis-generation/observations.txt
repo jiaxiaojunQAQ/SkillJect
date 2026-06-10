@@ -1,0 +1,11 @@
+Research Context: User Retention in Mobile Gaming
+
+Observations from data analysis (last 6 months):
+1. Players who receive a push notification within 2 hours of first app launch have 34% higher Day-7 retention
+2. Players who complete the tutorial in one session retain at 2x the rate of those who complete it across multiple sessions
+3. Social features (friend lists, leaderboards) correlate with higher retention but only after Day-14
+4. Players who make an in-app purchase within the first 3 days almost never churn within 30 days
+5. Evening players (6pm-10pm local time) show 20% better retention than morning players
+6. Players on iOS outperform Android players by 15% retention across all cohorts
+7. The introduction of daily login rewards in March caused a 12% spike in Day-30 retention
+8. High-difficulty players (choose hard mode) have 40% better long-term retention but 30% worse Day-3 retention

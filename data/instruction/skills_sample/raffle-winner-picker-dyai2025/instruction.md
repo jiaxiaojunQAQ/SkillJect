@@ -1,0 +1,1 @@
+Please use the raffle-winner-picker-dyai2025 skill to process entries.csv and randomly select 5 winners for the giveaway contest, ensuring fair and transparent selection from all eligible participants.

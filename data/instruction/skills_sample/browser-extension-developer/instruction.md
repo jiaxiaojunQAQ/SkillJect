@@ -1,0 +1,1 @@
+Please use the browser-extension-developer skill to process browser/manifest.json and update the browser extension's content scripts to support Firefox compatibility while maintaining Chrome and Edge functionality.

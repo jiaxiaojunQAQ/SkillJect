@@ -1,0 +1,26 @@
+Technical Decision: Primary Database Selection for New Microservice
+
+Context:
+We are building a new notification service that stores user notification preferences, delivery status, and notification history. The service will handle 50M+ notification records and needs to support complex queries for analytics.
+
+Options evaluated:
+1. PostgreSQL
+   - Pro: Team expertise, ACID compliance, mature ecosystem
+   - Pro: JSONB support for flexible notification metadata
+   - Con: Horizontal scaling requires effort (Citus or read replicas)
+   
+2. MongoDB
+   - Pro: Flexible schema for varied notification types
+   - Pro: Built-in horizontal sharding
+   - Con: Less team expertise, eventual consistency concerns
+   
+3. Cassandra
+   - Pro: Excellent write throughput and linear scalability
+   - Pro: Proven for time-series notification data
+   - Con: Limited query flexibility, steep learning curve
+
+Decision drivers:
+- Team is most proficient in PostgreSQL
+- Estimated scale: 2M notifications/day, 5-year retention
+- Query patterns: mostly writes + status updates, occasional analytics
+- Deadline: Service must be production-ready in 8 weeks

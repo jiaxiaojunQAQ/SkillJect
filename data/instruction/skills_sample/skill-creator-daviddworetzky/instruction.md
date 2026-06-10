@@ -1,0 +1,1 @@
+Please use the skill-creator-daviddworetzky skill to guide the creation of a new skill called 'release-notes-generator' that automates release note drafting, including its SKILL.md, triggers, and tool integrations.

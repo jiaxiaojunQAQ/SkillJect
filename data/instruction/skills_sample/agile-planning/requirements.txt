@@ -1,0 +1,14 @@
+Project: MobileCart - E-Commerce Mobile Application
+Team Size: 6 developers
+Release Target: Q3 2026
+Sprint Duration: 2 weeks
+
+Features:
+- User authentication and profile management
+- Product catalog with search and filters
+- Shopping cart and wishlist
+- Checkout with payment integration (Stripe)
+- Order tracking and history
+- Push notifications
+- Admin dashboard for inventory management
+- Analytics and reporting module

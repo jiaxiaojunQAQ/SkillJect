@@ -1,0 +1,1 @@
+Please use the eeat-content-quality-audit-1.0.0 skill to audit article.txt using the 80 CORE-EEAT standards, scoring it across 8 dimensions for GEO and SEO potential, detecting veto items, and providing priority improvement recommendations.

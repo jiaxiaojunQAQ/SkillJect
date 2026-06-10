@@ -1,0 +1,1 @@
+Please use the twitter-thread-writer skill to process topic_brief.txt and write a compelling X/Twitter thread that drives affiliate clicks and bookmarks, with a strong hook, engaging body tweets, and a clear call to action.

@@ -1,0 +1,1 @@
+Please use the snowtower-maintainer skill to audit the .claude folder contents and synchronize the README with the current project state, updating all documentation to reflect the latest agent and pattern definitions.

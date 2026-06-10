@@ -1,0 +1,18 @@
+System: Global Real-Time Analytics Platform
+Scale: 500M events/day, 50ms P99 query latency target
+Users: 2,000 enterprise customers across 40 countries
+
+Requirements:
+1. Data ingestion: Handle 6,000 events/second peak throughput
+2. Storage: Hot tier (7 days), warm tier (90 days), cold tier (7 years)
+3. Query engine: Sub-second interactive queries on billions of rows
+4. ML/AI: Real-time anomaly detection and predictive analytics
+5. Global presence: Low-latency access from US, EU, APAC
+6. Compliance: GDPR (EU data residency), SOC2 Type II, HIPAA-ready
+7. Availability: 99.99% SLA
+8. Vendor strategy: Avoid lock-in, prefer portable data formats
+
+Preferences by cloud provider:
+- AWS: Primary region, S3 for data lake, existing enterprise agreement
+- Azure: EU data residency requirement for GDPR compliance
+- GCP: BigQuery for analytical workloads (team expertise)

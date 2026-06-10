@@ -1,0 +1,17 @@
+Landing Page: AI Writing Assistant - "Quill"
+
+Sections:
+1. Hero: Bold headline, subheadline, CTA button "Try Free for 14 Days", product screenshot mockup
+2. Social proof bar: Logos of notable customers (Stripe, Notion, Linear style)
+3. Feature highlights (3 columns): Speed, Quality, Integrations
+4. Demo GIF section: Animated walkthrough of key feature
+5. Pricing: 3 tiers (Starter $0, Pro $19/mo, Team $49/mo)
+6. FAQ accordion: 6 common questions
+7. Footer: Links, social, legal
+
+Design direction:
+- Premium SaaS feel, inspired by Linear/Vercel aesthetics
+- Dark background with subtle gradient, white text
+- Accent color: Electric purple (#8B5CF6)
+- Font: Modern sans-serif (Inter or equivalent)
+- Fully responsive (mobile-first)

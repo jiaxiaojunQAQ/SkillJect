@@ -1,0 +1,1 @@
+Please use the opentrons-integration-k-dense-ai skill to process protocol_spec.txt and write a production-ready Opentrons Protocol API v2 script for the OT-2 robot to perform a 96-well plate liquid handling workflow.

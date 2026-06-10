@@ -1,0 +1,1 @@
+Please use the senior-qa-davila7 skill to process app_features.txt and design a comprehensive QA strategy for a NextJS application, including test automation setup, E2E test cases, and coverage analysis.

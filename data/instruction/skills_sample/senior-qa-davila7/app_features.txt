@@ -1,0 +1,21 @@
+Application: NextCommerce - E-Commerce Platform
+Tech Stack: Next.js 14, Node.js API, PostgreSQL, Stripe payments
+Team size: 4 developers
+
+Features requiring test coverage:
+1. User Registration & Authentication (email, Google OAuth, magic link)
+2. Product Search & Filtering (keyword, category, price range, ratings)
+3. Shopping Cart (add, remove, update quantity, persistence across sessions)
+4. Checkout Flow (address, shipping selection, payment processing)
+5. Order Management (status tracking, cancellation, refunds)
+6. Admin Dashboard (product CRUD, order management, analytics)
+
+Current test situation:
+- 0% automated test coverage
+- Manual QA done before each release (takes 2 days)
+- Recent production bugs: payment double-charge (#891), cart losing items on mobile (#904)
+
+Requirements:
+- Pest PHP framework for unit and feature tests
+- Playwright for E2E tests
+- Target: 80% coverage on critical paths before next release

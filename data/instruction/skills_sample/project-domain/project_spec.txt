@@ -1,0 +1,20 @@
+Project: HealthTrack - Patient Care Management System
+
+Domain entities:
+- Patient: Individual receiving medical care
+- Clinician: Doctor, nurse, or specialist providing care
+- Appointment: Scheduled interaction between Patient and Clinician
+- CareRecord: Clinical notes, diagnoses, treatments for a visit
+- Prescription: Medication order linked to a CareRecord
+- InsuranceClaim: Billing record submitted to an insurer
+
+Key domain concepts:
+- Episode of Care: Series of related Appointments for a single health issue
+- Care Team: Group of Clinicians assigned to a Patient
+- Referral: Transfer of Patient from one Clinician to another
+- Formulary: List of approved medications for a given insurance plan
+
+Ambiguous terms to standardize:
+- "Visit" vs "Appointment" vs "Encounter" — which do we use?
+- "Provider" vs "Clinician" vs "Practitioner"
+- "Chart" vs "CareRecord" vs "Medical Record"

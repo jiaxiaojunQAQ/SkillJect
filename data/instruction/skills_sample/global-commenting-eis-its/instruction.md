@@ -1,0 +1,1 @@
+Please use the global-commenting-eis-its skill to review code.py and add self-documenting comments that explain complex business logic and algorithms, focusing on why rather than what, while removing any outdated or redundant comments.

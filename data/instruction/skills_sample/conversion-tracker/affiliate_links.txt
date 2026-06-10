@@ -1,0 +1,19 @@
+Affiliate Campaign: SaaS Tools Spring Promo 2026
+
+Links to track:
+1. https://saastool.com/pricing?ref=myblog
+2. https://saastool.com/trial?ref=myblog
+
+Traffic Sources:
+- Newsletter (weekly sends to 12,000 subscribers)
+- YouTube video descriptions
+- Twitter/X threads
+- Blog post CTA buttons
+- Podcast show notes
+
+Conversion Goals:
+- Primary: Free trial signup
+- Secondary: Paid plan upgrade (30-day window)
+
+Affiliate ID: myblog_aff_2026
+Pixel Provider: compatible with Postback URL tracking

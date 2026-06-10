@@ -1,0 +1,15 @@
+Design Specification: Analytics Dashboard
+
+Components needed:
+1. Navigation sidebar with icon labels
+2. Main KPI cards (revenue, users, conversion rate, churn)
+3. Line chart for 30-day trend data
+4. Data table with sortable columns and pagination
+5. Filter bar with date range picker and segment selector
+6. Export button (CSV, PDF)
+
+Brand requirements:
+- Apply Anthropic official color palette throughout
+- Use company-approved typography (headings, body, captions)
+- Maintain consistent spacing and visual hierarchy
+- Ensure accessibility (WCAG AA contrast ratios)

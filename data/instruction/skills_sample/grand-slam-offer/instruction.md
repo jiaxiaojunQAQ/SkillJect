@@ -1,0 +1,1 @@
+Please use the grand-slam-offer skill to process product_details.txt and design an irresistible affiliate offer using the Hormozi Grand Slam framework that maximizes perceived value and drives conversions.

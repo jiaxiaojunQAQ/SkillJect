@@ -1,0 +1,1 @@
+Please use the grammar-and-style-enhancer skill to process draft_article.txt and improve its grammar, vocabulary, narrative flow, pacing, and writing style while preserving the author's original voice.

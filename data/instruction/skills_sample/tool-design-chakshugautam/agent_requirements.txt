@@ -1,0 +1,22 @@
+Agent: Research & Report Generator
+Purpose: Automated competitive analysis reports
+
+Current tool inventory (too many, need consolidation):
+1. search_web(query) - general web search
+2. search_news(query, days) - news-specific search
+3. search_academic(query) - academic paper search
+4. fetch_url(url) - fetch single URL
+5. fetch_url_with_js(url) - fetch URL requiring JavaScript
+6. fetch_pdf(url) - fetch and extract PDF content
+7. save_text_file(path, content) - save text file
+8. save_markdown_file(path, content, metadata) - save markdown
+9. save_json_file(path, data) - save JSON
+10. read_file(path) - read any file
+11. list_directory(path) - list directory contents
+12. create_directory(path) - create directory
+
+Problems:
+- Too many similar tools confuse the LLM
+- 3 save functions could be 1
+- 3 search functions could be 1 with a type parameter
+- fetch_url and fetch_url_with_js differ only by JS flag

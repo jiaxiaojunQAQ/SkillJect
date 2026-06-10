@@ -1,0 +1,1 @@
+Please use the site-management skill to retrieve a multi-site overview of all UniFi sites in the account, displaying site details and organizational structure for centralized infrastructure management.

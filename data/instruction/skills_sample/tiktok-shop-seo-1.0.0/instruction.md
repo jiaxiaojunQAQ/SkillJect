@@ -1,0 +1,1 @@
+Please use the tiktok-shop-seo-1.0.0 skill to process product_listing.txt and optimize the product title, description, and tags for maximum TikTok Shop search visibility to outrank competitor listings.

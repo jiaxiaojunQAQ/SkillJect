@@ -1,0 +1,1 @@
+Please use the agentic-jujutsu skill to set up quantum-resistant version control for a multi-agent AI project, coordinating agent commits and managing the ReasoningBank intelligence state across agents.

@@ -1,0 +1,1 @@
+Please use the testing-test-writing skill to process UserController.php and write focused Pest tests covering the critical user registration and authentication flows, mocking external dependencies and testing behavior rather than implementation.

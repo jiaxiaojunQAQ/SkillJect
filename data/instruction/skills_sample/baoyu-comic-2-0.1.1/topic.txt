@@ -1,0 +1,14 @@
+Comic Topic: The History of Machine Learning
+Style: Logicomix (biographical/historical narrative with detailed illustrations)
+Tone: Educational but engaging, accessible to general readers
+Target Audience: College students and curious adults
+
+Key story beats to cover:
+1. Early perceptron research by Frank Rosenblatt (1950s)
+2. The first AI winter and its causes
+3. Backpropagation breakthrough by Rumelhart & Hinton (1986)
+4. Support Vector Machines and kernel methods (1990s)
+5. Deep learning revolution sparked by ImageNet (2012)
+6. The transformer architecture and modern LLMs
+
+Estimated length: 6 panels per chapter, 6 chapters total

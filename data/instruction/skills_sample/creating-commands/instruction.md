@@ -1,0 +1,1 @@
+Please use the creating-commands skill to guide the creation of a new Claude Code slash command called '/deploy' that accepts an environment argument and follows best practices for command structure and frontmatter.

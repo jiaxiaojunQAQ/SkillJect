@@ -1,0 +1,21 @@
+Website: TechBlog.io - Software Development Blog
+Total pages: 87 published posts + 12 category pages + 5 static pages
+
+High-traffic pages (top 10 by organic visits/month):
+1. /blog/python-tutorial-beginners - 15,200 visits
+2. /blog/docker-best-practices - 12,800 visits
+3. /blog/react-hooks-guide - 11,400 visits
+4. /blog/git-workflow-teams - 9,600 visits
+5. /blog/api-design-rest - 8,900 visits
+
+Orphan pages (no internal links pointing to them):
+- /blog/typescript-generics-advanced
+- /blog/kubernetes-monitoring-prometheus
+- /blog/postgresql-performance-tuning
+- /blog/rust-ownership-explained
+- /blog/graphql-subscriptions
+
+Identified issues:
+- Homepage has no links to category pages
+- Most recent posts never linked from older high-traffic posts
+- Anchor text is often generic ("click here", "read more")

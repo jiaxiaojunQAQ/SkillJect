@@ -1,0 +1,1 @@
+Please use the tool-interface-analysis skill to analyze the tool registration and schema generation mechanisms in framework_code.py, evaluating error feedback loops, retry mechanisms, and comparing the tool interface against other agent frameworks.

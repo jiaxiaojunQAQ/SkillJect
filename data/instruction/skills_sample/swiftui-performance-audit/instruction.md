@@ -1,0 +1,1 @@
+Please use the swiftui-performance-audit skill to review ContentView.swift and diagnose slow rendering and excessive view updates, providing concrete fixes for layout thrash and high CPU usage in the SwiftUI app.

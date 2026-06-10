@@ -1,0 +1,1 @@
+Please use the daem0nmcp-protocol skill to enforce the sacred covenant protocol for this session: commune at session start, seek counsel before making changes, inscribe decisions, and seal outcomes upon completion.

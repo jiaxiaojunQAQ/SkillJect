@@ -1,0 +1,13 @@
+Goal: Automate social media content creation and scheduling
+
+I want to:
+1. Take a blog post URL as input
+2. Automatically generate 5 Twitter/X threads from the content
+3. Create 3 LinkedIn posts with professional framing
+4. Schedule posts at optimal times for engagement
+5. Track performance and report on clicks and impressions
+
+I'm building this for a content marketing team of 3 people who manage 4 brand accounts across Twitter/X, LinkedIn, and Instagram.
+
+Tools available: Claude API, Buffer API, Twitter API v2, LinkedIn API
+Preferred output: Python scripts or workflow definitions

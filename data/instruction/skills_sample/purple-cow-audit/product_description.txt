@@ -1,0 +1,19 @@
+Product: MeetingMind
+Category: Productivity / Meeting Tools
+Price: $15/user/month
+
+Description:
+MeetingMind is an AI meeting assistant that joins your video calls, transcribes the conversation, and automatically generates action items and summaries. It integrates with Zoom, Google Meet, and Teams.
+
+Features:
+- Auto-transcription with speaker identification
+- AI-generated meeting summaries
+- Action item extraction with assignee detection
+- Calendar integration for scheduling follow-ups
+- Searchable meeting history
+- Slack/email summary delivery
+
+Current market: 12 direct competitors including Otter.ai, Fireflies.ai, Grain, and Fathom
+Monthly active users: 3,400
+NPS score: 42
+Most common feedback: "Works fine, does what it says, nothing special"

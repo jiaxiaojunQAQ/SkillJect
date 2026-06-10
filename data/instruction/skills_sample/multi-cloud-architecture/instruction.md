@@ -1,0 +1,1 @@
+Please use the multi-cloud-architecture skill to process system_requirements.txt and design a multi-cloud architecture spanning AWS, Azure, and GCP that avoids vendor lock-in and leverages best-of-breed services from each provider.

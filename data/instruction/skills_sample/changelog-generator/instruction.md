@@ -1,0 +1,1 @@
+Please use the changelog-generator skill to analyze the git commit history and generate a customer-friendly changelog for the v2.5.0 release, categorizing changes into features, fixes, and improvements.

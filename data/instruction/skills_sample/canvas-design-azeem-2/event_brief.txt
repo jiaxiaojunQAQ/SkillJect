@@ -1,0 +1,13 @@
+Event: TechForward 2026 Conference
+Speaker: Dr. Sarah Chen
+Talk Title: "The Future of Human-AI Collaboration"
+Date: June 15, 2026
+Venue: San Francisco Convention Center, Hall B
+Time: 2:00 PM - 3:00 PM
+
+Poster Requirements:
+- Format: A2 portrait (420 x 594 mm)
+- Style: Modern tech aesthetic, bold typography
+- Include: Speaker headshot placeholder, event logo, session details
+- Color mood: Deep navy, electric blue, white accents
+- Output: PNG at 300 DPI

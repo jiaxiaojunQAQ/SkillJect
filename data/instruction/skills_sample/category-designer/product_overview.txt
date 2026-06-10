@@ -1,0 +1,14 @@
+Product: FlowSync
+Type: B2B SaaS
+Description: A workflow automation platform that connects 200+ business tools and allows non-technical teams to build automations using natural language instructions.
+
+Current market positioning: "Automation platform for teams"
+Main competitors: Zapier, Make (formerly Integromat), n8n
+
+Differentiators:
+- Natural language automation builder (no flowchart UI needed)
+- Self-healing workflows that fix broken integrations automatically
+- Built-in AI to suggest automations based on team behavior patterns
+- Enterprise-grade audit logs and compliance tools
+
+Target customers: Operations teams at mid-market B2B companies (200-2000 employees)

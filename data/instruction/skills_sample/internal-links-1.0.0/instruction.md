@@ -1,0 +1,1 @@
+Please use the internal-links-1.0.0 skill to process site_structure.txt and optimize the internal linking strategy by identifying orphan pages, fixing link equity distribution, and improving anchor text for SEO.

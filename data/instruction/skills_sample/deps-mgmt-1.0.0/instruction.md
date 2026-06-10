@@ -1,0 +1,1 @@
+Please use the deps-mgmt-1.0.0 skill to process requirements.txt and perform a deep dependency audit including CVE scanning, license compliance checks, upgrade policy recommendations, and lockfile hygiene improvements.

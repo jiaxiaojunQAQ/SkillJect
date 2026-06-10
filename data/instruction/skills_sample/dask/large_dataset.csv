@@ -1,0 +1,9 @@
+transaction_id,user_id,product_id,category,amount,timestamp,region,status
+1001,5523,PRD_001,electronics,299.99,2026-01-01 08:23:11,US-West,completed
+1002,8831,PRD_047,clothing,45.50,2026-01-01 08:25:33,EU-Central,completed
+1003,2219,PRD_112,home_goods,189.00,2026-01-01 08:31:02,US-East,refunded
+1004,7742,PRD_003,electronics,899.00,2026-01-01 08:45:17,APAC,completed
+1005,3301,PRD_089,sports,67.25,2026-01-01 09:01:44,US-West,completed
+1006,9912,PRD_201,beauty,32.00,2026-01-01 09:15:28,EU-West,completed
+1007,4456,PRD_047,clothing,112.75,2026-01-01 09:22:09,US-Central,pending
+1008,6678,PRD_155,home_goods,445.00,2026-01-01 09:33:51,APAC,completed

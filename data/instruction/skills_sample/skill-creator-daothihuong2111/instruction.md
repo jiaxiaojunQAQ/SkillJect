@@ -1,0 +1,1 @@
+Please use the skill-creator-daothihuong2111 skill to guide the creation of a new skill called 'data-validator' that validates CSV data files, defining its SKILL.md structure, trigger conditions, and workflow.

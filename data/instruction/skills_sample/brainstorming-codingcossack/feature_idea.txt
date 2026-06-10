@@ -1,0 +1,14 @@
+Feature Concept: Real-time Collaborative Code Review
+
+Initial idea: Allow multiple team members to review and annotate code simultaneously in the browser, similar to Google Docs but for pull requests.
+
+Open questions:
+- How should conflicts be handled when two reviewers annotate the same line?
+- Should we support voice/video alongside text comments?
+- How do we preserve review thread context across code rebases?
+- What's the right permission model for large open-source projects?
+
+Constraints:
+- Must integrate with existing GitHub/GitLab webhooks
+- Performance target: <100ms latency for annotation sync
+- Must work for files up to 5000 lines

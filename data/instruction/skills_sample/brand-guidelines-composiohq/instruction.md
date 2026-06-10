@@ -1,0 +1,1 @@
+Please use the brand-guidelines-composiohq skill to apply Anthropic's official brand colors and typography to the dashboard design described in design_spec.txt, ensuring all visual elements follow company style guidelines.

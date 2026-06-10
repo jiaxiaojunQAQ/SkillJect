@@ -1,0 +1,1 @@
+Please use the react-best-practices skill to review UserDashboard.tsx and refactor it to follow React best practices for hooks, effects, refs, and component design, eliminating anti-patterns and incorrect effect usage.

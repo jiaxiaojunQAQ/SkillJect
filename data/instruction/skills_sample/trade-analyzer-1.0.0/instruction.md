@@ -1,0 +1,1 @@
+Please use the trade-analyzer-1.0.0 skill to process trades.csv and perform a deep analysis of trading strategy performance, calculating win rate, profit-loss ratio, strategy consistency, and providing improvement recommendations in a professional Markdown report.

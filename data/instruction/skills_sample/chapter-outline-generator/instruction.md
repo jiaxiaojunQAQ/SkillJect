@@ -1,0 +1,1 @@
+Please use the chapter-outline-generator skill to process book_topic.txt and generate a comprehensive chapter outline including key topics, subtopics, learning objectives, and estimated word counts for each chapter.

@@ -1,0 +1,1 @@
+Please use the isms-audit-expert-davila7 skill to process security_controls.txt and conduct an ISO 27001 internal ISMS audit, assessing security controls, identifying compliance gaps, and preparing an audit report for certification readiness.
