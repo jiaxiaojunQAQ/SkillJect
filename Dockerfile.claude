@@ -50,10 +50,16 @@ RUN sudo apt-get update && \
 # Add npm global installation path to PATH
 ENV PATH="/home/claude_code/.npm-global/bin:$PATH"
 
-# Install Claude Code CLI to user directory
+# Install Claude Code CLI to user directory.
+# Pinned for reproducibility: the paper's experiments ran on 2.1.34 (see the
+# Agent Versions table in README.md). Newer CLI releases are noticeably more
+# resistant to skill-file injection AND drop the command arguments from their
+# OTEL telemetry, which breaks command/attack-success detection. Override at
+# build time with --build-arg CLAUDE_CODE_VERSION=<version>.
+ARG CLAUDE_CODE_VERSION=2.1.34
 RUN npm config set registry=https://registry.npmmirror.com && \
     npm config set prefix '/home/claude_code/.npm-global' && \
-    npm install -g @anthropic-ai/claude-code && \
+    npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" && \
     npm cache clean --force
 
 # Create Claude Code configuration directory structure
@@ -67,5 +73,8 @@ RUN cat > /home/claude_code/.claude.json << 'EOF'
 }
 EOF
 
-# Verify installation (will fail immediately if installation failed)
-RUN claude --version
+# Verify installation and that the pinned version is exactly what was installed
+# (fails the build on a version mismatch instead of silently drifting).
+RUN claude --version && \
+    claude --version | grep -q "^${CLAUDE_CODE_VERSION} " || \
+    (echo "ERROR: expected Claude Code ${CLAUDE_CODE_VERSION}, got $(claude --version)" && exit 1)
