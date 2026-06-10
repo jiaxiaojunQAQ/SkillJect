@@ -39,9 +39,12 @@ RUN sudo apt-get update && \
 # Add npm global installation path to PATH
 ENV PATH="/home/node/.npm-global/bin:$PATH"
 
-# Install OpenClaw CLI globally
+# Install OpenClaw CLI globally.
+# Pinned for reproducibility — the paper used OpenClaw 2026.3.31 (213a704).
+# Override at build time with --build-arg OPENCLAW_VERSION=<version>.
+ARG OPENCLAW_VERSION=2026.3.31
 RUN npm config set prefix '/home/node/.npm-global' && \
-    npm install -g openclaw@latest && \
+    npm install -g "openclaw@${OPENCLAW_VERSION}" && \
     npm cache clean --force
 
 # Create OpenClaw directory structure (matching actual Gateway structure)
@@ -52,5 +55,7 @@ RUN mkdir -p /home/node/.openclaw/workspace
 # Create agents directory structure
 RUN mkdir -p /home/node/.openclaw/agents/main/agent
 
-# Verify installation
-RUN openclaw --version
+# Verify installation and that the pinned version is what got installed.
+RUN openclaw --version && \
+    openclaw --version | grep -q "${OPENCLAW_VERSION}" || \
+    (echo "ERROR: expected OpenClaw ${OPENCLAW_VERSION}, got $(openclaw --version)" && exit 1)
