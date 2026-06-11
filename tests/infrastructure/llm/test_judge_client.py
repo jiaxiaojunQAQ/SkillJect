@@ -282,3 +282,65 @@ class TestJudgeClientFactoryIntegration:
         mock_openai_cls.assert_called_once()
         call_kwargs = mock_openai_cls.call_args
         assert call_kwargs[1]["base_url"] == "https://judge.example.com/v1"
+
+    @patch.dict(
+        "os.environ",
+        {"JUDGE_LLM_API_KEY": "test-key", "OPENAI_BASE_URL": "https://relay.example.com/v1"},
+        clear=True,
+    )
+    @patch("src.infrastructure.llm.openai_client.OpenAIClient")
+    def test_base_url_falls_back_to_openai_base_url(self, mock_openai_cls: object) -> None:
+        """base_url fallback mirrors the api_key fallback to OPENAI_* vars."""
+        from src.domain.analysis.value_objects.judge_config import JudgeConfig
+        from src.infrastructure.llm.judge_client import LLMJudgeClient
+
+        config = JudgeConfig(
+            api_key_env="JUDGE_LLM_API_KEY",
+            base_url_env="JUDGE_LLM_BASE_URL",  # unset in env
+        )
+
+        LLMJudgeClient._create_llm_client(config)
+
+        call_kwargs = mock_openai_cls.call_args
+        assert call_kwargs[1]["base_url"] == "https://relay.example.com/v1"
+
+    @patch.dict("os.environ", {}, clear=True)
+    def test_missing_api_key_raises_error_naming_env_vars(self) -> None:
+        from src.domain.analysis.value_objects.judge_config import JudgeConfig
+        from src.infrastructure.llm.judge_client import LLMJudgeClient
+        from src.shared.exceptions import ConfigurationError
+
+        config = JudgeConfig(api_key_env="JUDGE_LLM_API_KEY")
+
+        with pytest.raises(ConfigurationError) as exc_info:
+            LLMJudgeClient._create_llm_client(config)
+
+        message = str(exc_info.value)
+        assert "JUDGE_LLM_API_KEY" in message
+        assert "OPENAI_API_KEY" in message
+        assert ".env" in message
+
+    @patch.dict(
+        "os.environ",
+        {"JUDGE_LLM_API_KEY": "sk-secret-key-1234abcd"},
+        clear=True,
+    )
+    @patch("src.infrastructure.llm.openai_client.OpenAIClient")
+    def test_logs_resolved_config_with_masked_key(
+        self, mock_openai_cls: object, caplog: pytest.LogCaptureFixture
+    ) -> None:
+        from src.domain.analysis.value_objects.judge_config import JudgeConfig
+        from src.infrastructure.llm.judge_client import LLMJudgeClient
+
+        config = JudgeConfig(
+            model="gpt-5-mini",
+            api_key_env="JUDGE_LLM_API_KEY",
+        )
+
+        with caplog.at_level(logging.INFO):
+            LLMJudgeClient._create_llm_client(config)
+
+        assert "JUDGE_LLM_API_KEY" in caplog.text
+        assert "gpt-5-mini" in caplog.text
+        assert "sk-secret-key-1234abcd" not in caplog.text  # never log the raw key
+        assert "abcd" in caplog.text  # masked tail for identification

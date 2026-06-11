@@ -4,6 +4,7 @@ Execution Configuration Value Objects
 Defines execution configuration for two-phase framework
 """
 
+import logging
 import os
 from dataclasses import dataclass, field
 from enum import Enum
@@ -11,6 +12,10 @@ from pathlib import Path
 from typing import Any
 
 from src.domain.analysis.value_objects.judge_config import JudgeConfig
+from src.shared.exceptions import ConfigurationError
+from src.shared.secrets import mask_secret
+
+logger = logging.getLogger(__name__)
 
 # Configuration validation constants
 MIN_CONCURRENCY = 1
@@ -777,6 +782,11 @@ class AgentConfig:
 
         Returns:
             Dictionary content for settings.json
+
+        Raises:
+            ConfigurationError: If no credential can be resolved. Generating
+                settings without auth would only fail later inside the sandbox
+                with an opaque authentication error.
         """
         env_vars: dict[str, str] = {
             "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": self.disable_traffic,
@@ -785,22 +795,49 @@ class AgentConfig:
         # Select correct field name based on use_api_key
         if self.use_api_key:
             api_key = self._resolve_api_key()
-            if api_key:
-                env_vars["ANTHROPIC_API_KEY"] = api_key
+            if not api_key:
+                raise ConfigurationError(
+                    f"Agent auth not resolved (agent_type={self.agent_type}, use_api_key=True): "
+                    f"env var '{self.auth_token_env}' (auth_token_env) and fallback "
+                    "'ANTHROPIC_API_KEY' are unset and no api_key is configured. "
+                    "Set the variable in the project .env file."
+                )
+            env_vars["ANTHROPIC_API_KEY"] = api_key
         else:
             auth_token = self._resolve_auth_token()
-            if auth_token:
-                env_vars["ANTHROPIC_AUTH_TOKEN"] = auth_token
+            if not auth_token:
+                raise ConfigurationError(
+                    f"Agent auth not resolved (agent_type={self.agent_type}, use_api_key=False): "
+                    f"env var '{self.auth_token_env}' (auth_token_env) is unset and no "
+                    "auth_token is configured. Set the variable in the project .env file."
+                )
+            env_vars["ANTHROPIC_AUTH_TOKEN"] = auth_token
 
         # Add optional base_url (prefer config field, fallback to env var)
         base_url = self._resolve_base_url()
         if base_url:
             env_vars["ANTHROPIC_BASE_URL"] = base_url
+        else:
+            logger.warning(
+                "Agent base_url not resolved: env var '%s' (base_url_env) is unset; "
+                "the agent will call the official Anthropic endpoint.",
+                self.base_url_env,
+            )
 
         # Add optional model
         model = self._resolve_model()
         if model:
             env_vars["ANTHROPIC_MODEL"] = model
+
+        logger.info(
+            "Agent settings.json env: %s",
+            {
+                key: mask_secret(value)
+                if key in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN")
+                else value
+                for key, value in env_vars.items()
+            },
+        )
 
         return {
             "env": env_vars,

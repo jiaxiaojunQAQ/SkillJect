@@ -25,6 +25,7 @@ from src.infrastructure.llm.judge_prompts import (
     build_response_classification_prompt,
 )
 from src.shared.exceptions import RetryConfig, retry_with_trace
+from src.shared.secrets import mask_secret
 
 logger = logging.getLogger(__name__)
 
@@ -47,18 +48,48 @@ class LLMJudgeClient(ILLMJudge):
 
     @staticmethod
     def _create_llm_client(config: JudgeConfig) -> LLMClient:
-        """Create an OpenAI-compatible LLM client for judge calls."""
+        """Create an OpenAI-compatible LLM client for judge calls.
+
+        Resolution order (api_key and base_url are symmetric):
+        - api_key:  env[config.api_key_env] -> env[OPENAI_API_KEY] -> error
+        - base_url: config.base_url -> env[config.base_url_env]
+                    -> env[OPENAI_BASE_URL] -> OpenAI default
+        """
         from src.infrastructure.llm.openai_client import OpenAIClient
+        from src.shared.exceptions import ConfigurationError
 
         base_url = config.base_url
         if not base_url and config.base_url_env:
             base_url = os.getenv(config.base_url_env, "")
+        if not base_url:
+            base_url = os.getenv("OPENAI_BASE_URL", "")
 
         api_key = ""
+        api_key_source = ""
         if config.api_key_env:
             api_key = os.getenv(config.api_key_env, "")
+            api_key_source = config.api_key_env
         if not api_key:
             api_key = os.getenv("OPENAI_API_KEY", "")
+            api_key_source = "OPENAI_API_KEY"
+        if not api_key:
+            checked = (
+                f"'{config.api_key_env}' (llm_judge.api_key_env) and fallback 'OPENAI_API_KEY'"
+                if config.api_key_env
+                else "'OPENAI_API_KEY'"
+            )
+            raise ConfigurationError(
+                f"Judge LLM API key not found: env var {checked} "
+                "is unset. Set it in the project .env file."
+            )
+
+        logger.info(
+            "Judge LLM client: model=%s base_url=%s api_key=%s (from %s)",
+            config.model,
+            base_url or "<OpenAI default>",
+            mask_secret(api_key),
+            api_key_source,
+        )
 
         llm_config = LLMClientConfig(
             api_key=api_key,

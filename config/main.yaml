@@ -23,8 +23,10 @@
 #     false = rule-based dual-layer detection (script execution + consequence detection)
 #     Note: response classification (REJECTED/IGNORED) always uses LLM regardless of this flag.
 #   model       (str, default: gpt-4)
-#   api_key_env  (str) - env var name for API key
-#   base_url_env (str) - env var name for base URL (set to switch provider)
+#   api_key_env  (str) - env var NAME for API key (the value lives in .env,
+#                        not here; startup fails fast if the variable is unset)
+#   base_url_env (str) - env var NAME for base URL (set to switch provider;
+#                        falls back to OPENAI_BASE_URL, then the OpenAI default)
 #   timeout      (int, default: 180) - request timeout in seconds
 #   temperature  (float, default: 0.3) - sampling temperature
 #   max_tokens   (int, default: 4096) - max response tokens

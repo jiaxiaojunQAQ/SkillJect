@@ -71,33 +71,47 @@ from src.shared.types import AttackType
 list_all_skills = skill_loader.list_all_skills
 
 
-def load_env_file() -> None:
-    """Load .env file if it exists
+def _default_env_paths() -> list[Path]:
+    """Default .env candidate locations, project root first."""
+    return [
+        Path(__file__).resolve().parent / ".env",
+        Path.cwd() / ".env",
+    ]
 
-    Attempts to load .env file from multiple possible paths:
-    1. Current working directory
-    2. run.py directory
-    3. Project root directory
+
+def load_env_file(env_paths: list[Path] | None = None) -> Path | None:
+    """Load the first existing .env file and report which one was used.
+
+    Values in .env override variables already exported in the shell
+    (override=True) so that editing .env deterministically takes effect.
+
+    Args:
+        env_paths: Candidate .env paths in priority order.
+            Defaults to project root, then current working directory.
+
+    Returns:
+        Path of the loaded .env file, or None if none was found.
     """
-    from pathlib import Path
-
     try:
         from dotenv import load_dotenv
     except ImportError:
-        # python-dotenv not installed, silently skip
-        return
+        print("Warning: python-dotenv is not installed; .env file will NOT be loaded. "
+              "Credentials must be exported in the shell environment.")
+        return None
 
-    # Try multiple possible .env file locations
-    env_paths = [
-        Path.cwd() / ".env",
-        Path(__file__).parent / ".env",
-        Path(__file__).parent.parent / ".env",
-    ]
+    if env_paths is None:
+        env_paths = _default_env_paths()
 
     for env_path in env_paths:
         if env_path.exists():
-            load_dotenv(env_path)
-            return
+            load_dotenv(env_path, override=True)
+            print(f"Loaded environment variables from {env_path.resolve()} "
+                  "(.env values override shell exports)")
+            return env_path
+
+    print("Warning: no .env file found; credentials will be read from the "
+          "current shell environment only.")
+    return None
 
 
 def print_streaming_progress(progress: StreamingProgress) -> None:
